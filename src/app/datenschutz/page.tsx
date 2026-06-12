@@ -6,7 +6,7 @@ export default function DatenschutzPage() {
         <h1 className="text-4xl font-display font-bold mb-8">Datenschutzerklärung</h1>
         <div className="prose prose-gray dark:prose-invert max-w-none space-y-6 text-muted-foreground">
           <h2 className="text-xl font-display font-semibold text-foreground">1. Verantwortlicher</h2>
-          <p>Verantwortlicher für die Datenverarbeitung auf dieser Website ist: [Name, Adresse, E-Mail]</p>
+          <p>Verantwortlicher für die Datenverarbeitung auf dieser Website ist:<br />Tolga Günsal<br />E-Mail: hallo@guenlab.de</p>
 
           <h2 className="text-xl font-display font-semibold text-foreground">2. Erhebung und Verarbeitung personenbezogener Daten</h2>
           <p>Wir erheben und verarbeiten personenbezogene Daten nur, soweit dies für die Bereitstellung unserer Dienste erforderlich ist. Dazu gehören: Name, E-Mail-Adresse, Lernfortschritte, Nutzungsstatistiken.</p>
@@ -24,7 +24,7 @@ export default function DatenschutzPage() {
           <p>Sie haben das Recht auf: Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einspruch (Art. 21 DSGVO), Datenübertragbarkeit (Art. 20 DSGVO).</p>
 
           <h2 className="text-xl font-display font-semibold text-foreground">7. Kontakt</h2>
-          <p>Bei Datenschutzanfragen wenden Sie sich bitte an: [datenschutz@deutschquest.de]</p>
+          <p>Bei Datenschutzanfragen wenden Sie sich bitte an: hallo@guenlab.de</p>
         </div>
       </div>
     </div>

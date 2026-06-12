@@ -6,13 +6,13 @@ export default function ImpressumPage() {
         <h1 className="text-4xl font-display font-bold mb-8">Impressum</h1>
         <div className="space-y-6 text-muted-foreground">
           <h2 className="text-xl font-display font-semibold text-foreground">Angaben gemäß § 5 TMG</h2>
-          <p>[Name des Anbieters]<br />[Straße und Hausnummer]<br />[PLZ und Ort]</p>
+          <p>Tolga Günsal<br />E-Mail: hallo@guenlab.de</p>
 
           <h2 className="text-xl font-display font-semibold text-foreground">Kontakt</h2>
-          <p>Telefon: [Telefonnummer]<br />E-Mail: [E-Mail-Adresse]</p>
+          <p>E-Mail: hallo@guenlab.de</p>
 
           <h2 className="text-xl font-display font-semibold text-foreground">Verantwortlich für den Inhalt</h2>
-          <p>[Name gemäß § 55 Abs. 2 RStV]</p>
+          <p>Tolga Günsal</p>
 
           <h2 className="text-xl font-display font-semibold text-foreground">EU-Streitschlichtung</h2>
           <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/</p>
