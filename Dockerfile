@@ -10,7 +10,7 @@
 # =============================================================================
 
 # ---- Build Stage ----
-FROM node:20-slim AS builder
+FROM node:20-bullseye AS builder
 
 ARG APP_VERSION=0.0.0
 ENV NEXT_PUBLIC_APP_VERSION=${APP_VERSION}
@@ -30,7 +30,7 @@ RUN npx prisma generate
 RUN npm run build
 
 # ---- Production Stage ----
-FROM node:20-slim AS runner
+FROM node:20-bullseye AS runner
 
 ARG APP_VERSION=0.0.0
 ENV APP_VERSION=${APP_VERSION}
