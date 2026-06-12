@@ -1,0 +1,30 @@
+{
+  "name": "DeutschQuest - Deutsch spielerisch lernen",
+  "short_name": "DQ",
+  "description": "Deutsch lernen von A1 bis C1 - spielerisch, effektiv und spaßig",
+  "start_url": "/dashboard",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#2563eb",
+  "background_color": "#ffffff",
+  "lang": "de",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "language"],
+  "screenshots": [],
+  "prefer_related_applications": false
+}
