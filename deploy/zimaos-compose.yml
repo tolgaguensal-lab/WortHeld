@@ -36,6 +36,8 @@ services:
     restart: unless-stopped
     networks:
       - wortheld-internal
+    env_file:
+      - ./zimaos.env
     environment:
       POSTGRES_USER: wortheld
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
