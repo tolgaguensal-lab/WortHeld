@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  libretranslate:
+    image: libretranslate/libretranslate:v1.9.6
+    container_name: wortheld-libretranslate
+    restart: unless-stopped
+    ports:
+      - "5001:5000"
+    networks:
+      - wortheld-internal
+    env_file:
+      - ./libretranslate.env
+    volumes:
+      - libretranslate-models:/home/libretranslate/.local
+      - libretranslate-api-keys:/app/db
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5000/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  libretranslate-models:
+    name: libretranslate-models
+  libretranslate-api-keys:
+    name: libretranslate-api-keys
+
+networks:
+  wortheld-internal:
+    external: true
+    name: wortheld_wortheld-internal
