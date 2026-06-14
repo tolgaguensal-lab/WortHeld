@@ -33,6 +33,9 @@ deploy/zimaos.env
 # vercel
 .vercel
 
+# build-generated
+public/version.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

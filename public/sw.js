@@ -1,6 +1,7 @@
-const CACHE_NAME = "deutschquest-v1";
+const CACHE_NAME = "deutschquest-v2";
 const STATIC_ASSETS = ["/", "/dashboard", "/learn", "/manifest.json"];
 const API_CACHE = "deutschquest-api-v1";
+const VERSION_CACHE = "deutschquest-version";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -13,16 +14,35 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
       Promise.all(
-        keys.filter((key) => key !== CACHE_NAME && key !== API_CACHE).map((key) => caches.delete(key))
+        keys
+          .filter((key) => key !== CACHE_NAME && key !== API_CACHE && key !== VERSION_CACHE)
+          .map((key) => caches.delete(key))
       )
     )
   );
   self.clients.claim();
 });
 
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
+
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   const url = new URL(request.url);
+
+  if (url.pathname === "/version.json") {
+    event.respondWith(
+      fetch(request).then((response) => {
+        const clone = response.clone();
+        caches.open(VERSION_CACHE).then((cache) => cache.put(request, clone));
+        return response;
+      })
+    );
+    return;
+  }
 
   if (url.pathname.startsWith("/api/")) {
     event.respondWith(
