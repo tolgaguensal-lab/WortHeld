@@ -13,7 +13,7 @@ next-env.d.ts
 README.md
 LICENSE
 docs
-scripts
+# scripts - benötigt für generate-version.js beim Build
 prisma/seed*.ts
 __tests__
 *.test.*
