@@ -1,5 +1,6 @@
 "use client";
 
+import { signOut } from "next-auth/react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -40,8 +41,9 @@ export default function SettingsPage() {
 
       <Card>
         <CardHeader><CardTitle className="font-display text-destructive">Konto</CardTitle></CardHeader>
-        <CardContent>
-          <Button variant="destructive">Konto löschen</Button>
+        <CardContent className="space-y-3">
+          <Button variant="outline" className="w-full" onClick={() => signOut()}>Abmelden</Button>
+          <Button variant="destructive" className="w-full">Konto löschen</Button>
         </CardContent>
       </Card>
     </div>
