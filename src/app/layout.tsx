@@ -3,8 +3,8 @@ import "./globals.css";
 import { Providers } from "@/components/shared/Providers";
 
 export const metadata: Metadata = {
-  title: "DeutschQuest - Deutsch spielerisch lernen",
-  description: "Deutsch lernen von A1 bis C1 - spielerisch, effektiv und spaßig. Die moderne Lernplattform für alle Niveaus.",
+  title: "WortHeld - Deutsch für Alltag, Beruf & Integration",
+  description: "BAMF-konformer Deutschkurs von A1 bis C1. Integrationskurse, Berufsvorbereitung und DTZ-Prüfung – mehrsprachig erklärt.",
   manifest: "/manifest.json",
   appleWebApp: { capable: true, statusBarStyle: "default", title: "DQ" },
 };

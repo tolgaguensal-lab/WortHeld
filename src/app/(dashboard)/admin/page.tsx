@@ -35,10 +35,9 @@ export default function AdminPage() {
           </CardContent>
         </Card>
         <Card>
-          <CardHeader><CardTitle className="font-display">Schnellaktionen</CardTitle></CardHeader>
+          <CardHeader><CardTitle className="font-display">Qualität</CardTitle></CardHeader>
           <CardContent className="space-y-3">
-            <Button variant="outline" className="w-full justify-start">📊 Nutzerstatistiken</Button>
-            <Button variant="outline" className="w-full justify-start">🔍 Inhalte überprüfen</Button>
+            <Link href="/admin/review"><Button variant="outline" className="w-full justify-start">🔍 Qualitätskontrolle</Button></Link>
           </CardContent>
         </Card>
       </div>

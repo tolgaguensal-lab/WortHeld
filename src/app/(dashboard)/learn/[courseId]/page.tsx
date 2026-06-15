@@ -48,7 +48,7 @@ export default function CoursePage() {
                       🔒
                     </div>
                   ) : lesson.current ? (
-                    <Link href={`/learn/a1/${lesson.id}`}>
+                      <Link href={`/exercise/${lesson.id}`}>
                       <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center text-2xl animate-pulse-glow hover:scale-110 transition-transform cursor-pointer">
                         📖
                       </div>

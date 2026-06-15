@@ -1,26 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { Skeleton } from "@/components/ui/skeleton";
+import { LessonStepRenderer } from "@/components/lesson-steps/LessonStepRenderer";
 
-const exercises = [
-  { id: 1, type: "multiple_choice", question: 'Was bedeutet "Hallo"?', options: ["Hello", "Goodbye", "Please", "Thanks"], correct: 0 },
-  { id: 2, type: "multiple_choice", question: 'Was bedeutet "Danke"?', options: ["Please", "Thank you", "Sorry", "Hello"], correct: 1 },
-  { id: 3, type: "article", question: 'Welcher Artikel gehört zu "Tisch"?', options: ["der", "die", "das"], correct: 0 },
-  { id: 4, type: "article", question: 'Welcher Artikel gehört zu "Frau"?', options: ["der", "die", "das"], correct: 1 },
-  { id: 5, type: "article", question: 'Welcher Artikel gehört zu "Haus"?', options: ["der", "die", "das"], correct: 2 },
-  { id: 6, type: "multiple_choice", question: 'Was bedeutet "Tschüss"?', options: ["Hello", "Bye", "Thanks", "Please"], correct: 1 },
-  { id: 7, type: "fill_blank", question: 'Fülle die Lücke: "Ich ___ Anna."', answer: "heiße" },
-  { id: 8, type: "multiple_choice", question: 'Was bedeutet "Bitte"?', options: ["Thank you", "Sorry", "Please", "Yes"], correct: 2 },
-  { id: 9, type: "translation", question: 'Übersetze: "Good morning"', answer: "Guten Morgen" },
-  { id: 10, type: "multiple_choice", question: 'Was bedeutet "Ja"?', options: ["No", "Maybe", "Yes", "Hello"], correct: 2 },
-];
+interface Step {
+  id: string;
+  stepType: string;
+  title: string;
+  content: string;
+  order: number;
+  xpReward: number;
+}
 
-export default function ExercisePage() {
+interface Exercise {
+  id: string;
+  type: string;
+  question: string;
+  content: string;
+  correctAnswer: string;
+  explanation: string | null;
+  xpValue: number;
+  difficulty: string;
+  order: number;
+  options: { id: string; text: string; isCorrect: boolean; order: number }[];
+}
+
+interface Lesson {
+  id: string;
+  name: string;
+  description: string;
+  xpReward: number;
+  lessonSteps: Step[];
+  exercises: Exercise[];
+}
+
+export default function LessonPage({ params }: { params: { lessonId: string } }) {
   const router = useRouter();
+  const [lesson, setLesson] = useState<Lesson | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [phase, setPhase] = useState<"steps" | "exercises" | "complete">("steps");
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [textInput, setTextInput] = useState("");
@@ -28,16 +51,27 @@ export default function ExercisePage() {
   const [score, setScore] = useState(0);
   const [correct, setCorrect] = useState<boolean | null>(null);
 
-  const exercise = exercises[current];
-  const progress = ((current) / exercises.length) * 100;
+  useEffect(() => {
+    fetch(`/api/lessons/${params.lessonId}`)
+      .then((r) => r.json())
+      .then((data) => { setLesson(data); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, [params.lessonId]);
+
+  const exercise = lesson?.exercises[current];
+  const progress = lesson ? ((current) / lesson.exercises.length) * 100 : 0;
+
+  function handleStepsComplete() {
+    setPhase("exercises");
+  }
 
   function handleCheck() {
     if (!exercise) return;
     let isCorrect = false;
-    if ("options" in exercise && selected !== null) {
-      isCorrect = selected === exercise.correct;
-    } else if ("answer" in exercise) {
-      isCorrect = textInput.trim().toLowerCase() === (exercise as any).answer.toLowerCase();
+    if (exercise.options.length > 0 && selected !== null) {
+      isCorrect = exercise.options[selected]?.isCorrect === true;
+    } else {
+      isCorrect = textInput.trim().toLowerCase() === exercise.correctAnswer.toLowerCase();
     }
     setCorrect(isCorrect);
     setChecked(true);
@@ -45,8 +79,8 @@ export default function ExercisePage() {
   }
 
   function handleNext() {
-    if (current + 1 >= exercises.length) {
-      router.push(`/exercise/result?score=${score + (correct ? 1 : 0)}&total=${exercises.length}`);
+    if (!lesson || current + 1 >= lesson.exercises.length) {
+      setPhase("complete");
       return;
     }
     setCurrent((c) => c + 1);
@@ -56,80 +90,151 @@ export default function ExercisePage() {
     setCorrect(null);
   }
 
-  if (!exercise) return null;
+  if (loading) {
+    return (
+      <div className="p-6 max-w-2xl mx-auto">
+        <Skeleton className="h-8 w-48 mb-4" />
+        <Skeleton className="h-64 w-full" />
+      </div>
+    );
+  }
 
+  if (!lesson) {
+    return (
+      <div className="p-6 max-w-2xl mx-auto text-center">
+        <p className="text-muted-foreground mb-4">Lektion nicht gefunden.</p>
+        <Button onClick={() => router.push("/learn")}>Zurück zum Lernpfad</Button>
+      </div>
+    );
+  }
+
+  // Phase 1: Lesson Steps
+  if (phase === "steps" && lesson.lessonSteps.length > 0) {
+    return (
+      <div className="min-h-screen bg-background p-4 md:p-6">
+        <div className="max-w-4xl mx-auto">
+          <button
+            onClick={() => router.push("/learn")}
+            className="text-sm text-muted-foreground hover:text-primary mb-4 inline-block"
+          >
+            ← Zurück
+          </button>
+          <div className="mb-6">
+            <h1 className="text-2xl font-display font-bold">{lesson.name}</h1>
+            <p className="text-muted-foreground">{lesson.description}</p>
+          </div>
+          <LessonStepRenderer steps={lesson.lessonSteps} onComplete={handleStepsComplete} />
+        </div>
+      </div>
+    );
+  }
+
+  // Phase 2: Exercises
+  if (phase === "exercises" && exercise) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col">
+        <div className="p-4 border-b bg-card">
+          <div className="flex items-center gap-4 max-w-2xl mx-auto">
+            <Button variant="ghost" size="sm" onClick={() => router.push("/dashboard")}>✕</Button>
+            <Progress value={progress} className="flex-1" />
+            <span className="text-sm text-muted-foreground whitespace-nowrap">Übung {current + 1}/{lesson!.exercises.length}</span>
+          </div>
+        </div>
+
+        <div className="flex-1 flex items-center justify-center p-6">
+          <Card className="w-full max-w-lg">
+            <CardContent className="p-8">
+              <h2 className="text-xl font-display font-semibold mb-6 text-center">{exercise.question}</h2>
+
+              {exercise.options.length > 0 && (
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  {exercise.options.map((opt, i) => (
+                    <button
+                      key={opt.id}
+                      onClick={() => !checked && setSelected(i)}
+                      className={`p-4 rounded-xl border-2 text-left transition-all font-medium ${
+                        checked
+                          ? opt.isCorrect
+                            ? "border-green-500 bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-300"
+                            : i === selected
+                            ? "border-red-500 bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-300"
+                            : "border-border opacity-50"
+                          : selected === i
+                          ? "border-primary bg-primary/10"
+                          : "border-border hover:border-primary/50"
+                      }`}
+                    >
+                      {opt.text}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {exercise.options.length === 0 && (
+                <input
+                  type="text"
+                  value={textInput}
+                  onChange={(e) => setTextInput(e.target.value)}
+                  placeholder="Deine Antwort..."
+                  disabled={checked}
+                  className="w-full p-4 border-2 rounded-xl text-lg text-center font-medium focus:outline-none focus:border-primary disabled:opacity-50"
+                />
+              )}
+
+              {checked && (
+                <div className="mt-4 space-y-2">
+                  <div className={`p-4 rounded-xl text-center ${correct ? "bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-300" : "bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-300"}`}>
+                    {correct ? "Richtig! 🎉" : "Leider falsch!"}
+                  </div>
+                  {exercise.explanation && (
+                    <div className="p-3 rounded-xl bg-muted text-sm text-muted-foreground">
+                      {exercise.explanation}
+                    </div>
+                  )}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="p-4 border-t bg-card">
+          <div className="max-w-lg mx-auto">
+            {!checked ? (
+              <Button onClick={handleCheck} disabled={exercise.options.length > 0 ? selected === null : textInput.trim() === ""} className="w-full">
+                Prüfen
+              </Button>
+            ) : (
+              <Button onClick={handleNext} className="w-full">
+                {current + 1 >= lesson.exercises.length ? "Ergebnis ansehen" : "Weiter"}
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Phase 3: Complete
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <div className="p-4 border-b bg-card">
-        <div className="flex items-center gap-4 max-w-2xl mx-auto">
-          <Button variant="ghost" size="sm" onClick={() => router.push("/dashboard")}>✕</Button>
-          <Progress value={progress} className="flex-1" />
-          <span className="text-sm text-muted-foreground">❤️ 5</span>
-        </div>
-      </div>
-
-      <div className="flex-1 flex items-center justify-center p-6">
-        <Card className="w-full max-w-lg">
-          <CardContent className="p-8">
-            <h2 className="text-xl font-display font-semibold mb-6 text-center">{exercise.question}</h2>
-
-            {"options" in exercise && exercise.options && (
-              <div className="grid grid-cols-2 gap-3 mb-6">
-                {exercise.options.map((opt, i) => (
-                  <button
-                    key={i}
-                    onClick={() => !checked && setSelected(i)}
-                    className={`p-4 rounded-xl border-2 text-left transition-all font-medium ${
-                      checked
-                        ? i === exercise.correct
-                          ? "border-green-500 bg-green-50 text-green-800"
-                          : i === selected
-                          ? "border-red-500 bg-red-50 text-red-800"
-                          : "border-border opacity-50"
-                        : selected === i
-                        ? "border-primary bg-primary/10"
-                        : "border-border hover:border-primary/50"
-                    }`}
-                  >
-                    {opt}
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {"answer" in exercise && (
-              <input
-                type="text"
-                value={textInput}
-                onChange={(e) => setTextInput(e.target.value)}
-                placeholder="Deine Antwort..."
-                disabled={checked}
-                className="w-full p-4 border-2 rounded-xl text-lg text-center font-medium focus:outline-none focus:border-primary disabled:opacity-50"
-              />
-            )}
-
-            {checked && (
-              <div className={`mt-4 p-4 rounded-xl text-center ${correct ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>
-                {correct ? "Richtig! 🎉" : `Falsch! Die richtige Antwort ist: ${"options" in exercise && exercise.options ? exercise.options[exercise.correct] : (exercise as any).answer}`}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="p-4 border-t bg-card">
-        <div className="max-w-lg mx-auto">
-          {!checked ? (
-            <Button onClick={handleCheck} disabled={"options" in exercise ? selected === null : textInput.trim() === ""} className="w-full">
-              Prüfen
+    <div className="min-h-screen bg-background flex items-center justify-center p-6">
+      <Card className="max-w-md w-full text-center">
+        <CardContent className="p-8">
+          <div className="text-6xl mb-4">🎉</div>
+          <h2 className="text-2xl font-display font-bold mb-2">Lektion abgeschlossen!</h2>
+          <p className="text-muted-foreground mb-2">
+            {score} von {lesson.exercises.length} Übungen richtig
+          </p>
+          <p className="text-3xl font-bold text-primary mb-6">+{lesson.xpReward + score * 5} XP</p>
+          <div className="flex flex-col gap-3">
+            <Button onClick={() => router.push("/learn")} size="lg">
+              Zum Lernpfad
             </Button>
-          ) : (
-            <Button onClick={handleNext} className="w-full">
-              {current + 1 >= exercises.length ? "Ergebnis ansehen" : "Weiter"}
+            <Button variant="outline" onClick={() => router.push("/dashboard")}>
+              Zum Dashboard
             </Button>
-          )}
-        </div>
-      </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
