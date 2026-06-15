@@ -597,3 +597,35 @@ model ReviewQueue {
   createdAt   DateTime     @default(now())
   reviewedAt  DateTime?
 }
+
+model ApiKey {
+  id         String          @id @default(uuid())
+  name       String
+  keyPrefix  String
+  keyHash    String          @unique
+  userId     String?
+  scopes     String          @default("read")
+  rateLimit  Int             @default(100)
+  expiresAt  DateTime?
+  lastUsedAt DateTime?
+  isActive   Boolean         @default(true)
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  requests   ApiRequestLog[]
+}
+
+model ApiRequestLog {
+  id         String   @id @default(uuid())
+  apiKeyId   String
+  endpoint   String
+  method     String
+  statusCode Int
+  ip         String?
+  userAgent  String?
+  duration   Int?
+  createdAt  DateTime @default(now())
+  apiKey     ApiKey   @relation(fields: [apiKeyId], references: [id], onDelete: Cascade)
+
+  @@index([apiKeyId, createdAt])
+  @@index([createdAt])
+}
