@@ -1,0 +1,355 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "WortHeld API",
+    "description": "Öffentliche API für die WortHeld-Deutschlernplattform. Bietet Zugriff auf Vokabeln, Grammatik, Sätze, Übungen, Lektionen, Kurse und mehr.\n\nAuthentifizierung: API-Key via `X-API-Key` Header.\n\nScopes:\n- `read:vocabulary` - Vokabeln lesen\n- `read:grammar` - Grammatik lesen\n- `read:sentences` - Beispielsätze lesen\n- `read:exercises` - Übungen generieren\n- `read:lessons` - Lektionen lesen\n- `read:courses` - Kurse lesen\n- `read:life-situations` - Lebenssituationen lesen\n- `read:placement` - Einstufungstests lesen\n- `read:translate` - Übersetzungen\n- `write:progress` - Lernfortschritt schreiben\n- `write:user` - Benutzerdaten schreiben\n- `admin` - Voller Admin-Zugriff",
+    "version": "0.1.0"
+  },
+  "servers": [
+    { "url": "https://api.wortheld.guenlab.de/api/v1", "description": "Production" },
+    { "url": "http://localhost:3035/api/v1", "description": "Local Development" }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Healthcheck",
+        "tags": ["Meta"],
+        "responses": {
+          "200": {
+            "description": "API ist erreichbar",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/HealthResponse" } } }
+          }
+        }
+      }
+    },
+    "/vocabulary": {
+      "get": {
+        "summary": "Vokabeln abrufen",
+        "tags": ["Vocabulary"],
+        "security": [{ "ApiKeyAuth": ["read:vocabulary"] }],
+        "parameters": [
+          { "name": "level", "in": "query", "schema": { "type": "string", "enum": ["A1", "A2", "B1", "B2", "C1"] } },
+          { "name": "search", "in": "query", "schema": { "type": "string" } },
+          { "name": "lang", "in": "query", "schema": { "type": "string", "default": "en" } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 50, "maximum": 200 } },
+          { "name": "offset", "in": "query", "schema": { "type": "integer", "default": 0 } }
+        ],
+        "responses": {
+          "200": { "description": "Liste von Vokabeln", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/VocabularyList" } } } },
+          "401": { "description": "Fehlender API-Key" },
+          "403": { "description": "Scope nicht ausreichend" }
+        }
+      }
+    },
+    "/vocabulary/{id}": {
+      "get": {
+        "summary": "Einzelne Vokabel abrufen",
+        "tags": ["Vocabulary"],
+        "security": [{ "ApiKeyAuth": ["read:vocabulary"] }],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": { "description": "Vokabel-Details" },
+          "404": { "description": "Nicht gefunden" }
+        }
+      }
+    },
+    "/grammar": {
+      "get": {
+        "summary": "Grammatik-Themen abrufen",
+        "tags": ["Grammar"],
+        "security": [{ "ApiKeyAuth": ["read:grammar"] }],
+        "parameters": [
+          { "name": "level", "in": "query", "schema": { "type": "string", "enum": ["A1", "A2", "B1", "B2", "C1"] } },
+          { "name": "search", "in": "query", "schema": { "type": "string" } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 50, "maximum": 200 } },
+          { "name": "offset", "in": "query", "schema": { "type": "integer", "default": 0 } }
+        ],
+        "responses": { "200": { "description": "Grammatik-Liste" } }
+      }
+    },
+    "/grammar/{id}": {
+      "get": {
+        "summary": "Einzelnes Grammatik-Thema",
+        "tags": ["Grammar"],
+        "security": [{ "ApiKeyAuth": ["read:grammar"] }],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "Grammatik-Details" }, "404": { "description": "Nicht gefunden" } }
+      }
+    },
+    "/sentences": {
+      "get": {
+        "summary": "Beispielsätze abrufen",
+        "tags": ["Sentences"],
+        "security": [{ "ApiKeyAuth": ["read:sentences"] }],
+        "parameters": [
+          { "name": "level", "in": "query", "schema": { "type": "string", "enum": ["A1", "A2", "B1", "B2", "C1"] } },
+          { "name": "search", "in": "query", "schema": { "type": "string" } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 50, "maximum": 200 } },
+          { "name": "offset", "in": "query", "schema": { "type": "integer", "default": 0 } }
+        ],
+        "responses": { "200": { "description": "Satz-Liste" } }
+      }
+    },
+    "/sentences/{id}": {
+      "get": {
+        "summary": "Einzelnen Satz abrufen",
+        "tags": ["Sentences"],
+        "security": [{ "ApiKeyAuth": ["read:sentences"] }],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "Satz-Details" }, "404": { "description": "Nicht gefunden" } }
+      }
+    },
+    "/exercises": {
+      "get": {
+        "summary": "Übungen generieren",
+        "tags": ["Exercises"],
+        "security": [{ "ApiKeyAuth": ["read:exercises"] }],
+        "parameters": [
+          { "name": "level", "in": "query", "schema": { "type": "string", "enum": ["A1", "A2", "B1", "B2", "C1"], "default": "A1" } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 10, "maximum": 50 } }
+        ],
+        "responses": { "200": { "description": "Generierte Übungen" } }
+      }
+    },
+    "/lessons": {
+      "get": {
+        "summary": "Lektionen abrufen",
+        "tags": ["Lessons"],
+        "security": [{ "ApiKeyAuth": ["read:lessons"] }],
+        "parameters": [
+          { "name": "level", "in": "query", "schema": { "type": "string", "enum": ["A1", "A2", "B1", "B2", "C1"] } },
+          { "name": "lifeSituation", "in": "query", "schema": { "type": "string" } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 50, "maximum": 100 } },
+          { "name": "offset", "in": "query", "schema": { "type": "integer", "default": 0 } }
+        ],
+        "responses": { "200": { "description": "Lektionen-Liste" } }
+      }
+    },
+    "/lessons/{id}": {
+      "get": {
+        "summary": "Einzelne Lektion mit Steps und Übungen",
+        "tags": ["Lessons"],
+        "security": [{ "ApiKeyAuth": ["read:lessons"] }],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "Lektion mit Inhalten" }, "404": { "description": "Nicht gefunden" } }
+      }
+    },
+    "/courses": {
+      "get": {
+        "summary": "Kurse abrufen",
+        "tags": ["Courses"],
+        "security": [{ "ApiKeyAuth": ["read:courses"] }],
+        "parameters": [
+          { "name": "level", "in": "query", "schema": { "type": "string", "enum": ["A1", "A2", "B1", "B2", "C1"] } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "default": 20, "maximum": 50 } },
+          { "name": "offset", "in": "query", "schema": { "type": "integer", "default": 0 } }
+        ],
+        "responses": { "200": { "description": "Kurs-Liste" } }
+      }
+    },
+    "/life-situations": {
+      "get": {
+        "summary": "BAMF-Lebenssituationen",
+        "tags": ["Life Situations"],
+        "security": [{ "ApiKeyAuth": ["read:life-situations"] }],
+        "parameters": [
+          { "name": "category", "in": "query", "schema": { "type": "string", "enum": ["AMT", "ARZT", "ARBEIT", "SCHULE", "KITA", "WOHNEN", "EINKAUFEN", "VERKEHR", "BANK", "VERSICHERUNG"] } }
+        ],
+        "responses": { "200": { "description": "Lebenssituationen" } }
+      }
+    },
+    "/placement-tests": {
+      "get": {
+        "summary": "Einstufungstests abrufen",
+        "tags": ["Placement"],
+        "security": [{ "ApiKeyAuth": ["read:placement"] }],
+        "parameters": [
+          { "name": "level", "in": "query", "schema": { "type": "string", "enum": ["A1", "A2", "B1", "B2", "C1"] } }
+        ],
+        "responses": { "200": { "description": "Einstufungstests" } }
+      }
+    },
+    "/translate": {
+      "get": {
+        "summary": "Text übersetzen",
+        "tags": ["Translation"],
+        "security": [{ "ApiKeyAuth": ["read:translate"] }],
+        "parameters": [
+          { "name": "text", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "from", "in": "query", "schema": { "type": "string", "default": "de" } },
+          { "name": "to", "in": "query", "schema": { "type": "string", "default": "en" } }
+        ],
+        "responses": { "200": { "description": "Übersetzung" } }
+      }
+    },
+    "/placement-test/result": {
+      "post": {
+        "summary": "Einstufungstest-Ergebnis speichern",
+        "tags": ["Placement"],
+        "security": [{ "ApiKeyAuth": ["write:progress"] }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/PlacementResultInput" } } }
+        },
+        "responses": { "201": { "description": "Ergebnis gespeichert" } }
+      }
+    },
+    "/progress/lesson": {
+      "post": {
+        "summary": "Lektion abschließen",
+        "tags": ["Progress"],
+        "security": [{ "ApiKeyAuth": ["write:progress"] }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "object", "properties": { "lessonId": { "type": "string" }, "userId": { "type": "string" }, "score": { "type": "integer" }, "timeSpent": { "type": "integer" } }, "required": ["lessonId", "userId"] } } }
+        },
+        "responses": { "200": { "description": "Fortschritt gespeichert" } }
+      }
+    },
+    "/progress/answer": {
+      "post": {
+        "summary": "Antwort einreichen",
+        "tags": ["Progress"],
+        "security": [{ "ApiKeyAuth": ["write:progress"] }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "object", "properties": { "exerciseId": { "type": "string" }, "userId": { "type": "string" }, "answer": { "type": "string" }, "isCorrect": { "type": "boolean" }, "timeSpent": { "type": "integer" } }, "required": ["exerciseId", "userId", "answer", "isCorrect"] } } }
+        },
+        "responses": { "200": { "description": "Antwort gespeichert" } }
+      }
+    },
+    "/user/profile": {
+      "post": {
+        "summary": "Benutzerprofil aktualisieren",
+        "tags": ["User"],
+        "security": [{ "ApiKeyAuth": ["write:user"] }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "object", "properties": { "userId": { "type": "string" }, "nativeLanguage": { "type": "string" }, "targetGoal": { "type": "string" }, "preferredTheme": { "type": "string" } }, "required": ["userId"] } } }
+        },
+        "responses": { "200": { "description": "Profil aktualisiert" } }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "summary": "Benutzer registrieren",
+        "tags": ["Auth"],
+        "security": [{ "ApiKeyAuth": ["write:user"] }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "object", "properties": { "email": { "type": "string", "format": "email" }, "password": { "type": "string", "minLength": 6 }, "name": { "type": "string" } }, "required": ["email", "password"] } } }
+        },
+        "responses": { "201": { "description": "Benutzer erstellt" } }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Benutzer anmelden",
+        "tags": ["Auth"],
+        "security": [{ "ApiKeyAuth": ["write:user"] }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "type": "object", "properties": { "email": { "type": "string", "format": "email" }, "password": { "type": "string" } }, "required": ["email", "password"] } } }
+        },
+        "responses": { "200": { "description": "Login erfolgreich" }, "401": { "description": "Falsche Anmeldedaten" } }
+      }
+    },
+    "/admin/api-keys": {
+      "get": {
+        "summary": "API-Keys auflisten",
+        "tags": ["Admin"],
+        "security": [{ "ApiKeyAuth": ["admin"] }],
+        "responses": { "200": { "description": "Key-Liste" } }
+      },
+      "post": {
+        "summary": "API-Key erstellen",
+        "tags": ["Admin"],
+        "security": [{ "ApiKeyAuth": ["admin"] }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/CreateApiKeyInput" } } }
+        },
+        "responses": { "201": { "description": "Key erstellt" } }
+      }
+    },
+    "/admin/api-keys/{id}": {
+      "delete": {
+        "summary": "API-Key deaktivieren",
+        "tags": ["Admin"],
+        "security": [{ "ApiKeyAuth": ["admin"] }],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "Key deaktiviert" } }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "description": "Dein API-Key. Erstelle einen unter /admin/api-keys."
+      }
+    },
+    "schemas": {
+      "HealthResponse": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "example": "ok" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "db": { "type": "string", "example": "ok" }
+        }
+      },
+      "VocabularyList": {
+        "type": "object",
+        "properties": {
+          "items": { "type": "array", "items": { "$ref": "#/components/schemas/VocabularyItem" } },
+          "total": { "type": "integer" },
+          "limit": { "type": "integer" },
+          "offset": { "type": "integer" }
+        }
+      },
+      "VocabularyItem": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "word": { "type": "string" },
+          "article": { "type": "string", "nullable": true },
+          "pos": { "type": "string" },
+          "level": { "type": "string" },
+          "translation": { "type": "string" },
+          "exampleSentence": { "type": "string", "nullable": true },
+          "exampleTranslation": { "type": "string", "nullable": true }
+        }
+      },
+      "CreateApiKeyInput": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string", "description": "Name des API-Keys" },
+          "scopes": { "type": "string", "description": "Komma-getrennte Scopes", "default": "read" },
+          "rateLimit": { "type": "integer", "default": 100 },
+          "expiresInDays": { "type": "integer", "nullable": true }
+        }
+      },
+      "PlacementResultInput": {
+        "type": "object",
+        "required": ["testId", "score", "level", "userId"],
+        "properties": {
+          "testId": { "type": "string" },
+          "score": { "type": "integer" },
+          "level": { "type": "string", "enum": ["A1", "A2", "B1", "B2", "C1"] },
+          "userId": { "type": "string" }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": { "type": "string" },
+          "code": { "type": "string", "enum": ["INVALID_KEY", "EXPIRED_KEY", "INSUFFICIENT_SCOPE", "RATE_LIMITED", "NOT_FOUND", "VALIDATION_ERROR", "INTERNAL_ERROR"] },
+          "details": { "type": "object" }
+        }
+      }
+    }
+  }
+}
