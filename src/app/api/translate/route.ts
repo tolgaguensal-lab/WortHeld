@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { translateText, translateBatch, detectLanguage, getSupportedLanguages } from "@/lib/translation";
+import { logger } from "@/lib/logger";
 
 export async function POST(req: Request) {
   const session = await auth();
@@ -25,7 +26,8 @@ export async function POST(req: Request) {
     const translated = await translateText(text, sourceLang ?? "de", targetLang ?? "en");
     return NextResponse.json({ translatedText: translated });
   } catch (error) {
-    console.error("Translation error:", error);
+    logger.error("Translation error", { error: String(error) });
+
     return NextResponse.json(
       { error: "Übersetzung fehlgeschlagen" },
       { status: 500 }

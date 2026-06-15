@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 
 export async function GET(request: NextRequest) {
   try {
@@ -37,7 +38,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ items, total, limit, offset });
   } catch (error) {
-    console.error("Grammar API error:", error);
+    logger.error("Grammar API error", { error: String(error) });
     return NextResponse.json({ error: "Interner Serverfehler" }, { status: 500 });
   }
 }

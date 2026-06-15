@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { logger } from "@/lib/logger";
 
 export async function GET(request: NextRequest) {
   try {
@@ -49,7 +50,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ items: mapped, total, limit, offset });
   } catch (error) {
-    console.error("Vocabulary API error:", error);
+    logger.error("Vocabulary API error", { error: String(error) });
     return NextResponse.json({ error: "Interner Serverfehler" }, { status: 500 });
   }
 }

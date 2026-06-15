@@ -4,6 +4,7 @@ import { hashApiKey } from "./key-generator";
 import { hasScope } from "./scope-check";
 import { errorResponse, type ErrorCode } from "./api-errors";
 import { createRateLimiter } from "./rate-limiter";
+import { logger } from "@/lib/logger";
 
 type ApiHandler = (
   req: NextRequest,
@@ -124,7 +125,7 @@ export function withApiKey(handler: ApiHandler, requiredScope: string) {
         },
       }).catch(() => {});
 
-      console.error(`API Error [${keyRecord.name}]:`, error);
+      logger.error("API Error", { keyName: keyRecord.name, error: String(error) });
       return errorResponse(500, "INTERNAL_ERROR", "Interner Serverfehler");
     }
   };

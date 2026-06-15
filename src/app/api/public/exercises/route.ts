@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { ExerciseType, DifficultyLevel } from "@prisma/client";
+import { logger } from "@/lib/logger";
 
 function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];
@@ -74,7 +75,7 @@ export async function GET(request: NextRequest) {
     const result = exercises.slice(0, limit);
     return NextResponse.json({ exercises: result, level, count: result.length });
   } catch (error) {
-    console.error("Exercises API error:", error);
+    logger.error("Exercises API error", { error: String(error) });
     return NextResponse.json({ error: "Interner Serverfehler" }, { status: 500 });
   }
 }

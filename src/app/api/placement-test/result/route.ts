@@ -2,23 +2,16 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { CEFRLevel } from "@prisma/client";
+import { placementResultSchema, validate, handleValidation, parseBody } from "@/lib/validation";
 
 export async function POST(req: Request) {
   const session = await auth();
   if (!session?.user) return NextResponse.json({ error: "Nicht authentifiziert" }, { status: 401 });
 
-  try {
+  return handleValidation(async () => {
     const userId = (session.user as any).id;
-    const { score, level, answers } = await req.json();
-
-    if (score === undefined || score === null || !level) {
-      return NextResponse.json({ error: "Ergebnis und Niveau erforderlich" }, { status: 400 });
-    }
-
-    const validLevels = Object.values(CEFRLevel);
-    if (!validLevels.includes(level as CEFRLevel)) {
-      return NextResponse.json({ error: "Ungültiges Niveau" }, { status: 400 });
-    }
+    const body = await parseBody(req);
+    const { score, level } = validate(placementResultSchema, body);
 
     let placementTest = await prisma.placementTest.findFirst({
       where: { title: "Einstufungstest" },
@@ -49,8 +42,5 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ success: true, result });
-  } catch (error) {
-    console.error("Placement test result error:", error);
-    return NextResponse.json({ error: "Ergebnis konnte nicht gespeichert werden" }, { status: 500 });
-  }
+  });
 }
