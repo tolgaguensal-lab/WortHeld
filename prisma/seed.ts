@@ -334,8 +334,145 @@ async function main() {
   await prisma.aPIImportSource.upsert({ where: { id: "src-wiktionary" }, update: {}, create: { id: "src-wiktionary", name: "Wiktionary", url: "https://en.wiktionary.org/api" } });
   console.log("  ✅ Importquellen erstellt");
 
+  // 7. DTZ Tests (4 skills × 2 levels = 8 tests)
+  console.log("📝 Erstelle DTZ-Tests...");
+
+  const dtzTests = [
+    // A2 Level Tests
+    {
+      id: "dtz-a2-lesen",
+      name: "DTZ A2 - Leseverstehen",
+      level: CEFRLevel.A2,
+      skill: SkillCategory.LESEN,
+      timeLimit: 25,
+      xpReward: 50,
+      questions: JSON.stringify([
+        { id: 0, text: "Was steht auf dem Zettel?", options: ["Der Laden ist geschlossen", "Wir öffnen morgen um 9 Uhr", "Heute haben wir frei", "Der Shop ist um 18 Uhr zu"], correctAnswer: "Der Laden ist um 18 Uhr zu", explanation: "Der Text sagt: 'Heute geöffnet bis 18 Uhr'" },
+        { id: 1, text: "Wo arbeitet Thomas Müller?", options: ["In einer Bank", "In einem Restaurant", "In einem Hotel", "In einem Supermarkt"], correctAnswer: "In einem Restaurant", explanation: "Thomas ist Koch im Restaurant 'Zur goldenen Gans'" },
+        { id: 2, text: "Wann ist die Bibliothek geschlossen?", options: ["Montags", "Dienstags", "Freitags", "Samstags"], correctAnswer: "Montags", explanation: "Öffnungszeiten: Di-Fr 10-18 Uhr" },
+        { id: 3, text: "Was muss Frau Schmidt tun?", options: ["Einen Termin vereinbaren", "Das Formular ausfüllen", "Geld überweisen", "Ein Dokument einreichen"], correctAnswer: "Einen Termin vereinbaren", explanation: "Bitte vereinbaren Sie vorher einen Termin" },
+        { id: 4, text: "Wie viel kostet die Fahrkarte?", options: ["8 Euro", "12 Euro", "15 Euro", "20 Euro"], correctAnswer: "12 Euro", explanation: "Einzelfahrkarte: 12 Euro" },
+      ]),
+    },
+    {
+      id: "dtz-a2-hoeren",
+      name: "DTZ A2 - Hörverstehen",
+      level: CEFRLevel.A2,
+      skill: SkillCategory.HOEREN,
+      timeLimit: 25,
+      xpReward: 50,
+      questions: JSON.stringify([
+        { id: 0, text: "Was sagt der Arzt?", options: ["Sie müssen ins Krankenhaus", "Sie brauchen eine Pause", "Sie dürfen weiterarbeiten", "Sie müssen zum Facharzt"], correctAnswer: "Sie brauchen eine Pause", explanation: "Der Arzt empfiehlt eine einwöchige Pause" },
+        { id: 1, text: "Wo wohnt Herr Becker jetzt?", options: ["In Berlin", "In München", "In Hamburg", "In Frankfurt"], correctAnswer: "In Hamburg", explanation: "Er ist nach Hamburg gezogen" },
+        { id: 2, text: "Was bestellt die Frau?", options: ["Ein Steak", "Eine Pizza", "Ein Schnitzel", "Ein Currywurst"], correctAnswer: "Ein Schnitzel", explanation: "Ich nehme das Wiener Schnitzel" },
+        { id: 3, text: "Um wie viel Uhr beginnt der Kurs?", options: ["18:00 Uhr", "19:00 Uhr", "20:00 Uhr", "21:00 Uhr"], correctAnswer: "19:00 Uhr", explanation: "Der Kurs startet um 19 Uhr" },
+        { id: 4, text: "Was ist das Wetter heute?", options: ["Sonnig", "Regnerisch", "Schnee", "Stürmisch"], correctAnswer: "Regnerisch", explanation: "Heute regnet es den ganzen Tag" },
+      ]),
+    },
+    {
+      id: "dtz-a2-schreiben",
+      name: "DTZ A2 - Schreiben",
+      level: CEFRLevel.A2,
+      skill: SkillCategory.SCHREIBEN,
+      timeLimit: 25,
+      xpReward: 50,
+      questions: JSON.stringify([
+        { id: 0, text: "Schreibe eine E-Mail an deinen Chef. Du bist krank.", options: ["Hallo Chef, ich komme nicht.", "Sehr geehrter Herr Müller, ich bin krank und bleibe zuhause.", "Lieber Chef, ich habe Fieber.", "Guten Tag, ich bin krank."], correctAnswer: "Sehr geehrter Herr Müller, ich bin krank und bleibe zuhause.", explanation: "Formelle Anrede und klare Information" },
+        { id: 1, text: "Schreibe einen kurzen Text über deinen Tag.", options: ["Ich stehe auf. Ich esse. Ich arbeite.", "Mein Tag beginnt um 7 Uhr. Dann frühstücke ich und gehe zur Arbeit.", "Ich mache alles.", "Tag ist gut."], correctAnswer: "Mein Tag beginnt um 7 Uhr. Dann frühstücke ich und gehe zur Arbeit.", explanation: "Klare Abfolge mit Zeitangaben" },
+        { id: 2, text: "Was möchtest du am Wochenende machen?", options: ["Ich gehe ins Kino.", "Am Wochenende möchte ich ins Kino gehen und Freunde treffen.", "Wochenende Kino.", "Ich mache Kino."], correctAnswer: "Am Wochenende möchte ich ins Kino gehen und Freunde treffen.", explanation: "Kompletter Satz mit Modalverb" },
+        { id: 3, text: "Beschreibe deine Wohnung.", options: ["Ich habe eine Wohnung.", "Ich wohne in einer kleinen Wohnung mit einem Schlafzimmer.", "Wohnung ist klein.", "Meine Wohnung."], correctAnswer: "Ich wohne in einer kleinen Wohnung mit einem Schlafzimmer.", explanation: "Ausführliche Beschreibung" },
+        { id: 4, text: "Schreibe über deine Hobbys.", options: ["Ich mache Sport.", "Meine Hobbys sind Fußball und Lesen. Ich spiele jeden Samstag Fußball.", "Hobbys sind gut.", "Sport und Bücher."], correctAnswer: "Meine Hobbys sind Fußball und Lesen. Ich spiele jeden Samstag Fußball.", explanation: "Mehrere Hobbys mit Details" },
+      ]),
+    },
+    {
+      id: "dtz-a2-sprechen",
+      name: "DTZ A2 - Sprechen",
+      level: CEFRLevel.A2,
+      skill: SkillCategory.SPRECHEN,
+      timeLimit: 25,
+      xpReward: 50,
+      questions: JSON.stringify([
+        { id: 0, text: "Stelle dich vor.", options: ["Hallo.", "Ich heiße Maria Schmidt und komme aus Polen.", "Ich bin Maria.", "Polen."], correctAnswer: "Ich heiße Maria Schmidt und komme aus Polen.", explanation: "Vollständiger Satz mit Namen und Herkunft" },
+        { id: 1, text: "Was machst du beruflich?", options: ["Ich arbeite.", "Ich bin Krankenschwester in einem Krankenhaus in Berlin.", "Krankenhaus.", "Arbeit gut."], correctAnswer: "Ich bin Krankenschwester in einem Krankenhaus in Berlin.", explanation: "Beruf und Arbeitsplatz genannt" },
+        { id: 2, text: "Woher kommst du?", options: ["Ich komme aus Istanbul.", "Istanbul.", "Türkei.", "Asien."], correctAnswer: "Ich komme aus Istanbul.", explanation: "Kompletter Satz mit Stadt" },
+        { id: 3, text: "Was machst du in deiner Freizeit?", options: ["Sport.", "In meiner Freizeit spiele ich Tennis und lese Bücher.", "Tennis.", "Ich mache Sport."], correctAnswer: "In meiner Freizeit spiele ich Tennis und lese Bücher.", explanation: "Mehrere Aktivitäten genannt" },
+        { id: 4, text: "Beschreibe deine Familie.", options: ["Ich habe Familie.", "Ich habe einen Bruder und eine Schwester. Wir wohnen zusammen.", "Bruder, Schwester.", "Familie ist gut."], correctAnswer: "Ich habe einen Bruder und eine Schwester. Wir wohnen zusammen.", explanation: "Familienmitglieder beschrieben" },
+      ]),
+    },
+    // B1 Level Tests
+    {
+      id: "dtz-b1-lesen",
+      name: "DTZ B1 - Leseverstehen",
+      level: CEFRLevel.B1,
+      skill: SkillCategory.LESEN,
+      timeLimit: 25,
+      xpReward: 75,
+      questions: JSON.stringify([
+        { id: 0, text: "Was ist das Hauptproblem im Text?", options: ["Mangel an Fachkräften", "Zu hohe Gehälter", "Schlechte Arbeitsbedingungen", "Fehlende Weiterbildung"], correctAnswer: "Mangel an Fachkräften", explanation: "Der Text beschreibt den Fachkräftemangel" },
+        { id: 1, text: "Welche Lösung wird vorgeschlagen?", options: ["Mehr Steuern", "Bildung fördern", "Arbeitszeiten verkürzen", "Gehälter senken"], correctAnswer: "Bildung fördern", explanation: "Investition in Bildung wird empfohlen" },
+        { id: 2, text: "Was bedeutet 'nachhaltig' in diesem Kontext?", options: ["Umweltfreundlich", "Langfristig tragfähig", "Billig", "Schnell"], correctAnswer: "Langfristig tragfähig", explanation: "Nachhaltig = langfristig stabil" },
+        { id: 3, text: "Wie sieht die Zukunft aus?", options: ["Negativ", "Positiv mit Herausforderungen", "Unverändert", "Ganz negativ"], correctAnswer: "Positiv mit Herausforderungen", explanation: "Optimistisch aber realistisch" },
+        { id: 4, text: "Was ist die Hauptbotschaft?", options: ["Alles wird gut", "Wir müssen handeln", "Nichts ändern", "Abwarten"], correctAnswer: "Wir müssen handeln", explanation: "Aktiv werden statt warten" },
+      ]),
+    },
+    {
+      id: "dtz-b1-hoeren",
+      name: "DTZ B1 - Hörverstehen",
+      level: CEFRLevel.B1,
+      skill: SkillCategory.HOEREN,
+      timeLimit: 25,
+      xpReward: 75,
+      questions: JSON.stringify([
+        { id: 0, text: "Was besprechen die Kollegen?", options: ["Ein neues Projekt", "Urlaubsplanung", "Gehaltsverhandlung", "Kündigung"], correctAnswer: "Ein neues Projekt", explanation: "Projektstart wird geplant" },
+        { id: 1, text: "Welches Problem gibt es?", options: ["Zeitdruck", "Mangel an Personal", "Fehlendes Budget", "Technische Probleme"], correctAnswer: "Zeitdruck", explanation: "Deadline ist sehr nah" },
+        { id: 2, text: "Was wird entschieden?", options: ["Projekt absagen", "Mehr Zeit nehmen", "Ressourcen erhöhen", "Team vergrößern"], correctAnswer: "Ressourcen erhöhen", explanation: "Mehr Budget bewilligt" },
+        { id: 3, text: "Wer ist verantwortlich?", options: ["Herr Müller", "Frau Schmidt", "Der Projektleiter", "Das ganze Team"], correctAnswer: "Der Projektleiter", explanation: "Herr Weber ist Projektleiter" },
+        { id: 4, text: "Was ist das Ergebnis?", options: ["Erfolg", "Misserfolg", "Unentschieden", "Noch offen"], correctAnswer: "Erfolg", explanation: "Projekt war erfolgreich" },
+      ]),
+    },
+    {
+      id: "dtz-b1-schreiben",
+      name: "DTZ B1 - Schreiben",
+      level: CEFRLevel.B1,
+      skill: SkillCategory.SCHREIBEN,
+      timeLimit: 25,
+      xpReward: 75,
+      questions: JSON.stringify([
+        { id: 0, text: "Schreibe eine formelle E-Mail mit Beschwerde.", options: ["Hallo, das ist schlecht.", "Sehr geehrte Damen und Herren, leider muss ich mich beschweren.", "Liebe Leute, ich bin sauer.", "Guten Tag, Problem."], correctAnswer: "Sehr geehrte Damen und Herren, leider muss ich mich beschweren.", explanation: "Formelle Anrede und höflicher Ton" },
+        { id: 1, text: "Erkläre ein Problem und schlage eine Lösung vor.", options: ["Problem: Zu wenig Zeit. Lösung: Mehr arbeiten.", "Das Problem ist der Zeitdruck. Ich schlage vor, die Aufgaben besser zu planen.", "Zu wenig Zeit.", "Problem."], correctAnswer: "Das Problem ist der Zeitdruck. Ich schlage vor, die Aufgaben besser zu planen.", explanation: "Klare Problembeschreibung mit Lösung" },
+        { id: 2, text: "Schreibe eine Meinung zu einem Thema.", options: ["Ich finde das gut.", "Ich bin der Meinung, dass Digitalisierung wichtig ist.", "Gut oder schlecht.", "Meinung: Digitalisierung."], correctAnswer: "Ich bin der Meinung, dass Digitalisierung wichtig ist.", explanation: "Klare Meinungsäußerung mit Begründung" },
+        { id: 3, text: "Vergleiche zwei Optionen.", options: ["Option A ist besser.", "Option A ist günstiger, aber Option B ist qualitativ besser.", "A oder B?", "Keine Ahnung."], correctAnswer: "Option A ist günstiger, aber Option B ist qualitativ besser.", explanation: "Ausgewogener Vergleich mit Vor- und Nachteilen" },
+        { id: 4, text: "Beschreibe einen Prozess.", options: ["Zuerst das, dann das.", "Zuerst werden die Daten gesammelt, dann analysiert und schließlich wird ein Bericht erstellt.", "Prozess: sammeln, analysieren.", "Daten."], correctAnswer: "Zuerst werden die Daten gesammelt, dann analysiert und schließlich wird ein Bericht erstellt.", explanation: "Klare Abfolge mit Zeitangaben" },
+      ]),
+    },
+    {
+      id: "dtz-b1-sprechen",
+      name: "DTZ B1 - Sprechen",
+      level: CEFRLevel.B1,
+      skill: SkillCategory.SPRECHEN,
+      timeLimit: 25,
+      xpReward: 75,
+      questions: JSON.stringify([
+        { id: 0, text: "Erzähle von deinen Plänen für die Zukunft.", options: ["Ich will arbeiten.", "In fünf Jahren möchte ich eine eigene Firma gründen und international arbeiten.", "Zukunft: Firma.", "Pläne: Arbeiten."], correctAnswer: "In fünf Jahren möchte ich eine eigene Firma gründen und international arbeiten.", explanation: "Konkrete Zukunftsplanung mit Details" },
+        { id: 1, text: "Beschreibe eine Herausforderung und wie du sie gelöst hast.", options: ["Problem war schwer. Ich habe es gelöst.", "Eine Herausforderung war der Sprachkurs. Ich habe jeden Tag geübt und jetzt spreche ich gut Deutsch.", "Schwer.", "Gelöst."], correctAnswer: "Eine Herausforderung war der Sprachkurs. Ich habe jeden Tag geübt und jetzt spreche ich gut Deutsch.", explanation: "Problem und Lösung beschrieben" },
+        { id: 2, text: "Vergleiche zwei Städte.", options: ["Berlin ist besser als München.", "Berlin ist größer und lebendiger, München ist traditioneller und ruhiger.", "Berlin oder München?", "Keine Ahnung."], correctAnswer: "Berlin ist größer und lebendiger, München ist traditioneller und ruhiger.", explanation: "Ausgewogener Vergleich mit Adjektiven" },
+        { id: 3, text: "Erkläre ein Thema aus deinem Beruf.", options: ["Ich bin Lehrer.", "Als Lehrer erkläre ich Schülern komplexe Themen einfach und verständlich.", "Lehren.", "Schule."], correctAnswer: "Als Lehrer erkläre ich Schülern komplexe Themen einfach und verständlich.", explanation: "Berufstätigkeit erklärt" },
+        { id: 4, text: "Äußere eine Meinung und begründe sie.", options: ["Ich finde das gut.", "Ich bin dafür, weil es die Umwelt schützt und langfristig Geld spart.", "Gut.", "Umwelt."], correctAnswer: "Ich bin dafür, weil es die Umwelt schützt und langfristig Geld spart.", explanation: "Meinung mit zwei Gründen" },
+      ]),
+    },
+  ];
+
+  for (const test of dtzTests) {
+    await prisma.dTZTest.upsert({
+      where: { id: test.id },
+      update: { name: test.name, level: test.level, skill: test.skill, questions: test.questions },
+      create: { id: test.id, ...test, isActive: true, order: dtzTests.indexOf(test) },
+    });
+  }
+  console.log(`  ✅ ${dtzTests.length} DTZ-Tests erstellt`);
+
   console.log("\n=== Seed abgeschlossen! ===");
-  console.log(`Gesamt: ${courses.length} Kurse, ${totalUnits} Units, ${totalLessons} Lektionen, ${totalVocab} Vokabeln, ${grammarRules.length} Grammatikthemen, ${totalExercises} Übungen, ${achievements.length} Errungenschaften`);
+  console.log(`Gesamt: ${courses.length} Kurse, ${totalUnits} Units, ${totalLessons} Lektionen, ${totalVocab} Vokabeln, ${grammarRules.length} Grammatikthemen, ${totalExercises} Übungen, ${achievements.length} Errungenschaften, ${dtzTests.length} DTZ-Tests`);
 }
 
 main().catch(console.error).finally(() => prisma.$disconnect());
