@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,49 +6,49 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    /* Professionelles Blau: BAMF/Goethe-Institut inspiriert */
-    --primary: 215 65% 42%;
+    --popover-foreground: 222 47% 11%;
+    /* Modernes Blau: WortHeld Branding */
+    --primary: 215 75% 48%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 199 54% 38%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 215 75% 58%;
+    --secondary-foreground: 222 47% 11%;
     --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 200 30% 55%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 215 75% 53%;
     --accent-foreground: 210 40% 98%;
-    --destructive: 0 70% 50%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 20% 88%;
-    --input: 214.3 20% 88%;
-    --ring: 215 65% 42%;
-    --radius: 0.6rem;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 215 75% 48%;
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 222 47% 11%;
     --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    --card: 222 47% 11%;
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
+    --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
-    --primary: 215 60% 55%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 199 50% 48%;
+    --primary: 215 75% 60%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 215 75% 50%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 200 25% 40%;
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 215 75% 55%;
     --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 40%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 20% 20%;
-    --input: 217.2 20% 20%;
-    --ring: 215 60% 55%;
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 215 75% 60%;
   }
 }
 
@@ -75,5 +75,24 @@
   }
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Smooth card hover */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:scale-[1.02];
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent;
+  }
+
+  /* Pulse animation for important elements */
+  @keyframes gentle-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.95; transform: scale(0.98); }
+  }
+  .animate-gentle-pulse {
+    animation: gentle-pulse 2s ease-in-out infinite;
   }
 }
