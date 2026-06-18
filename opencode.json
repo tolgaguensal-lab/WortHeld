@@ -10,6 +10,11 @@
       "type": "local",
       "command": ["npx", "chrome-devtools-mcp"],
       "enabled": true
+    },
+    "figma": {
+      "type": "local",
+      "command": ["npx", "figma-developer-mcp", "--stdio"],
+      "enabled": true
     }
   }
 }
