@@ -274,7 +274,7 @@ async function main() {
   let totalVocab = 0;
   for (const [level, vocabs] of Object.entries(vocabByLevel)) {
     for (const v of vocabs) {
-      const id = `vocab-${level}-${v.word.replace(/\s+/g, "-").toLowerCase()}`;
+      const id = `vocab-${level}-${v.word.replace(/\\s+/g, "-").toLowerCase()}`;
       await prisma.vocabulary.upsert({
         where: { id },
         update: {},
@@ -399,7 +399,6 @@ async function main() {
         { id: 4, text: "Beschreibe deine Familie.", options: ["Ich habe Familie.", "Ich habe einen Bruder und eine Schwester. Wir wohnen zusammen.", "Bruder, Schwester.", "Familie ist gut."], correctAnswer: "Ich habe einen Bruder und eine Schwester. Wir wohnen zusammen.", explanation: "Familienmitglieder beschrieben" },
       ]),
     },
-    // B1 Level Tests
     {
       id: "dtz-b1-lesen",
       name: "DTZ B1 - Leseverstehen",
