@@ -1,0 +1,1232 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: specs/accessibility.spec.ts >> Accessibility + WCAG AA >> Authenticated pages >> [A11Y] Grammar page passes WCAG AA
+- Location: e2e/specs/accessibility.spec.ts:41:11
+
+# Error details
+
+```
+Error: expect(received).toHaveLength(expected)
+
+Expected length: 0
+Received length: 3
+Received array:  [{"description": "Ensure buttons have discernible text", "help": "Buttons must have discernible text", "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/button-name?application=playwright", "id": "button-name", "impact": "critical", "nodes": [{"all": [], "any": [{"data": null, "id": "button-has-visible-text", "impact": "critical", "message": "Element does not have inner text that is visible to screen readers", "relatedNodes": []}, {"data": null, "id": "aria-label", "impact": "critical", "message": "aria-label attribute does not exist or is empty", "relatedNodes": []}, {"data": null, "id": "aria-labelledby", "impact": "critical", "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty", "relatedNodes": []}, {"data": {"messageKey": "noAttr"}, "id": "non-empty-title", "impact": "critical", "message": "Element has no title attribute", "relatedNodes": []}, {"data": null, "id": "implicit-label", "impact": "critical", "message": "Element does not have an implicit (wrapped) <label>", "relatedNodes": []}, {"data": null, "id": "explicit-label", "impact": "critical", "message": "Element does not have an explicit <label>", "relatedNodes": []}, {"data": null, "id": "presentational-role", "impact": "critical", "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"", "relatedNodes": []}], "failureSummary": "Fix any of the following:
+  Element does not have inner text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element has no title attribute
+  Element does not have an implicit (wrapped) <label>
+  Element does not have an explicit <label>
+  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"", "html": "<button type=\"button\" role=\"combobox\" aria-expanded=\"false\" aria-autocomplete=\"none\" dir=\"ltr\" data-state=\"closed\" class=\"flex h-10 items-cent...\">", "impact": "critical", "none": [], "target": ["button"]}], "tags": ["cat.name-role-value", "wcag2a", "wcag412", "section508", "section508.22.a", "TTv5", "TT6.a", "EN-301-549", "EN-9.4.1.2", "ACT", …]}, {"description": "Ensure links have discernible text", "help": "Links must have discernible text", "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/link-name?application=playwright", "id": "link-name", "impact": "serious", "nodes": [{"all": [], "any": [{"data": null, "id": "has-visible-text", "impact": "serious", "message": "Element does not have text that is visible to screen readers", "relatedNodes": []}, {"data": null, "id": "aria-label", "impact": "serious", "message": "aria-label attribute does not exist or is empty", "relatedNodes": []}, {"data": null, "id": "aria-labelledby", "impact": "serious", "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty", "relatedNodes": []}, {"data": {"messageKey": "noAttr"}, "id": "non-empty-title", "impact": "serious", "message": "Element has no title attribute", "relatedNodes": []}], "failureSummary": "Fix all of the following:
+  Element is in tab order and does not have accessible text·
+Fix any of the following:
+  Element does not have text that is visible to screen readers
+  aria-label attribute does not exist or is empty
+  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+  Element has no title attribute", "html": "<a href=\"/settings\">", "impact": "serious", "none": [{"data": null, "id": "focusable-no-name", "impact": "serious", "message": "Element is in tab order and does not have accessible text", "relatedNodes": []}], "target": ["a[href$=\"settings\"]"]}], "tags": ["cat.name-role-value", "wcag2a", "wcag244", "wcag412", "section508", "section508.22.a", "TTv5", "TT6.a", "EN-301-549", "EN-9.2.4.4", …]}, {"description": "Ensure <meta name=\"viewport\"> does not disable text scaling and zooming", "help": "Zooming and scaling must not be disabled", "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/meta-viewport?application=playwright", "id": "meta-viewport", "impact": "moderate", "nodes": [{"all": [], "any": [{"data": "user-scalable=no", "id": "meta-viewport", "impact": "moderate", "message": "user-scalable=no on <meta> tag disables zooming on mobile devices", "relatedNodes": []}], "failureSummary": "Fix any of the following:
+  user-scalable=no on <meta> tag disables zooming on mobile devices", "html": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\">", "impact": "moderate", "none": [], "target": ["meta[name=\"viewport\"]"]}], "tags": ["cat.sensory-and-visual-cues", "wcag2aa", "wcag144", "EN-301-549", "EN-9.1.4.4", "ACT", "RGAAv4", "RGAA-10.4.2"]}]
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e5]:
+        - generic [ref=e7]: W
+        - generic [ref=e8]:
+          - heading "WortHeld" [level=1] [ref=e9]
+          - paragraph [ref=e10]: Deutsch lernen
+      - navigation [ref=e11]:
+        - link "Dashboard" [ref=e12] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e13]
+          - generic [ref=e18]: Dashboard
+          - img [ref=e19]
+        - link "Lernen" [ref=e21] [cursor=pointer]:
+          - /url: /learn
+          - img [ref=e22]
+          - generic [ref=e24]: Lernen
+          - img [ref=e25]
+        - link "Vokabeln" [ref=e27] [cursor=pointer]:
+          - /url: /vocabulary
+          - img [ref=e28]
+          - generic [ref=e31]: Vokabeln
+          - img [ref=e32]
+        - link "Grammatik" [ref=e34] [cursor=pointer]:
+          - /url: /grammar
+          - img [ref=e35]
+          - generic [ref=e37]: Grammatik
+          - img [ref=e38]
+        - link "DTZ-Test" [ref=e40] [cursor=pointer]:
+          - /url: /dtz
+          - img [ref=e41]
+          - generic [ref=e44]: DTZ-Test
+          - img [ref=e45]
+        - link "Üben" [ref=e47] [cursor=pointer]:
+          - /url: /review
+          - img [ref=e48]
+          - generic [ref=e53]: Üben
+          - img [ref=e54]
+        - link "Rangliste" [ref=e56] [cursor=pointer]:
+          - /url: /leaderboard
+          - img [ref=e57]
+          - generic [ref=e63]: Rangliste
+          - img [ref=e64]
+      - generic [ref=e67] [cursor=pointer]:
+        - generic [ref=e68]: T
+        - generic [ref=e69]:
+          - paragraph [ref=e70]: Test User
+          - paragraph [ref=e71]: test@user.de
+        - link [ref=e72]:
+          - /url: /settings
+          - img [ref=e73]
+    - main [ref=e76]:
+      - generic [ref=e77]:
+        - generic [ref=e78]:
+          - heading "Grammatiktrainer" [level=1] [ref=e79]
+          - paragraph [ref=e80]: 65 Grammatikthemen für systematisches Lernen
+        - combobox [ref=e82] [cursor=pointer]:
+          - generic: Alle Niveaus (65)
+          - img [ref=e83]
+        - generic [ref=e85]:
+          - generic [ref=e88]:
+            - generic [ref=e89]: 📚
+            - paragraph [ref=e90]: "65"
+            - paragraph [ref=e91]: Gesamt
+          - generic [ref=e94]:
+            - generic [ref=e95]: 🌱
+            - paragraph [ref=e96]: "30"
+            - paragraph [ref=e97]: Anfänger (A1-A2)
+          - generic [ref=e100]:
+            - generic [ref=e101]: 🎓
+            - paragraph [ref=e102]: "35"
+            - paragraph [ref=e103]: Fortgeschrittene (B1-C1)
+        - generic [ref=e104]:
+          - heading "Grammatikthemen" [level=2] [ref=e106]
+          - generic [ref=e108]:
+            - generic [ref=e109]:
+              - generic [ref=e110]:
+                - generic [ref=e111]:
+                  - heading "Personalpronomen" [level=3] [ref=e112]
+                  - paragraph [ref=e113]: Ich, du, er, sie, es, wir, sie, Sie
+                - generic [ref=e114]: A1
+              - generic [ref=e115]:
+                - generic [ref=e116]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e117]
+                  - paragraph [ref=e118]: Die Personalpronomen stehen am Anfang des Satzes und geben an, wer die Handlung ausführt. 'Sie' (großgeschrieben) ist die höfliche Form.
+                - generic [ref=e119]:
+                  - heading "BEISPIELE" [level=4] [ref=e120]
+                  - paragraph [ref=e121]: Ich bin Student. | Du bist nett. | Er liest ein Buch. | Sie kommt aus der Türkei. | Es regnet. | Wir gehen in die Schule. | Sie (pl.) lernen Deutsch. | Sie (Höflichkeit) sind mein Lehrer.
+                - generic [ref=e122]:
+                  - heading "💡 TIPP" [level=4] [ref=e123]
+                  - paragraph [ref=e124]: "Im Deutschen gibt es drei Formen von 'sie': sie (er), sie (sie pl.), Sie (Höflichkeit). Achte auf die Groß-/Kleinschreibung!"
+            - generic [ref=e125]:
+              - generic [ref=e126]:
+                - generic [ref=e127]:
+                  - heading "Verben sein und haben" [level=3] [ref=e128]
+                  - paragraph [ref=e129]: Die wichtigsten unregelmäßigen Verben im Präsens
+                - generic [ref=e130]: A1
+              - generic [ref=e131]:
+                - generic [ref=e132]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e133]
+                  - paragraph [ref=e134]: Das Verb 'sein' (to be) und 'haben' (to have) sind die häufigsten Verben im Deutschen. Sie sind unregelmäßig und müssen auswendig gelernt werden.
+                - generic [ref=e135]:
+                  - heading "BEISPIELE" [level=4] [ref=e136]
+                  - paragraph [ref=e137]: ich bin, du bist, er/sie ist, wir sind, sie sind, Sie sind | ich habe, du hast, er/sie hat, wir haben, sie haben, Sie haben
+                - generic [ref=e138]:
+                  - heading "💡 TIPP" [level=4] [ref=e139]
+                  - paragraph [ref=e140]: "Merke: 'Ich bin' und 'Du bist' – das sind die häufigsten Fehler bei Anfängern!"
+            - generic [ref=e141]:
+              - generic [ref=e142]:
+                - generic [ref=e143]:
+                  - heading "Regelmäßige Verben im Präsens" [level=3] [ref=e144]
+                  - paragraph [ref=e145]: Verbkonjugation mit -e, -st, -t, -en, -t, -en
+                - generic [ref=e146]: A1
+              - generic [ref=e147]:
+                - generic [ref=e148]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e149]
+                  - paragraph [ref=e150]: "Die meisten Verben folgen einem regelmäßigen Muster: ich mach-e, du mach-st, er/sie mach-t, wir mach-en, sie mach-t, Sie mach-en."
+                - generic [ref=e151]:
+                  - heading "BEISPIELE" [level=4] [ref=e152]
+                  - paragraph [ref=e153]: "machen: ich mache, du machst, er macht, wir machen, sie machen | lernen: ich lerne, du lernst, er lernt | spielen: ich spiele, du spielst, er spielt"
+                - generic [ref=e154]:
+                  - heading "💡 TIPP" [level=4] [ref=e155]
+                  - paragraph [ref=e156]: "Bei Verben mit -eln (z.B. 'handeln'): ich handel-e → ich handel (ohne e!). Bei Verben mit -ten (z.B. 'arbeiten'): du arbeitest."
+            - generic [ref=e157]:
+              - generic [ref=e158]:
+                - generic [ref=e159]:
+                  - heading "Unregelmäßige Verben" [level=3] [ref=e160]
+                  - paragraph [ref=e161]: Wichtige Verben mit Vokalwechsel
+                - generic [ref=e162]: A1
+              - generic [ref=e163]:
+                - generic [ref=e164]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e165]
+                  - paragraph [ref=e166]: "Einige Verben ändern den Vokal in der du- und er/sie-Form: fahren → fährst/fährt, schlafen → schläfst/schläft, nehmen → nimmst/nimmt."
+                - generic [ref=e167]:
+                  - heading "BEISPIELE" [level=4] [ref=e168]
+                  - paragraph [ref=e169]: "fahren: ich fahre, du fährst, er fährt | lesen: ich lese, du liest, er liest | geben: ich gebe, du gibst, er gibt | nehmen: ich nehme, du nimmst, er nimmt"
+                - generic [ref=e170]:
+                  - heading "💡 TIPP" [level=4] [ref=e171]
+                  - paragraph [ref=e172]: "Vokalwechsel: a→ä, e→i, o→ö. Nicht alle Verben ändern den Vokal – prüfe immer!"
+            - generic [ref=e173]:
+              - generic [ref=e174]:
+                - generic [ref=e175]:
+                  - heading "Verneinung mit nicht und kein" [level=3] [ref=e176]
+                  - paragraph [ref=e177]: Negation von Verben, Nomen und Adjektiven
+                - generic [ref=e178]: A1
+              - generic [ref=e179]:
+                - generic [ref=e180]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e181]
+                  - paragraph [ref=e182]: "Verben werden mit 'nicht' verneint: Ich komme nicht. Nomen mit 'kein/keine': Ich habe keinen Hund. Bei 'sein' + Adjektiv: Das ist nicht gut."
+                - generic [ref=e183]:
+                  - heading "BEISPIELE" [level=4] [ref=e184]
+                  - paragraph [ref=e185]: Ich komme nicht. | Das ist nicht gut. | Ich habe keinen Hund. | Ich habe keine Zeit. | Das ist kein Problem.
+                - generic [ref=e186]:
+                  - heading "💡 TIPP" [level=4] [ref=e187]
+                  - paragraph [ref=e188]: "'nicht' steht am Satzende oder vor dem Verbstamm. 'kein' ersetzt 'ein/eine' bei verneinten Nomen."
+            - generic [ref=e189]:
+              - generic [ref=e190]:
+                - generic [ref=e191]:
+                  - heading "Bestimmte Artikel" [level=3] [ref=e192]
+                  - paragraph [ref=e193]: der, die, das – Maskulin, Feminin, Neutral
+                - generic [ref=e194]: A1
+              - generic [ref=e195]:
+                - generic [ref=e196]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e197]
+                  - paragraph [ref=e198]: "Jedes deutsche Nomen hat einen Artikel: der (maskulin), die (feminin), das (neutral). Der Artikel zeigt das Genus an."
+                - generic [ref=e199]:
+                  - heading "BEISPIELE" [level=4] [ref=e200]
+                  - paragraph [ref=e201]: der Mann, die Frau, das Kind | der Tisch, die Lampe, das Buch | der Hund, die Katze, das Haus
+                - generic [ref=e202]:
+                  - heading "💡 TIPP" [level=4] [ref=e203]
+                  - paragraph [ref=e204]: "Es gibt keine einfache Regel für das Genus. Am besten: Nomen IMMER mit dem Artikel lernen! Tipp: Farbige Karteikarten (rot=maskulin, blau=feminin, grün=neutral)."
+            - generic [ref=e205]:
+              - generic [ref=e206]:
+                - generic [ref=e207]:
+                  - heading "Unbestimmte Artikel" [level=3] [ref=e208]
+                  - paragraph [ref=e209]: ein, eine – wie bestimmte Artikel, aber ohne Bestimmtheit
+                - generic [ref=e210]: A1
+              - generic [ref=e211]:
+                - generic [ref=e212]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e213]
+                  - paragraph [ref=e214]: Der unbestimmte Artikel entspricht 'einer/einem' im Deutschen. er hat die gleiche Form wie der bestimmte Artikel, nur ohne bestimmte Form.
+                - generic [ref=e215]:
+                  - heading "BEISPIELE" [level=4] [ref=e216]
+                  - paragraph [ref=e217]: ein Mann, eine Frau, ein Kind | ein Tisch, eine Lampe, ein Buch | ein roter Apfel, eine große Wohnung
+                - generic [ref=e218]:
+                  - heading "💡 TIPP" [level=4] [ref=e219]
+                  - paragraph [ref=e220]: "Kein Artikel (Nullartikel): Bei Berufen, Sprachen, Mahlzeiten: Er ist Lehrer. Sie spricht Deutsch. Wir essen Frühstück."
+            - generic [ref=e221]:
+              - generic [ref=e222]:
+                - generic [ref=e223]:
+                  - heading "Possessivartikel" [level=3] [ref=e224]
+                  - paragraph [ref=e225]: mein, dein, sein, ihr – Possessivpronomen
+                - generic [ref=e226]: A1
+              - generic [ref=e227]:
+                - generic [ref=e228]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e229]
+                  - paragraph [ref=e230]: "Possessivartikel zeigen Zugehörigkeit an: mein (my), dein (his), sein (his), ihr (her), unser (our), euer (your pl.), ihr (their), Ihr (your formal)."
+                - generic [ref=e231]:
+                  - heading "BEISPIELE" [level=4] [ref=e232]
+                  - paragraph [ref=e233]: das ist mein Buch. | Das ist dein Stuhl. | Das ist sein Auto. | Das ist ihre Tasche. | Das ist unser Haus. | Das ist euer Kind.
+                - generic [ref=e234]:
+                  - heading "💡 TIPP" [level=4] [ref=e235]
+                  - paragraph [ref=e236]: "Possessivartikel werden wie 'ein' dekliniert: mein→meinen (Akk.), mein→meinem (Dat.), mein→meines (Gen.)."
+            - generic [ref=e237]:
+              - generic [ref=e238]:
+                - generic [ref=e239]:
+                  - heading "Pluralbildung der Nomen" [level=3] [ref=e240]
+                  - paragraph [ref=e241]: Verschiedene Pluralformen
+                - generic [ref=e242]: A1
+              - generic [ref=e243]:
+                - generic [ref=e244]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e245]
+                  - paragraph [ref=e246]: "Der Plural im Deutschen hat verschiedene Formen: -e (Tische), -er (Kinder), -er (Mädchen), -en (Frauen), -n (Lehrern), -s (Autos), Umlaut (Ärzte) oder keine Änderung."
+                - generic [ref=e247]:
+                  - heading "BEISPIELE" [level=4] [ref=e248]
+                  - paragraph [ref=e249]: der Tisch → die Tische | das Kind → die Kinder | die Frau → die Frauen | der Arzt → die Ärzte | das Auto → die Autos
+                - generic [ref=e250]:
+                  - heading "💡 TIPP" [level=4] [ref=e251]
+                  - paragraph [ref=e252]: Der Plural hat IMMER den Artikel 'die'. Merke die Pluralform zusammen mit dem Nomen!
+            - generic [ref=e253]:
+              - generic [ref=e254]:
+                - generic [ref=e255]:
+                  - 'heading "Satzbau: Hauptsatz" [level=3] [ref=e256]'
+                  - paragraph [ref=e257]: Subjekt + Verb + Objekt (Teekannenregel)
+                - generic [ref=e258]: A1
+              - generic [ref=e259]:
+                - generic [ref=e260]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e261]
+                  - paragraph [ref=e262]: Im Hauptsatz steht das Verb an zweiter Stelle (Position 2). Das Subjekt steht auf Position 1 oder 3.
+                - generic [ref=e263]:
+                  - heading "BEISPIELE" [level=4] [ref=e264]
+                  - paragraph [ref=e265]: Ich lerne Deutsch. | Deutsch lerne ich. (Betonung) | Heute lerne ich Deutsch. | Morgen gehe ich in die Schule.
+                - generic [ref=e266]:
+                  - heading "💡 TIPP" [level=4] [ref=e267]
+                  - paragraph [ref=e268]: "Die 'Teekannenregel': Auf Position 1 steht eine Zeitangabe oder ein anderes Wort, auf Position 2 steht das Verb."
+            - generic [ref=e269]:
+              - generic [ref=e270]:
+                - generic [ref=e271]:
+                  - heading "Fragewörter" [level=3] [ref=e272]
+                  - paragraph [ref=e273]: Wer, was, wo, wann, wie, warum, wie viel
+                - generic [ref=e274]: A1
+              - generic [ref=e275]:
+                - generic [ref=e276]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e277]
+                  - paragraph [ref=e278]: Fragewörter stehen am Anfang des Satzes. Das Verb steht direkt danach (wie im Nebensatz).
+                - generic [ref=e279]:
+                  - heading "BEISPIELE" [level=4] [ref=e280]
+                  - paragraph [ref=e281]: Wer bist du? | Was machst du? | Wo wohnst du? | Wann kommst du? | Wie geht es dir? | Warum lernst du Deutsch? | Wie viel kostet das?
+                - generic [ref=e282]:
+                  - heading "💡 TIPP" [level=4] [ref=e283]
+                  - paragraph [ref=e284]: "Der Unterschied zwischen 'wo' und 'wohin': Wo? (Ort) → Wo ist der Bahnhof? Wohin? (Richtung) → Wohin gehst du?"
+            - generic [ref=e285]:
+              - generic [ref=e286]:
+                - generic [ref=e287]:
+                  - 'heading "Präpositionen: in, an, auf, mit, von, zu" [level=3] [ref=e288]'
+                  - paragraph [ref=e289]: Wichtige Präpositionen mit Dativ oder Akkusativ
+                - generic [ref=e290]: A1
+              - generic [ref=e291]:
+                - generic [ref=e292]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e293]
+                  - paragraph [ref=e294]: Einige Präpositionen verlangen den Dativ (mit, von, zu, aus, bei, nach, seit) andere den Akkusativ (durch, für, gegen, ohne, um).
+                - generic [ref=e295]:
+                  - heading "BEISPIELE" [level=4] [ref=e296]
+                  - paragraph [ref=e297]: Ich gehe mit dem Bus. (Dativ) | Das Buch ist von dir. (Dativ) | Ich gehe in die Schule. (Akk.) | Das ist für dich. (Akk.)
+                - generic [ref=e298]:
+                  - heading "💡 TIPP" [level=4] [ref=e299]
+                  - paragraph [ref=e300]: "Dativ-Präpositionen: aus, bei, mit, nach, seit, von, zu. Akkusativ-Präpositionen: durch, für, gegen, ohne, um."
+            - generic [ref=e301]:
+              - generic [ref=e302]:
+                - generic [ref=e303]:
+                  - heading "Dativ vs. Akkusativ" [level=3] [ref=e304]
+                  - paragraph [ref=e305]: Wann benutzt man welchen Kasus?
+                - generic [ref=e306]: A1
+              - generic [ref=e307]:
+                - generic [ref=e308]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e309]
+                  - paragraph [ref=e310]: "Akkusativ: Direktes Objekt (wen? was?). Dativ: Indirektes Objekt (wem?). Präpositionen bestimmen den Kasus."
+                - generic [ref=e311]:
+                  - heading "BEISPIELE" [level=4] [ref=e312]
+                  - paragraph [ref=e313]: Ich sehe den Mann. (Akk.) | Ich gebe dem Mann das Buch. (Dat.) | Ich kaufe eine Blume. (Akk.) | Ich kaufe dem Kind eine Blume. (Dat.)
+                - generic [ref=e314]:
+                  - heading "💡 TIPP" [level=4] [ref=e315]
+                  - paragraph [ref=e316]: "Tipp: Nach 'möchten' oder 'gerne' steht der Akkusativ: Ich hätte gerne einen Kaffee."
+            - generic [ref=e317]:
+              - generic [ref=e318]:
+                - generic [ref=e319]:
+                  - heading "Modalverben" [level=3] [ref=e320]
+                  - paragraph [ref=e321]: können, müssen, wollen, sollen, dürfen, mögen
+                - generic [ref=e322]: A1
+              - generic [ref=e323]:
+                - generic [ref=e324]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e325]
+                  - paragraph [ref=e326]: Modalverben stehen vor dem Hauptverb (Infinitiv). Das Hauptverb steht am Satzende. Die Konjugation folgt dem Muster des zweiten Person (du).
+                - generic [ref=e327]:
+                  - heading "BEISPIELE" [level=4] [ref=e328]
+                  - paragraph [ref=e329]: Ich kann Deutsch sprechen. | Du musst lernen. | Er will nach Hause gehen. | Wir sollen warten. | Sie darf nicht rauchen. | Ich mag Kaffee.
+                - generic [ref=e330]:
+                  - heading "💡 TIPP" [level=4] [ref=e331]
+                  - paragraph [ref=e332]: "Bei Modalverben mit 'ich' fehlt oft das -e: ich kann (nicht: ich kann), ich muss (nicht: ich muss), ich soll (nicht: ich soll), ich darf (nicht: ich darf), ich mag (nicht: ich mag)."
+            - generic [ref=e333]:
+              - generic [ref=e334]:
+                - generic [ref=e335]:
+                  - 'heading "Konnektoren: und, aber, oder, denn, weil" [level=3] [ref=e336]'
+                  - paragraph [ref=e337]: Wichtige Konnektoren für Satzverbindungen
+                - generic [ref=e338]: A1
+              - generic [ref=e339]:
+                - generic [ref=e340]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e341]
+                  - paragraph [ref=e342]: "'und', 'aber', 'oder' stehen zwischen zwei Hauptsätzen. 'weil' und 'denn' leiten einen Nebensatz ein (Verb am Ende bei 'weil', direkt nach Konjunktion bei 'denn')."
+                - generic [ref=e343]:
+                  - heading "BEISPIELE" [level=4] [ref=e344]
+                  - paragraph [ref=e345]: Ich lerne Deutsch und Englisch. | Ich gehe nicht, aber ich bleibe zu Hause. | Kaffee oder Tee? | Ich gehe nicht, weil ich krank bin. | Ich gehe nicht, denn ich bin krank.
+                - generic [ref=e346]:
+                  - heading "💡 TIPP" [level=4] [ref=e347]
+                  - paragraph [ref=e348]: "'weil' – Verb am Satzende! 'denn' – Verb direkt nach 'denn' (wie im Hauptsatz)."
+            - generic [ref=e349]:
+              - generic [ref=e350]:
+                - generic [ref=e351]:
+                  - heading "Perfekt mit haben" [level=3] [ref=e352]
+                  - paragraph [ref=e353]: Das Perfekt bildet die vergangene Zeit im gesprochenen Deutsch
+                - generic [ref=e354]: A2
+              - generic [ref=e355]:
+                - generic [ref=e356]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e357]
+                  - paragraph [ref=e358]: Das Perfekt besteht aus 'haben' (konjugiert) + Partizip II. Die meisten Verben bilden das Perfekt mit 'haben'.
+                - generic [ref=e359]:
+                  - heading "BEISPIELE" [level=4] [ref=e360]
+                  - paragraph [ref=e361]: Ich habe gelernt. | Du hast gegessen. | Er hat gearbeitet. | Wir haben gespielt. | Sie haben gelesen.
+                - generic [ref=e362]:
+                  - heading "💡 TIPP" [level=4] [ref=e363]
+                  - paragraph [ref=e364]: "Das Partizip II steht am Satzende. Bei trennbaren Verben: ge- + Wortstamm + -t/-en: einkaufen → eingekauft."
+            - generic [ref=e365]:
+              - generic [ref=e366]:
+                - generic [ref=e367]:
+                  - heading "Perfekt mit sein" [level=3] [ref=e368]
+                  - paragraph [ref=e369]: Bewegungsverben und Zustandsveränderungen
+                - generic [ref=e370]: A2
+              - generic [ref=e371]:
+                - generic [ref=e372]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e373]
+                  - paragraph [ref=e374]: Bewegungsverben (gehen, fahren, kommen, laufen) und Zustandsveränderungen (aufwachen, einschlafen, sterben, werden) bilden das Perfekt mit 'sein'.
+                - generic [ref=e375]:
+                  - heading "BEISPIELE" [level=4] [ref=e376]
+                  - paragraph [ref=e377]: Ich bin gegangen. | Er ist gefahren. | Wir sind angekommen. | Sie ist aufgewacht. | Das Baby ist eingeschlafen.
+                - generic [ref=e378]:
+                  - heading "💡 TIPP" [level=4] [ref=e379]
+                  - paragraph [ref=e380]: "Merke: Mit 'sein': gehen, fahren, kommen, laufen, fliegen, schwimmen, wandern, einsteigen, aussteigen, ankommen, abreisen, aufwachen, einschlafen, sterben, werden."
+            - generic [ref=e381]:
+              - generic [ref=e382]:
+                - generic [ref=e383]:
+                  - heading "Plusquamperfekt" [level=3] [ref=e384]
+                  - paragraph [ref=e385]: Das Perfekt der Vergangenheit
+                - generic [ref=e386]: A2
+              - generic [ref=e387]:
+                - generic [ref=e388]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e389]
+                  - paragraph [ref=e390]: "Das Plusquamperfekt (Vergangenheit) wird gebildet mit: hatte/war + Partizip II. Es wird benutzt, um eine Handlung zu beschreiben, die vor einer anderen stattfand."
+                - generic [ref=e391]:
+                  - heading "BEISPIELE" [level=4] [ref=e392]
+                  - paragraph [ref=e393]: Ich hatte gegessen, bevor ich kam. | Er war gegangen, als ich ankam. | Wir hatten bereits gelernt, als der Lehrer kam.
+                - generic [ref=e394]:
+                  - heading "💡 TIPP" [level=4] [ref=e395]
+                  - paragraph [ref=e396]: "Plusquamperfekt mit hatte: Die meisten Verben. Plusquamperfekt mit war: Bewegungsverben und Zustandsveränderungen."
+            - generic [ref=e397]:
+              - generic [ref=e398]:
+                - generic [ref=e399]:
+                  - heading "Futur I" [level=3] [ref=e400]
+                  - paragraph [ref=e401]: Zukunftsform mit werden + Infinitiv
+                - generic [ref=e402]: A2
+              - generic [ref=e403]:
+                - generic [ref=e404]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e405]
+                  - paragraph [ref=e406]: "Das Futur I wird gebildet mit: werden (konjugiert) + Infinitiv am Satzende. Es drückt eine zukünftige Handlung aus oder eine Vermutung."
+                - generic [ref=e407]:
+                  - heading "BEISPIELE" [level=4] [ref=e408]
+                  - paragraph [ref=e409]: Ich werde morgen kommen. | Er wird nächstes Jahr studieren. | Wir werden um 8 Uhr abfahren.
+                - generic [ref=e410]:
+                  - heading "💡 TIPP" [level=4] [ref=e411]
+                  - paragraph [ref=e412]: "Futur I wird oft durch das Präsens mit Zeitangaben ersetzt: Ich komme morgen."
+            - generic [ref=e413]:
+              - generic [ref=e414]:
+                - generic [ref=e415]:
+                  - heading "Komparativ und Superlativ" [level=3] [ref=e416]
+                  - paragraph [ref=e417]: Vergleichsformen von Adjektiven
+                - generic [ref=e418]: A2
+              - generic [ref=e419]:
+                - generic [ref=e420]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e421]
+                  - paragraph [ref=e422]: "Komparativ: -er (groß → größer). Superlativ: am + -sten (am größten). Bei Adjektiven auf -el, -er fällt das -e- weg (dunkel → dunkler)."
+                - generic [ref=e423]:
+                  - heading "BEISPIELE" [level=4] [ref=e424]
+                  - paragraph [ref=e425]: groß → größer → am größten | klein → kleiner → am kleinsten | gut → besser → am besten | schlecht → schlechter → am schlechtesten
+                - generic [ref=e426]:
+                  - heading "💡 TIPP" [level=4] [ref=e427]
+                  - paragraph [ref=e428]: "Unregelmäßig: gut → besser → am besten, viel → mehr → am meisten, gern → lieber → am liebsten."
+            - generic [ref=e429]:
+              - generic [ref=e430]:
+                - generic [ref=e431]:
+                  - heading "Reflexive Verben" [level=3] [ref=e432]
+                  - paragraph [ref=e433]: Verben mit sich (Akkusativ oder Dativ)
+                - generic [ref=e434]: A2
+              - generic [ref=e435]:
+                - generic [ref=e436]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e437]
+                  - paragraph [ref=e438]: "Reflexive Verben verwenden ein Reflexivpronomen: sich (Akk.) oder sich (Dat.). Das Pronomen passt sich dem Subjekt an."
+                - generic [ref=e439]:
+                  - heading "BEISPIELE" [level=4] [ref=e440]
+                  - paragraph [ref=e441]: Ich freue mich. (Akk.) | Du ärgert dich. (Akk.) | Er wäscht sich. (Akk.) | Wir sehen uns. (Akk.) | Ich dusche mir die Haare. (Dat.)
+                - generic [ref=e442]:
+                  - heading "💡 TIPP" [level=4] [ref=e443]
+                  - paragraph [ref=e444]: "Akkusativ: sich (mich, dich, sich, uns, euch, sich). Dativ: sich (mir, dir, sich, uns, euch, sich)."
+            - generic [ref=e445]:
+              - generic [ref=e446]:
+                - generic [ref=e447]:
+                  - heading "Akkusativ-Präpositionen" [level=3] [ref=e448]
+                  - paragraph [ref=e449]: durch, für, gegen, ohne, um
+                - generic [ref=e450]: A2
+              - generic [ref=e451]:
+                - generic [ref=e452]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e453]
+                  - paragraph [ref=e454]: "Diese Präpositionen verlangen immer den Akkusativ: durch (through), für (for), gegen (against), ohne (without), um (around/about)."
+                - generic [ref=e455]:
+                  - heading "BEISPIELE" [level=4] [ref=e456]
+                  - paragraph [ref=e457]: Ich gehe durch den Park. | Das ist für dich. | Er rennt gegen den Wind. | Ohne dich kann ich nicht. | Um 3 Uhr komme ich.
+                - generic [ref=e458]:
+                  - heading "💡 TIPP" [level=4] [ref=e459]
+                  - paragraph [ref=e460]: "'um' + Akkusativ für Uhrzeiten: um 10 Uhr. 'gegen' für Richtungen oder Ziele."
+            - generic [ref=e461]:
+              - generic [ref=e462]:
+                - generic [ref=e463]:
+                  - heading "Dativ-Präpositionen" [level=3] [ref=e464]
+                  - paragraph [ref=e465]: aus, bei, mit, nach, seit, von, zu
+                - generic [ref=e466]: A2
+              - generic [ref=e467]:
+                - generic [ref=e468]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e469]
+                  - paragraph [ref=e470]: "Diese Präpositionen verlangen immer den Dativ: aus (from), bei (at/near), mit (with), nach (after/to), seit (since), von (from/of), zu (to)."
+                - generic [ref=e471]:
+                  - heading "BEISPIELE" [level=4] [ref=e472]
+                  - paragraph [ref=e473]: Ich komme aus der Türkei. | Ich bin bei der Arbeit. | Das ist mit meinem Freund. | Nach der Schule gehe ich. | Seit gestern bin ich krank.
+                - generic [ref=e474]:
+                  - heading "💡 TIPP" [level=4] [ref=e475]
+                  - paragraph [ref=e476]: "Dativ-Artikel: dem (maskulin), der (feminin), dem (neutral), den/dem (Plural)."
+            - generic [ref=e477]:
+              - generic [ref=e478]:
+                - generic [ref=e479]:
+                  - heading "Wechselpräpositionen" [level=3] [ref=e480]
+                  - paragraph [ref=e481]: in, an, auf, über, unter, vor, hinter, neben, zwischen
+                - generic [ref=e482]: A2
+              - generic [ref=e483]:
+                - generic [ref=e484]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e485]
+                  - paragraph [ref=e486]: "Wechselpräpositionen verlangen den Akkusativ (Richtung/Ziel) oder den Dativ (Ort). Fragetests: Wohin? → Akkusativ. Wo? → Dativ."
+                - generic [ref=e487]:
+                  - heading "BEISPIELE" [level=4] [ref=e488]
+                  - paragraph [ref=e489]: Ich gehe in die Schule. (Akk.) | Ich bin in der Schule. (Dat.) | Ich stelle das auf den Tisch. (Akk.) | Das Buch liegt auf dem Tisch. (Dat.)
+                - generic [ref=e490]:
+                  - heading "💡 TIPP" [level=4] [ref=e491]
+                  - paragraph [ref=e492]: Wohin? → Akkusativ (Bewegung). Wo? → Dativ (statischer Ort).
+            - generic [ref=e493]:
+              - generic [ref=e494]:
+                - generic [ref=e495]:
+                  - 'heading "Konnektoren: weil, dass, wenn, als, obwohl" [level=3] [ref=e496]'
+                  - paragraph [ref=e497]: Nebensatzkonjunktionen
+                - generic [ref=e498]: A2
+              - generic [ref=e499]:
+                - generic [ref=e500]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e501]
+                  - paragraph [ref=e502]: "'weil' (because), 'dass' (that), 'wenn' (if/when), 'als' (when – Vergangenheit), 'obwohl' (although) leiten einen Nebensatz ein (Verb am Ende)."
+                - generic [ref=e503]:
+                  - heading "BEISPIELE" [level=4] [ref=e504]
+                  - paragraph [ref=e505]: Ich gehe nicht, weil ich krank bin. | Ich weiß, dass du Recht hast. | Wenn es regnet, bleibe ich zu Hause. | Als ich jung war, spielte ich viel. | Obwohl es regnet, gehe ich.
+                - generic [ref=e506]:
+                  - heading "💡 TIPP" [level=4] [ref=e507]
+                  - paragraph [ref=e508]: "'als' nur für einmaliges Ereignis in der Vergangenheit. 'wenn' für wiederholte Ereignisse oder hypothetische Situationen."
+            - generic [ref=e509]:
+              - generic [ref=e510]:
+                - generic [ref=e511]:
+                  - heading "Relativsätze" [level=3] [ref=e512]
+                  - paragraph [ref=e513]: Sätze mit der, die, das, denen
+                - generic [ref=e514]: A2
+              - generic [ref=e515]:
+                - generic [ref=e516]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e517]
+                  - paragraph [ref=e518]: Relativsätze geben zusätzliche Informationen über ein Nomen. Der Relativpronomen passt sich an das Nomen an (Kasus, Genus, Numerus).
+                - generic [ref=e519]:
+                  - heading "BEISPIELE" [level=4] [ref=e520]
+                  - paragraph [ref=e521]: Das ist der Mann, der in Berlin wohnt. | Die Frau, die ich gesehen habe, war nett. | Das Buch, das ich lese, ist spannend.
+                - generic [ref=e522]:
+                  - heading "💡 TIPP" [level=4] [ref=e523]
+                  - paragraph [ref=e524]: Der Relativpronomen steht immer am Anfang des Relativsatzes.
+            - generic [ref=e525]:
+              - generic [ref=e526]:
+                - generic [ref=e527]:
+                  - heading "Konjunktiv II" [level=3] [ref=e528]
+                  - paragraph [ref=e529]: Höflichkeitsform und irreale Wünsche
+                - generic [ref=e530]: A2
+              - generic [ref=e531]:
+                - generic [ref=e532]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e533]
+                  - paragraph [ref=e534]: "Der Konjunktiv II wird gebildet mit: würde + Infinitiv (oder Modalverben: könnte, müsste, sollte, wollte). Er drückt Höflichkeit, Wünsche oder irreale Bedingungen aus."
+                - generic [ref=e535]:
+                  - heading "BEISPIELE" [level=4] [ref=e536]
+                  - paragraph [ref=e537]: Ich hätte gerne einen Kaffee. | Könnten Sie mir helfen? | Wenn ich reich wäre, würde ich reisen. | Ich sollte mehr lernen.
+                - generic [ref=e538]:
+                  - heading "💡 TIPP" [level=4] [ref=e539]
+                  - paragraph [ref=e540]: "Konjunktiv II von haben: hätte. von sein: wäre. von werden: würde. Modalverben: könnte, müsste, sollte, wollte, dürfte."
+            - generic [ref=e541]:
+              - generic [ref=e542]:
+                - generic [ref=e543]:
+                  - heading "Verben mit Dativ" [level=3] [ref=e544]
+                  - paragraph [ref=e545]: helfen, danken, gratulieren, gefallen
+                - generic [ref=e546]: A2
+              - generic [ref=e547]:
+                - generic [ref=e548]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e549]
+                  - paragraph [ref=e550]: "Manche Verben verlangen immer den Dativ: helfen (to help), danken (to thank), gratulieren (to congratulate), gefallen (to please), passen (to fit)."
+                - generic [ref=e551]:
+                  - heading "BEISPIELE" [level=4] [ref=e552]
+                  - paragraph [ref=e553]: Ich helfe dem Kind. (Dat.) | Danke dir! (Dat.) | Das gefällt mir. (Dat.) | Das passt mir. (Dat.)
+                - generic [ref=e554]:
+                  - heading "💡 TIPP" [level=4] [ref=e555]
+                  - paragraph [ref=e556]: "Tipp: Bei 'gefallen' steht das Nomen auf Position 1: Das Buch gefällt mir (nicht: Mir gefällt das Buch)."
+            - generic [ref=e557]:
+              - generic [ref=e558]:
+                - generic [ref=e559]:
+                  - heading "Adjektivdeklination nach Artikel" [level=3] [ref=e560]
+                  - paragraph [ref=e561]: Adjektive ändern ihre Endung je nach Artikel
+                - generic [ref=e562]: A2
+              - generic [ref=e563]:
+                - generic [ref=e564]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e565]
+                  - paragraph [ref=e566]: "Adjektive haben verschiedene Endungen je nachdem, welcher Artikel vor ihnen steht: nach bestimmtem Artikel (-e, -en), nach unbestimmtem (-er, -e, -es), ohne Artikel (-er, -e, -es)."
+                - generic [ref=e567]:
+                  - heading "BEISPIELE" [level=4] [ref=e568]
+                  - paragraph [ref=e569]: der große Tisch (bestimmt) | ein großer Tisch (unbestimmt) | großer Tisch (ohne Artikel) | die große Lampe | eine große Lampe | große Lampe
+                - generic [ref=e570]:
+                  - heading "💡 TIPP" [level=4] [ref=e571]
+                  - paragraph [ref=e572]: "Merke die Endung nach dem Artikel: bestimmt (-e, -en), unbestimmt (-er, -e, -es), ohne (-er, -e, -es)."
+            - generic [ref=e573]:
+              - generic [ref=e574]:
+                - generic [ref=e575]:
+                  - heading "Partizip I und II als Adjektiv" [level=3] [ref=e576]
+                  - paragraph [ref=e577]: Partizipien als beschreibende Adjektive
+                - generic [ref=e578]: A2
+              - generic [ref=e579]:
+                - generic [ref=e580]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e581]
+                  - paragraph [ref=e582]: Das Partizip I (gehend, lesend) beschreibt eine aktive Handlung. Das Partizip II (gegangen, gelesen) beschreibt eine passive Handlung oder ein Ergebnis.
+                - generic [ref=e583]:
+                  - heading "BEISPIELE" [level=4] [ref=e584]
+                  - paragraph [ref=e585]: Die lesende Frau (Partizip I) | Das gelesene Buch (Partizip II) | Der spielende Junge (Partizip I) | Das gespielene Spiel (Partizip II)
+                - generic [ref=e586]:
+                  - heading "💡 TIPP" [level=4] [ref=e587]
+                  - paragraph [ref=e588]: "Partizip I: ge- + Verbstamm + -end. Partizip II: ge- + Verbstamm + -t/-en."
+            - generic [ref=e589]:
+              - generic [ref=e590]:
+                - generic [ref=e591]:
+                  - heading "Passiv Präsens" [level=3] [ref=e592]
+                  - paragraph [ref=e593]: werden + Partizip II
+                - generic [ref=e594]: B1
+              - generic [ref=e595]:
+                - generic [ref=e596]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e597]
+                  - paragraph [ref=e598]: "Das Passiv wird gebildet mit: werden (konjugiert) + Partizip II. Es betont die Handlung statt des Handelnden."
+                - generic [ref=e599]:
+                  - heading "BEISPIELE" [level=4] [ref=e600]
+                  - paragraph [ref=e601]: Das Buch wird gelesen. | Die Tür wird geöffnet. | Deutsch wird in vielen Schulen gelernt.
+                - generic [ref=e602]:
+                  - heading "💡 TIPP" [level=4] [ref=e603]
+                  - paragraph [ref=e604]: "Agent mit 'von': Das Buch wird von dem Schüler gelesen."
+            - generic [ref=e605]:
+              - generic [ref=e606]:
+                - generic [ref=e607]:
+                  - heading "Passiv mit Modalverben" [level=3] [ref=e608]
+                  - paragraph [ref=e609]: kann/muss/soll + werden + Partizip II
+                - generic [ref=e610]: B1
+              - generic [ref=e611]:
+                - generic [ref=e612]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e613]
+                  - paragraph [ref=e614]: Das Passiv mit Modalverben drückt eine Notwendigkeit oder Möglichkeit aus.
+                - generic [ref=e615]:
+                  - heading "BEISPIELE" [level=4] [ref=e616]
+                  - paragraph [ref=e617]: Das muss gemacht werden. | Das kann nicht gemacht werden. | Das sollte überprüft werden.
+                - generic [ref=e618]:
+                  - heading "💡 TIPP" [level=4] [ref=e619]
+                  - paragraph [ref=e620]: "Modalverb + werden + Partizip II: Das Buch muss gelesen werden."
+            - generic [ref=e621]:
+              - generic [ref=e622]:
+                - generic [ref=e623]:
+                  - heading "Konjunktiv II (indirekte Rede)" [level=3] [ref=e624]
+                  - paragraph [ref=e625]: Bericht von Aussagen anderer
+                - generic [ref=e626]: B1
+              - generic [ref=e627]:
+                - generic [ref=e628]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e629]
+                  - paragraph [ref=e630]: In der indirekten Rede wird der Konjunktiv II benutzt, um wiederzugeben, was jemand gesagt hat.
+                - generic [ref=e631]:
+                  - heading "BEISPIELE" [level=4] [ref=e632]
+                  - paragraph [ref=e633]: Er sagte, er hätte keine Zeit. | Sie meinte, sie würde kommen. | Er sagte, er sei krank.
+                - generic [ref=e634]:
+                  - heading "💡 TIPP" [level=4] [ref=e635]
+                  - paragraph [ref=e636]: "Konjunktiv I ist formeller: Er sagte, er sei krank. Konjunktiv II: Er sagte, er hätte keine Zeit."
+            - generic [ref=e637]:
+              - generic [ref=e638]:
+                - generic [ref=e639]:
+                  - heading "Konjunktiv I (indirekte Rede)" [level=3] [ref=e640]
+                  - paragraph [ref=e641]: Formelle indirekte Rede
+                - generic [ref=e642]: B1
+              - generic [ref=e643]:
+                - generic [ref=e644]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e645]
+                  - paragraph [ref=e646]: "Der Konjunktiv I wird in der formellen indirekten Rede benutzt: sein, habe, werde, könne, müsse, solle, wolle."
+                - generic [ref=e647]:
+                  - heading "BEISPIELE" [level=4] [ref=e648]
+                  - paragraph [ref=e649]: Er sagte, er sei krank. | Sie meinte, sie habe keine Zeit. | Er erklärte, er werde kommen.
+                - generic [ref=e650]:
+                  - heading "💡 TIPP" [level=4] [ref=e651]
+                  - paragraph [ref=e652]: "Der Konjunktiv I sieht fast aus wie der Infinitiv: ich sei, du seist, er sei, wir seien, sie seien."
+            - generic [ref=e653]:
+              - generic [ref=e654]:
+                - generic [ref=e655]:
+                  - heading "Infinitivkonstruktionen" [level=3] [ref=e656]
+                  - paragraph [ref=e657]: um...zu, ohne...zu, statt...zu
+                - generic [ref=e658]: B1
+              - generic [ref=e659]:
+                - generic [ref=e660]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e661]
+                  - paragraph [ref=e662]: "Infinitivkonstruktionen verbinden zwei Handlungen: um...zu (in order to), ohne...zu (without), statt...zu (instead of)."
+                - generic [ref=e663]:
+                  - heading "BEISPIELE" [level=4] [ref=e664]
+                  - paragraph [ref=e665]: Ich lerne, um besser zu werden. | Er ging, ohne zu bezahlen. | Statt zu arbeiten, spielt er.
+                - generic [ref=e666]:
+                  - heading "💡 TIPP" [level=4] [ref=e667]
+                  - paragraph [ref=e668]: Der Infinitiv mit 'zu' steht am Satzende. Das Subjekt beider Handlungen muss gleich sein.
+            - generic [ref=e669]:
+              - generic [ref=e670]:
+                - generic [ref=e671]:
+                  - 'heading "Nebensätze: dass, ob, wenn" [level=3] [ref=e672]'
+                  - paragraph [ref=e673]: Erweiterte Nebensätze
+                - generic [ref=e674]: B1
+              - generic [ref=e675]:
+                - generic [ref=e676]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e677]
+                  - paragraph [ref=e678]: "'dass' (that) leitet einen objektiven Nebensatz ein. 'ob' (whether) leitet einen indirekten Fragesatz ein. 'wenn' (if) leitet einen Konditionalsatz ein."
+                - generic [ref=e679]:
+                  - heading "BEISPIELE" [level=4] [ref=e680]
+                  - paragraph [ref=e681]: Ich glaube, dass du recht hast. | Ich weiß nicht, ob er kommt. | Wenn es regnet, bleibe ich.
+                - generic [ref=e682]:
+                  - heading "💡 TIPP" [level=4] [ref=e683]
+                  - paragraph [ref=e684]: Im Nebensatz steht das Verb am Ende.
+            - generic [ref=e685]:
+              - generic [ref=e686]:
+                - generic [ref=e687]:
+                  - heading "Konzessivsätze" [level=3] [ref=e688]
+                  - paragraph [ref=e689]: obwohl, obgleich, trotzdem
+                - generic [ref=e690]: B1
+              - generic [ref=e691]:
+                - generic [ref=e692]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e693]
+                  - paragraph [ref=e694]: "Konzessivsätze drücken einen Gegensatz aus: obwohl (although), obgleich (although), trotzdem (nevertheless)."
+                - generic [ref=e695]:
+                  - heading "BEISPIELE" [level=4] [ref=e696]
+                  - paragraph [ref=e697]: Obwohl es regnet, gehe ich. | Trotzdem bleibt er optimistisch. | Obgleich er krank war, kam er.
+                - generic [ref=e698]:
+                  - heading "💡 TIPP" [level=4] [ref=e699]
+                  - paragraph [ref=e700]: "'obwohl' im Nebensatz (Verb am Ende), 'trotzdem' im Hauptsatz."
+            - generic [ref=e701]:
+              - generic [ref=e702]:
+                - generic [ref=e703]:
+                  - heading "Kausalsätze" [level=3] [ref=e704]
+                  - paragraph [ref=e705]: weil, da, denn
+                - generic [ref=e706]: B1
+              - generic [ref=e707]:
+                - generic [ref=e708]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e709]
+                  - paragraph [ref=e710]: "Kausalsätze geben einen Grund an: weil (because – am häufigsten), da (since – formell), denn (for – literarisch)."
+                - generic [ref=e711]:
+                  - heading "BEISPIELE" [level=4] [ref=e712]
+                  - paragraph [ref=e713]: Ich bleibe zu Hause, weil ich krank bin. | Da es spät ist, gehe ich. | Er blieb, denn er hatte keine Wahl.
+                - generic [ref=e714]:
+                  - heading "💡 TIPP" [level=4] [ref=e715]
+                  - paragraph [ref=e716]: "'weil' – Verb am Satzende. 'denn' – Verb direkt nach 'denn'."
+            - generic [ref=e717]:
+              - generic [ref=e718]:
+                - generic [ref=e719]:
+                  - heading "Finalsätze" [level=3] [ref=e720]
+                  - paragraph [ref=e721]: damit, um...zu
+                - generic [ref=e722]: B1
+              - generic [ref=e723]:
+                - generic [ref=e724]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e725]
+                  - paragraph [ref=e726]: "Finalsätze drücken einen Zweck aus: damit (so that – Verb am Ende), um...zu (in order to – Infinitivkonstruktion)."
+                - generic [ref=e727]:
+                  - heading "BEISPIELE" [level=4] [ref=e728]
+                  - paragraph [ref=e729]: Ich lerne, damit ich Deutsch kann. | Er geht zur Uni, um zu studieren. | Sie arbeitet, damit sie Geld verdient.
+                - generic [ref=e730]:
+                  - heading "💡 TIPP" [level=4] [ref=e731]
+                  - paragraph [ref=e732]: "'damit' + Nebensatz (Verb am Ende). 'um...zu' + Infinitiv."
+            - generic [ref=e733]:
+              - generic [ref=e734]:
+                - generic [ref=e735]:
+                  - heading "Temporalsätze" [level=3] [ref=e736]
+                  - paragraph [ref=e737]: als, wenn, nachdem, bevor, seitdem
+                - generic [ref=e738]: B1
+              - generic [ref=e739]:
+                - generic [ref=e740]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e741]
+                  - paragraph [ref=e742]: "Temporalsätze geben eine Zeit an: als (when – Vergangenheit), wenn (when/if – Gegenwart/Zukunft), nachdem (after), bevor (before), seitdem (since)."
+                - generic [ref=e743]:
+                  - heading "BEISPIELE" [level=4] [ref=e744]
+                  - paragraph [ref=e745]: Als ich jung war, spielte ich viel. | Wenn ich frei habe, gehe ich wandern. | Nachdem ich gegessen habe, gehe ich. | Bevor ich gehe, rufe ich an.
+                - generic [ref=e746]:
+                  - heading "💡 TIPP" [level=4] [ref=e747]
+                  - paragraph [ref=e748]: "'als' für einmalige Ereignisse in der Vergangenheit. 'wenn' für wiederholte Ereignisse."
+            - generic [ref=e749]:
+              - generic [ref=e750]:
+                - generic [ref=e751]:
+                  - heading "Verben mit Präposition" [level=3] [ref=e752]
+                  - paragraph [ref=e753]: denken an, warten auf, sich freuen auf
+                - generic [ref=e754]: B1
+              - generic [ref=e755]:
+                - generic [ref=e756]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e757]
+                  - paragraph [ref=e758]: Bestimmte Verben werden immer mit einer bestimmten Präposition benutzt. Das beeinflusst den Kasus (Akkusativ oder Dativ).
+                - generic [ref=e759]:
+                  - heading "BEISPIELE" [level=4] [ref=e760]
+                  - paragraph [ref=e761]: Ich denke an dich. (Akk.) | Ich warte auf den Bus. (Akk.) | Ich freue mich auf den Urlaub. (Akk.) | Ich interessiere mich für Musik. (Akk.)
+                - generic [ref=e762]:
+                  - heading "💡 TIPP" [level=4] [ref=e763]
+                  - paragraph [ref=e764]: Es gibt keine Regel – man muss die Verben mit Präpositionen auswendig lernen!
+            - generic [ref=e765]:
+              - generic [ref=e766]:
+                - generic [ref=e767]:
+                  - heading "Adjektivdeklination nach Pronomen" [level=3] [ref=e768]
+                  - paragraph [ref=e769]: mein, dein, sein, ihr + Adjektiv
+                - generic [ref=e770]: B1
+              - generic [ref=e771]:
+                - generic [ref=e772]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e773]
+                  - paragraph [ref=e774]: "Nach Possessivpronomen folgt die unbestimmte Adjektivdeklination: -er (maskulin), -e (feminin), -es (neutral), -en (Plural)."
+                - generic [ref=e775]:
+                  - heading "BEISPIELE" [level=4] [ref=e776]
+                  - paragraph [ref=e777]: mein großer Hund | deine große Wohnung | sein neues Auto | unsere kleinen Kinder
+                - generic [ref=e778]:
+                  - heading "💡 TIPP" [level=4] [ref=e779]
+                  - paragraph [ref=e780]: "Die Endung entspricht der nach 'ein/eine': mein→-er/-e/-es."
+            - generic [ref=e781]:
+              - generic [ref=e782]:
+                - generic [ref=e783]:
+                  - heading "N-Deklination" [level=3] [ref=e784]
+                  - paragraph [ref=e785]: Der Student, den Studenten
+                - generic [ref=e786]: B1
+              - generic [ref=e787]:
+                - generic [ref=e788]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e789]
+                  - paragraph [ref=e790]: "Maskuline Nomen auf -e, -ant, -ent, -ist, -at, -ot bilden den Akkusativ und Dativ mit -n: der Student → den Studenten, dem Studenten."
+                - generic [ref=e791]:
+                  - heading "BEISPIELE" [level=4] [ref=e792]
+                  - paragraph [ref=e793]: Der Student lernt. (Nom.) | Ich sehe den Studenten. (Akk.) | Ich gebe dem Studenten ein Buch. (Dat.)
+                - generic [ref=e794]:
+                  - heading "💡 TIPP" [level=4] [ref=e795]
+                  - paragraph [ref=e796]: "N-Deklination: Nur maskuline Nomen! Im Plural: die Studenten (Nom.) → die Studenten (Akk./Dat.)."
+            - generic [ref=e797]:
+              - generic [ref=e798]:
+                - generic [ref=e799]:
+                  - heading "Reflexive Verben mit Akkusativ und Dativ" [level=3] [ref=e800]
+                  - paragraph [ref=e801]: sich (Akk.) und sich (Dat.)
+                - generic [ref=e802]: B1
+              - generic [ref=e803]:
+                - generic [ref=e804]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e805]
+                  - paragraph [ref=e806]: Manche reflexive Verben verwenden den Akkusativ, andere den Dativ. Der Dativ zeigt an, wem etwas passiert.
+                - generic [ref=e807]:
+                  - heading "BEISPIELE" [level=4] [ref=e808]
+                  - paragraph [ref=e809]: Ich freue mich. (Akk.) | Ich dusche mir die Haare. (Dat.) | Ich wasche mir die Hände. (Dat.) | Ich bilde mir ein. (Akk.)
+                - generic [ref=e810]:
+                  - heading "💡 TIPP" [level=4] [ref=e811]
+                  - paragraph [ref=e812]: "Akkusativ: sich (mich, dich, sich, uns, euch, sich). Dativ: sich (mir, dir, sich, uns, euch, sich)."
+            - generic [ref=e813]:
+              - generic [ref=e814]:
+                - generic [ref=e815]:
+                  - heading "Komma bei Nebensätzen" [level=3] [ref=e816]
+                  - paragraph [ref=e817]: Regeln für Kommas in komplexen Sätzen
+                - generic [ref=e818]: B1
+              - generic [ref=e819]:
+                - generic [ref=e820]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e821]
+                  - paragraph [ref=e822]: "Kommas trennen Nebensätze vom Hauptsatz: Ich weiß, dass du kommst. Kommas trennen auch Aufzählungen: rot, blau und grün."
+                - generic [ref=e823]:
+                  - heading "BEISPIELE" [level=4] [ref=e824]
+                  - paragraph [ref=e825]: Ich weiß, dass du kommst. | Er sagte, er sei krank. | Das Buch ist groß, aber interessant.
+                - generic [ref=e826]:
+                  - heading "💡 TIPP" [level=4] [ref=e827]
+                  - paragraph [ref=e828]: KEIN Komma bei Nebensätzen mit 'als', 'bevor', 'nachdem', 'wenn', 'weil', 'dass', 'ob' – NUR am Ende des Nebensatzes.
+            - generic [ref=e829]:
+              - generic [ref=e830]:
+                - generic [ref=e831]:
+                  - heading "Plusquamperfekt Passiv" [level=3] [ref=e832]
+                  - paragraph [ref=e833]: war + worden + Partizip II
+                - generic [ref=e834]: B2
+              - generic [ref=e835]:
+                - generic [ref=e836]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e837]
+                  - paragraph [ref=e838]: "Das Plusquamperfekt Passiv wird gebildet mit: war + worden + Partizip II. Es beschreibt eine passive Handlung in der Vergangenheit."
+                - generic [ref=e839]:
+                  - heading "BEISPIELE" [level=4] [ref=e840]
+                  - paragraph [ref=e841]: Das Buch war gelesen worden. | Die Straße war gereinigt worden. | Das Essen war vorbereitet worden.
+                - generic [ref=e842]:
+                  - heading "💡 TIPP" [level=4] [ref=e843]
+                  - paragraph [ref=e844]: "war + worden (nicht: geworden!)"
+            - generic [ref=e845]:
+              - generic [ref=e846]:
+                - generic [ref=e847]:
+                  - heading "Futur II" [level=3] [ref=e848]
+                  - paragraph [ref=e849]: werden + Partizip II + haben/sein
+                - generic [ref=e850]: B2
+              - generic [ref=e851]:
+                - generic [ref=e852]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e853]
+                  - paragraph [ref=e854]: "Das Futur II wird gebildet mit: werden + Partizip II + haben/sein. Es drückt eine abgeschlossene Handlung in der Zukunft aus."
+                - generic [ref=e855]:
+                  - heading "BEISPIELE" [level=4] [ref=e856]
+                  - paragraph [ref=e857]: Ich werde gelernt haben. | Er wird angekommen sein. | Wir werden das Buch gelesen haben.
+                - generic [ref=e858]:
+                  - heading "💡 TIPP" [level=4] [ref=e859]
+                  - paragraph [ref=e860]: "Futur II mit 'sein' für Bewegungsverben: angekommen sein, gegangen sein, gefahren sein."
+            - generic [ref=e861]:
+              - generic [ref=e862]:
+                - generic [ref=e863]:
+                  - heading "Konjunktiv I Passiv" [level=3] [ref=e864]
+                  - paragraph [ref=e865]: Formelle indirekte Rede im Passiv
+                - generic [ref=e866]: B2
+              - generic [ref=e867]:
+                - generic [ref=e868]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e869]
+                  - paragraph [ref=e870]: "Der Konjunktiv I Passiv wird gebildet mit: sei/habe/werde + worden + Partizip II."
+                - generic [ref=e871]:
+                  - heading "BEISPIELE" [level=4] [ref=e872]
+                  - paragraph [ref=e873]: Er sagte, das Buch sei gelesen worden. | Sie meinte, die Straße sei gereinigt worden.
+                - generic [ref=e874]:
+                  - heading "💡 TIPP" [level=4] [ref=e875]
+                  - paragraph [ref=e876]: Konjunktiv I Passiv ist sehr formell und wird hauptsächlich in Zeitungen und offiziellen Texten benutzt.
+            - generic [ref=e877]:
+              - generic [ref=e878]:
+                - generic [ref=e879]:
+                  - heading "Konjunktiv II Vergangenheit" [level=3] [ref=e880]
+                  - paragraph [ref=e881]: hätte...getan (irreale Vergangenheit)
+                - generic [ref=e882]: B2
+              - generic [ref=e883]:
+                - generic [ref=e884]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e885]
+                  - paragraph [ref=e886]: "Der Konjunktiv II der Vergangenheit wird gebildet mit: hätte/wäre + Partizip II. Er drückt bereute oder unrealisierte Handlungen aus."
+                - generic [ref=e887]:
+                  - heading "BEISPIELE" [level=4] [ref=e888]
+                  - paragraph [ref=e889]: Ich hätte mehr lernen sollen. | Er wäre gegangen, wenn er Zeit gehabt hätte. | Wir hätten das Buch kaufen sollen.
+                - generic [ref=e890]:
+                  - heading "💡 TIPP" [level=4] [ref=e891]
+                  - paragraph [ref=e892]: hätte + Partizip II (für Verben mit haben). wäre + Partizip II (für Verben mit sein).
+            - generic [ref=e893]:
+              - generic [ref=e894]:
+                - generic [ref=e895]:
+                  - heading "Nominalisierung" [level=3] [ref=e896]
+                  - paragraph [ref=e897]: Verben zu Nomen machen
+                - generic [ref=e898]: B2
+              - generic [ref=e899]:
+                - generic [ref=e900]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e901]
+                  - paragraph [ref=e902]: "Verben können zu Nomen umgewandelt werden: das Lernen (learning), das Lesen (reading), das Schreiben (writing)."
+                - generic [ref=e903]:
+                  - heading "BEISPIELE" [level=4] [ref=e904]
+                  - paragraph [ref=e905]: Das Lesen macht Spaß. | Das Lernen ist wichtig. | Das Schreiben fällt mir leicht.
+                - generic [ref=e906]:
+                  - heading "💡 TIPP" [level=4] [ref=e907]
+                  - paragraph [ref=e908]: "Nominalisierung: ge- + Verbstamm + -ung (Bildung), -heit (Freiheit), -keit (Möglichkeit), -schaft (Freundschaft), -nis (Erkenntnis)."
+            - generic [ref=e909]:
+              - generic [ref=e910]:
+                - generic [ref=e911]:
+                  - heading "Partizipialkonstruktionen" [level=3] [ref=e912]
+                  - paragraph [ref=e913]: Partizipialattribute als Adjektive
+                - generic [ref=e914]: B2
+              - generic [ref=e915]:
+                - generic [ref=e916]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e917]
+                  - paragraph [ref=e918]: "Partizipialkonstruktionen geben zusätzliche Informationen über ein Nomen: der lesende Mann (Partizip I), das gelesene Buch (Partizip II)."
+                - generic [ref=e919]:
+                  - heading "BEISPIELE" [level=4] [ref=e920]
+                  - paragraph [ref=e921]: Der lesende Mann ist mein Vater. | Das gelesene Buch ist spannend. | Die spielenden Kinder sind glücklich.
+                - generic [ref=e922]:
+                  - heading "💡 TIPP" [level=4] [ref=e923]
+                  - paragraph [ref=e924]: "Partizip I: aktiv (gehend, lesend). Partizip II: passiv (gegangen, gelesen). Partizip II kann auch adjektivisch verwendet werden."
+            - generic [ref=e925]:
+              - generic [ref=e926]:
+                - generic [ref=e927]:
+                  - heading "Relativsätze mit Präposition" [level=3] [ref=e928]
+                  - paragraph [ref=e929]: Der Mann, mit dem ich gesprochen habe
+                - generic [ref=e930]: B2
+              - generic [ref=e931]:
+                - generic [ref=e932]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e933]
+                  - paragraph [ref=e934]: "Relativsätze können mit Präpositionen gebildet werden: Der Mann, mit dem ich gesprochen habe. Die Frau, über die ich redete."
+                - generic [ref=e935]:
+                  - heading "BEISPIELE" [level=4] [ref=e936]
+                  - paragraph [ref=e937]: Der Mann, mit dem ich gesprochen habe, ist nett. | Die Frau, über die ich redete, war dort. | Das Buch, von dem ich erzählt habe, ist gut.
+                - generic [ref=e938]:
+                  - heading "💡 TIPP" [level=4] [ref=e939]
+                  - paragraph [ref=e940]: Die Präposition steht am Anfang des Relativsatzes. Das Relativpronomen folgt direkt danach.
+            - generic [ref=e941]:
+              - generic [ref=e942]:
+                - generic [ref=e943]:
+                  - heading "Emphatische Satzstellung" [level=3] [ref=e944]
+                  - paragraph [ref=e945]: Betonung durch Wortstellung
+                - generic [ref=e946]: B2
+              - generic [ref=e947]:
+                - generic [ref=e948]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e949]
+                  - paragraph [ref=e950]: "Durch die Wortstellung kann man einen Satz betonen: Nie habe ich das gesehen! (Betonung auf 'nie'). Nicht nur das, sondern auch das."
+                - generic [ref=e951]:
+                  - heading "BEISPIELE" [level=4] [ref=e952]
+                  - paragraph [ref=e953]: Nie habe ich das gesehen! | Nur das ist wichtig. | Nicht nur das, sondern auch das.
+                - generic [ref=e954]:
+                  - heading "💡 TIPP" [level=4] [ref=e955]
+                  - paragraph [ref=e956]: "Betonung durch Frontstellung: Adverbien, Verben oder andere Satzteile können an den Anfang gestellt werden."
+            - generic [ref=e957]:
+              - generic [ref=e958]:
+                - generic [ref=e959]:
+                  - heading "Konzessivsätze mit trotz" [level=3] [ref=e960]
+                  - paragraph [ref=e961]: trotz + Dativ (trotzdem, trotzdessen)
+                - generic [ref=e962]: B2
+              - generic [ref=e963]:
+                - generic [ref=e964]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e965]
+                  - paragraph [ref=e966]: "'trotz' + Dativ drückt einen Gegensatz aus: Trotz des Regens gehe ich. 'Trotzdem' steht im Hauptsatz."
+                - generic [ref=e967]:
+                  - heading "BEISPIELE" [level=4] [ref=e968]
+                  - paragraph [ref=e969]: Trotz des Regens gehe ich. | Trotzdem bleibt er optimistisch. | Trotzdessen komme ich.
+                - generic [ref=e970]:
+                  - heading "💡 TIPP" [level=4] [ref=e971]
+                  - paragraph [ref=e972]: "'trotzdem' = 'trotzdem' (trotzdem). 'trotzdessen' = 'trotz dessen' (trotzdem)."
+            - generic [ref=e973]:
+              - generic [ref=e974]:
+                - generic [ref=e975]:
+                  - heading "Konsekutivsätze" [level=3] [ref=e976]
+                  - paragraph [ref=e977]: so...dass, solch...dass
+                - generic [ref=e978]: B2
+              - generic [ref=e979]:
+                - generic [ref=e980]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e981]
+                  - paragraph [ref=e982]: "Konsekutivsätze drücken eine Folge aus: so...dass (so...that), solch...dass (such...that)."
+                - generic [ref=e983]:
+                  - heading "BEISPIELE" [level=4] [ref=e984]
+                  - paragraph [ref=e985]: Er ist so müde, dass er einschläft. | Das ist so gut, dass ich es empfehle. | Solch ein Buch habe ich noch nie gelesen.
+                - generic [ref=e986]:
+                  - heading "💡 TIPP" [level=4] [ref=e987]
+                  - paragraph [ref=e988]: "'so' + Adjektiv + dass. 'solch' + Nomen + dass."
+            - generic [ref=e989]:
+              - generic [ref=e990]:
+                - generic [ref=e991]:
+                  - heading "Konjunktiv I Futur" [level=3] [ref=e992]
+                  - paragraph [ref=e993]: Formelle indirekte Rede in der Zukunft
+                - generic [ref=e994]: C1
+              - generic [ref=e995]:
+                - generic [ref=e996]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e997]
+                  - paragraph [ref=e998]: "Der Konjunktiv I Futur wird gebildet mit: werde + Partizip II. Er drückt eine formelle Prophezeiung oder Erwartung aus."
+                - generic [ref=e999]:
+                  - heading "BEISPIELE" [level=4] [ref=e1000]
+                  - paragraph [ref=e1001]: Er sagte, er werde morgen kommen. | Sie meinte, es werde regnen.
+                - generic [ref=e1002]:
+                  - heading "💡 TIPP" [level=4] [ref=e1003]
+                  - paragraph [ref=e1004]: Konjunktiv I Futur ist sehr formell und wird hauptsächlich in offiziellen Texten und Zeitungen benutzt.
+            - generic [ref=e1005]:
+              - generic [ref=e1006]:
+                - generic [ref=e1007]:
+                  - heading "Erweitertes Partizip" [level=3] [ref=e1008]
+                  - paragraph [ref=e1009]: Partizipialattribute als erweiterte Adjektive
+                - generic [ref=e1010]: C1
+              - generic [ref=e1011]:
+                - generic [ref=e1012]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e1013]
+                  - paragraph [ref=e1014]: "Erweiterte Partizipialattribute geben ausführliche Informationen über ein Nomen: der in Berlin lebende Mann, das von mir gelesene Buch."
+                - generic [ref=e1015]:
+                  - heading "BEISPIELE" [level=4] [ref=e1016]
+                  - paragraph [ref=e1017]: Der in Berlin lebende Mann ist mein Freund. | Das von mir gelesene Buch ist spannend. | Die in Deutschland studierenden Studenten lernen viel.
+                - generic [ref=e1018]:
+                  - heading "💡 TIPP" [level=4] [ref=e1019]
+                  - paragraph [ref=e1020]: Erweiterte Partizipialattribute stehen NACH dem Nomen (nicht davor wie einfache Adjektive).
+            - generic [ref=e1021]:
+              - generic [ref=e1022]:
+                - generic [ref=e1023]:
+                  - heading "Inversion nach negativer Einleitung" [level=3] [ref=e1024]
+                  - paragraph [ref=e1025]: Subjekt und Verb werden vertauscht nach negativen Einleitungen
+                - generic [ref=e1026]: C1
+              - generic [ref=e1027]:
+                - generic [ref=e1028]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e1029]
+                  - paragraph [ref=e1030]: Nach negativen Einleitungen (nie, niemals, selten, kaum, nicht nur) werden Subjekt und Verb invertiert.
+                - generic [ref=e1031]:
+                  - heading "BEISPIELE" [level=4] [ref=e1032]
+                  - paragraph [ref=e1033]: Nie habe ich das gesehen. | Selten war es so kalt. | Kaum hatte ich angerufen, kam er.
+                - generic [ref=e1034]:
+                  - heading "💡 TIPP" [level=4] [ref=e1035]
+                  - paragraph [ref=e1036]: "Inversion: Subjekt und Verb vertauschen sich nach negativen Adverbien am Satzanfang."
+            - generic [ref=e1037]:
+              - generic [ref=e1038]:
+                - generic [ref=e1039]:
+                  - heading "Konzessionsadverbien" [level=3] [ref=e1040]
+                  - paragraph [ref=e1041]: trotzdem, dennoch, nichtsdestotrotz, gleichwohl
+                - generic [ref=e1042]: C1
+              - generic [ref=e1043]:
+                - generic [ref=e1044]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e1045]
+                  - paragraph [ref=e1046]: "Konzessionsadverbien drücken einen Gegensatz aus: trotzdem (nevertheless), dennoch (yet), nichtsdestotrotz (nonetheless), gleichwohl (however)."
+                - generic [ref=e1047]:
+                  - heading "BEISPIELE" [level=4] [ref=e1048]
+                  - paragraph [ref=e1049]: Es ist teuer, aber ich kaufe es trotzdem. | Er ist krank, dennoch arbeitet er. | Nichtsdestotrotz gehe ich.
+                - generic [ref=e1050]:
+                  - heading "💡 TIPP" [level=4] [ref=e1051]
+                  - paragraph [ref=e1052]: Konzessionsadverbien stehen am Anfang des Hauptsatzes oder nach dem Verb.
+            - generic [ref=e1053]:
+              - generic [ref=e1054]:
+                - generic [ref=e1055]:
+                  - heading "Logische Konnektoren" [level=3] [ref=e1056]
+                  - paragraph [ref=e1057]: daraus folgt, demnach, infolgedessen
+                - generic [ref=e1058]: C1
+              - generic [ref=e1059]:
+                - generic [ref=e1060]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e1061]
+                  - paragraph [ref=e1062]: "Logische Konnektoren drücken eine logische Schlussfolgerung aus: daraus folgt (therefore), demnach (consequently), infolgedessen (as a result)."
+                - generic [ref=e1063]:
+                  - heading "BEISPIELE" [level=4] [ref=e1064]
+                  - paragraph [ref=e1065]: Er ist krank, daraus folgt, dass er nicht kommt. | Das Wetter ist schlecht, demnach gehe ich nicht.
+                - generic [ref=e1066]:
+                  - heading "💡 TIPP" [level=4] [ref=e1067]
+                  - paragraph [ref=e1068]: Logische Konnektoren stehen am Anfang des Satzes oder nach dem Verb.
+            - generic [ref=e1069]:
+              - generic [ref=e1070]:
+                - generic [ref=e1071]:
+                  - heading "Nominalstil vs. Verbalstil" [level=3] [ref=e1072]
+                  - paragraph [ref=e1073]: Substantivierung vs. Verbalkonstruktion
+                - generic [ref=e1074]: C1
+              - generic [ref=e1075]:
+                - generic [ref=e1076]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e1077]
+                  - paragraph [ref=e1078]: "Der Nominalstil verwendet Substantive, wo der Verbalstil Verben verwendet: die Durchführung vs. durchführen, die Untersuchung vs. untersuchen."
+                - generic [ref=e1079]:
+                  - heading "BEISPIELE" [level=4] [ref=e1080]
+                  - paragraph [ref=e1081]: Die Durchführung des Projekts ist wichtig. vs. Das Projekt durchzuführen ist wichtig. | Die Untersuchung der Daten ist notwendig. vs. Die Daten zu untersuchen ist notwendig.
+                - generic [ref=e1082]:
+                  - heading "💡 TIPP" [level=4] [ref=e1083]
+                  - paragraph [ref=e1084]: Nominalstil ist typisch für akademische Texte. Verbalstil ist klarer und direkter.
+            - generic [ref=e1085]:
+              - generic [ref=e1086]:
+                - generic [ref=e1087]:
+                  - heading "Zustandspassiv" [level=3] [ref=e1088]
+                  - paragraph [ref=e1089]: sein + Partizip II (Zustand nach Handlung)
+                - generic [ref=e1090]: C1
+              - generic [ref=e1091]:
+                - generic [ref=e1092]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e1093]
+                  - paragraph [ref=e1094]: "Das Zustandspassiv beschreibt den Zustand nach einer Handlung: Das Fenster ist geöffnet (Zustand). vs. Das Fenster wird geöffnet (Handlung)."
+                - generic [ref=e1095]:
+                  - heading "BEISPIELE" [level=4] [ref=e1096]
+                  - paragraph [ref=e1097]: Das Fenster ist geöffnet. (Zustand) | Die Tür ist geschlossen. (Zustand) | Das Buch ist gelesen. (Zustand)
+                - generic [ref=e1098]:
+                  - heading "💡 TIPP" [level=4] [ref=e1099]
+                  - paragraph [ref=e1100]: "Zustandspassiv: sein + Partizip II. Vorgangspassiv: werden + Partizip II."
+            - generic [ref=e1101]:
+              - generic [ref=e1102]:
+                - generic [ref=e1103]:
+                  - heading "Stilmittel und Rhetorik" [level=3] [ref=e1104]
+                  - paragraph [ref=e1105]: Anapher, Ellipse, Chiasmus
+                - generic [ref=e1106]: C1
+              - generic [ref=e1107]:
+                - generic [ref=e1108]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e1109]
+                  - paragraph [ref=e1110]: "Stilmittel verstärken die Wirkung einer Aussage: Anapher (Wiederholung am Satzanfang), Ellipse (Auslassung), Chiasmus (Umkehrung)."
+                - generic [ref=e1111]:
+                  - heading "BEISPIELE" [level=4] [ref=e1112]
+                  - paragraph [ref=e1113]: "Anapher: Ich komme, ich sehe, ich siege. | Ellipse: Wenn ich Zeit habe (→), komme ich. | Chiasmus: Nicht die Fehler sind das Problem, sondern die Fehler des Problems."
+                - generic [ref=e1114]:
+                  - heading "💡 TIPP" [level=4] [ref=e1115]
+                  - paragraph [ref=e1116]: "Anapher: Wiederholung am Satzanfang. Ellipse: Auslassung von Satzteilen. Chiasmus: AB → BA Struktur."
+            - generic [ref=e1117]:
+              - generic [ref=e1118]:
+                - generic [ref=e1119]:
+                  - heading "Komplexe Satzstrukturen" [level=3] [ref=e1120]
+                  - paragraph [ref=e1121]: Verschachtelte Nebensätze
+                - generic [ref=e1122]: C1
+              - generic [ref=e1123]:
+                - generic [ref=e1124]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e1125]
+                  - paragraph [ref=e1126]: Komplexe Satzstrukturen verwenden mehrere Nebensätze, die ineinander verschachtelt sind.
+                - generic [ref=e1127]:
+                  - heading "BEISPIELE" [level=4] [ref=e1128]
+                  - paragraph [ref=e1129]: Ich glaube, dass er kommt, weil er gesagt hat, dass er Zeit hat. | Obwohl er krank ist, kommt er, weil er weiß, dass es wichtig ist.
+                - generic [ref=e1130]:
+                  - heading "💡 TIPP" [level=4] [ref=e1131]
+                  - paragraph [ref=e1132]: Nicht mehr als 2-3 Nebensätze verschachteln – sonst wird der Satz unverständlich.
+            - generic [ref=e1133]:
+              - generic [ref=e1134]:
+                - generic [ref=e1135]:
+                  - heading "Formelle und informelle Sprache" [level=3] [ref=e1136]
+                  - paragraph [ref=e1137]: Unterschiede zwischen Schrift- und Umgangssprache
+                - generic [ref=e1138]: C1
+              - generic [ref=e1139]:
+                - generic [ref=e1140]:
+                  - heading "ERKLÄRUNG" [level=4] [ref=e1141]
+                  - paragraph [ref=e1142]: Formelle Sprache verwendet komplexere Satzstrukturen, gehobenere Vokabeln und vermeidet Umgangssprache.
+                - generic [ref=e1143]:
+                  - heading "BEISPIELE" [level=4] [ref=e1144]
+                  - paragraph [ref=e1145]: "Formell: Ich möchte Sie darüber informieren, dass... | Informell: Ich wollte dir sagen, dass... | Formell: Es ist anzunehmen, dass... | Informell: Man kann davon ausgehen, dass..."
+                - generic [ref=e1146]:
+                  - heading "💡 TIPP" [level=4] [ref=e1147]
+                  - paragraph [ref=e1148]: "In formellen Texten: Konjunktiv verwenden, komplexe Satzstrukturen, gehobene Vokabeln."
+  - alert [ref=e1149]
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from "@playwright/test";
+  2  | import AxeBuilder from "@axe-core/playwright";
+  3  | const BASE = "http://192.168.178.91:3035";
+  4  | 
+  5  | const PAGES = [
+  6  |   { name: "Landing", path: "/" },
+  7  |   { name: "Login", path: "/login" },
+  8  |   { name: "Register", path: "/register" },
+  9  |   { name: "Onboarding", path: "/onboarding" },
+  10 |   { name: "Placement Test", path: "/placement-test" },
+  11 |   { name: "Pricing", path: "/pricing" },
+  12 | ];
+  13 | 
+  14 | test.describe("Accessibility + WCAG AA", () => {
+  15 |   for (const p of PAGES) {
+  16 |     test(`[A11Y] ${p.name} page passes WCAG AA checks`, async ({ page }) => {
+  17 |       await page.goto(`${BASE}${p.path}`);
+  18 |       const results = await new AxeBuilder({ page })
+  19 |         .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+  20 |         .analyze();
+  21 |       expect(results.violations).toHaveLength(0);
+  22 |     });
+  23 |   }
+  24 | 
+  25 |   test.describe("Authenticated pages", () => {
+  26 |     test.beforeEach(async ({ page }) => {
+  27 |       await page.goto(`${BASE}/login`);
+  28 |       await page.fill("#email", "test@user.de");
+  29 |       await page.fill("#password", "test123456");
+  30 |       await page.click("button[type=submit]");
+  31 |       await page.waitForURL(/dashboard/, { timeout: 10000 });
+  32 |     });
+  33 | 
+  34 |     for (const p of [
+  35 |       { name: "Dashboard", path: "/dashboard" },
+  36 |       { name: "Learn", path: "/learn" },
+  37 |       { name: "Vocabulary", path: "/vocabulary" },
+  38 |       { name: "Grammar", path: "/grammar" },
+  39 |       { name: "Review", path: "/review" },
+  40 |     ]) {
+  41 |       test(`[A11Y] ${p.name} page passes WCAG AA`, async ({ page }) => {
+  42 |         await page.goto(`${BASE}${p.path}`);
+  43 |         const results = await new AxeBuilder({ page })
+  44 |           .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+  45 |           .analyze();
+> 46 |         expect(results.violations).toHaveLength(0);
+     |                                    ^ Error: expect(received).toHaveLength(expected)
+  47 |       });
+  48 |     }
+  49 |   });
+  50 | 
+  51 |   test("[A11Y] All buttons have accessible names", async ({ page }) => {
+  52 |     await page.goto(BASE);
+  53 |     const buttons = page.locator("button:not([aria-label]):not(:has-text(''))");
+  54 |     const count = await buttons.count();
+  55 |     for (let i = 0; i < count; i++) {
+  56 |       const text = await buttons.nth(i).textContent();
+  57 |       const ariaLabel = await buttons.nth(i).getAttribute("aria-label");
+  58 |       const title = await buttons.nth(i).getAttribute("title");
+  59 |       expect(text || ariaLabel || title).toBeTruthy();
+  60 |     }
+  61 |   });
+  62 | 
+  63 |   test("[A11Y] Focus ring visible on interactive elements", async ({ page }) => {
+  64 |     await page.goto(`${BASE}/login`);
+  65 |     await page.keyboard.press("Tab");
+  66 |     const focused = page.locator(":focus");
+  67 |     await expect(focused).toBeVisible();
+  68 |   });
+  69 | });
+  70 | 
+```
