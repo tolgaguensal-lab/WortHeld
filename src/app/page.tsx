@@ -41,9 +41,9 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center shadow-md">
-              <span className="text-primary-foreground font-display font-bold text-lg">W</span>
+              <span className="text-primary-foreground font-display font-bold text-lg">E</span>
             </div>
-            <span className="text-xl font-display font-bold text-foreground tracking-tight">WortHeld</span>
+            <span className="text-xl font-display font-bold text-foreground tracking-tight">Echo</span>
           </div>
           <div className="flex items-center gap-3">
             <Link href="/login">
@@ -117,7 +117,7 @@ export default async function HomePage() {
       {/* Features Section */}
       <section className="max-w-7xl mx-auto px-6 py-20 md:py-28">
         <Animated type="fadeUp" className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">Warum WortHeld?</h2>
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">Warum Echo?</h2>
           <p className="text-muted-foreground max-w-xl mx-auto">Ein durchdachtes Lernsystem, das dich von null auf sicher begleitet.</p>
         </Animated>
         <Stagger className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -190,9 +190,9 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="w-7 h-7 rounded-md bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-display font-bold text-xs">W</span>
+              <span className="text-primary-foreground font-display font-bold text-xs">E</span>
             </div>
-            <span className="text-muted-foreground text-sm">WortHeld &copy; {new Date().getFullYear()}</span>
+            <span className="text-muted-foreground text-sm">Echo &copy; {new Date().getFullYear()}</span>
           </div>
           <div className="flex items-center gap-6 text-sm">
             <Link href="/datenschutz" className="text-muted-foreground hover:text-foreground transition-colors">Datenschutz</Link>

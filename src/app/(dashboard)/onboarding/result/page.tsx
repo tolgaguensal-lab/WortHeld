@@ -32,7 +32,7 @@ export default function PlacementResultPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="md:col-span-1 space-y-6">
-            <Card className="border-0 shadow-xl bg-gradient-to-br from-blue-600 to-blue-700 text-white overflow-hidden relative">
+            <Card className="border-0 shadow-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground overflow-hidden relative">
               <div className="absolute top-0 right-0 p-4 opacity-20"><Trophy size={80} /></div>
               <CardHeader className="text-center pb-2">
                 <CardTitle className="text-xl font-display font-medium opacity-90">Dein Niveau</CardTitle>
@@ -43,7 +43,7 @@ export default function PlacementResultPage() {
               </CardContent>
               <CardFooter className="p-6 pt-0 text-center flex-col">
                 <div className="w-full bg-blue-800 rounded-full h-4 overflow-hidden">
-                  <div className="bg-white h-full rounded-full" style={{ width: mockResult.score + "%" }} />
+                  <div className="bg-card h-full rounded-full" style={{ width: mockResult.score + "%" }} />
                 </div>
                 <p className="text-xs mt-2 text-blue-200">{mockResult.score}% Gesamtpunktzahl</p>
               </CardFooter>
@@ -103,7 +103,7 @@ export default function PlacementResultPage() {
                 ))}
               </CardContent>
               <CardFooter className="p-6 pt-0">
-                <Button onClick={() => router.push("/learn")} className="w-full py-6 text-lg rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 font-semibold">
+                <Button onClick={() => router.push("/learn")} className="w-full py-6 text-lg rounded-xl bg-gradient-to-r from-primary to-primary/80 hover:from-blue-700 hover:to-indigo-700 font-semibold">
                   Jetzt mit Modul 1 starten <ArrowRight className="ml-2" />
                 </Button>
               </CardFooter>

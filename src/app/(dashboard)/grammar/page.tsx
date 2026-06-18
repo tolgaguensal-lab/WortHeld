@@ -61,7 +61,7 @@ export default function GrammarPage() {
     <div className="p-6 max-w-6xl mx-auto space-y-8">
       {/* Header */}
       <div className="text-center space-y-4">
-        <h1 className="text-5xl font-display font-bold gradient-text">Grammatiktrainer</h1>
+        <h1 className="text-5xl font-display font-bold text-primary">Grammatiktrainer</h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           {grammarTopics.length} Grammatikthemen für systematisches Lernen
         </p>
@@ -85,16 +85,16 @@ export default function GrammarPage() {
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
-          { label: "Gesamt", value: grammarTopics.length, icon: "📚", color: "from-purple-500 to-pink-600" },
+          { label: "Gesamt", value: grammarTopics.length, icon: "📚", color: "from-primary to-primary/80" },
           { label: "Anfänger (A1-A2)", value: (levelCounts.A1 || 0) + (levelCounts.A2 || 0), icon: "🌱", color: "from-green-500 to-emerald-600" },
           { label: "Fortgeschrittene (B1-C1)", value: (levelCounts.B1 || 0) + (levelCounts.B2 || 0) + (levelCounts.C1 || 0), icon: "🎓", color: "from-blue-500 to-indigo-600" },
         ].map((s, i) => (
           <div key={i} className="relative overflow-hidden rounded-2xl shadow-xl">
             <div className={`absolute inset-0 bg-gradient-to-br ${s.color}`} />
-            <CardContent className="p-8 text-center relative z-10 text-white">
+            <CardContent className="p-8 text-center relative z-10 text-primary-foreground">
               <div className="text-6xl mb-3">{s.icon}</div>
               <p className="text-5xl font-display font-bold">{s.value}</p>
-              <p className="text-white/90 font-medium mt-2">{s.label}</p>
+              <p className="text-primary-foreground/90 font-medium mt-2">{s.label}</p>
             </CardContent>
           </div>
         ))}
@@ -102,8 +102,8 @@ export default function GrammarPage() {
 
       {/* Grammar Topics */}
       <div className="rounded-2xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-800">
-        <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-6">
-          <h2 className="text-2xl font-display font-bold text-white">Grammatikthemen</h2>
+        <div className="bg-gradient-to-r bg-primary p-6">
+          <h2 className="text-2xl font-display font-bold text-primary-foreground">Grammatikthemen</h2>
         </div>
         <CardContent className="p-6">
           {grammarTopics.length === 0 ? (
@@ -130,7 +130,7 @@ export default function GrammarPage() {
                   <div className="space-y-4">
                     <div className="p-4 bg-white dark:bg-slate-800 rounded-lg">
                       <h4 className="font-semibold text-sm text-slate-500 dark:text-slate-400 mb-2">ERKLÄRUNG</h4>
-                      <p className="text-slate-700 dark:text-slate-300">{topic.explanation}</p>
+                      <p className="text-foreground dark:text-slate-300">{topic.explanation}</p>
                     </div>
                     
                     <div className="p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg border border-amber-200 dark:border-amber-800">

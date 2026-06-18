@@ -1,13 +1,13 @@
 {
-  "name": "DeutschQuest - Deutsch spielerisch lernen",
-  "short_name": "DQ",
-  "description": "Deutsch lernen von A1 bis C1 - spielerisch, effektiv und spaßig",
+  "name": "Echo — Deutsch lernen",
+  "short_name": "Echo",
+  "description": "Deutsch lernen von A1 bis C1. Integrationskurse, DTZ-Prüfung, Berufssprache.",
   "start_url": "/dashboard",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "theme_color": "#2563eb",
-  "background_color": "#ffffff",
+  "theme_color": "#2D6A4F",
+  "background_color": "#FBFAF7",
   "lang": "de",
   "dir": "ltr",
   "icons": [

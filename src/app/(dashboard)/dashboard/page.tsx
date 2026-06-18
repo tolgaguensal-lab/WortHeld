@@ -49,23 +49,23 @@ export default function DashboardPage() {
       {/* Daily Goal */}
       <Card className="card-premium overflow-hidden">
         <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(235,45%,55%)] to-[hsl(235,40%,45%)]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/70" />
           <CardContent className="p-6 md:p-8 relative z-10">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <h2 className="text-xl font-display font-bold text-white flex items-center gap-2">
-                  <Target size={20} className="text-white/80" />
+                <h2 className="text-xl font-display font-bold text-primary-foreground flex items-center gap-2">
+                  <Target size={20} className="text-primary-foreground/80" />
                   Tagesziel
                 </h2>
-                <p className="text-white/60 text-sm mt-0.5">Erreiche 50 XP, um deine Serie zu behalten</p>
+                <p className="text-primary-foreground/60 text-sm mt-0.5">Erreiche 50 XP, um deine Serie zu behalten</p>
               </div>
-              <div className="text-3xl font-display font-bold text-white/90">0%</div>
+              <div className="text-3xl font-display font-bold text-primary-foreground/90">0%</div>
             </div>
             <div className="mt-5">
-              <div className="h-2.5 bg-white/20 rounded-full overflow-hidden">
-                <Progress value={0} className="h-full bg-white/80" aria-label="Tagesziel Fortschritt" />
+              <div className="h-2.5 bg-primary-muted/50 rounded-full overflow-hidden">
+                <Progress value={0} className="h-full bg-primary" aria-label="Tagesziel Fortschritt" />
               </div>
-              <p className="text-white/50 text-xs mt-1.5">0 / 50 XP heute</p>
+              <p className="text-primary-foreground/50 text-xs mt-1.5">0 / 50 XP heute</p>
             </div>
           </CardContent>
         </div>

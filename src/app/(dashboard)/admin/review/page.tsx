@@ -70,7 +70,7 @@ export default function AdminReviewPage() {
         >
           Ausstehende Prüfungen
           {reviewItems.length > 0 && (
-            <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-red-500 text-white">{reviewItems.length}</span>
+            <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-red-500 text-primary-foreground">{reviewItems.length}</span>
           )}
         </button>
         <button

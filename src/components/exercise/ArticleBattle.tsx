@@ -92,7 +92,7 @@ export function ArticleBattle({ question, words, onAnswer }: Props) {
             disabled={!!selected}
             className={`w-20 h-20 rounded-2xl text-2xl font-bold font-display transition-all active:scale-95 ${
               feedback === "correct" && art === current.article
-                ? "bg-green-500 text-white scale-110"
+                ? "bg-green-500 text-primary-foreground scale-110"
                 : feedback === "wrong" && art === selected
                 ? "bg-red-500 text-white"
                 : art === "der"

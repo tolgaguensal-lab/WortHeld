@@ -9,7 +9,7 @@ export default function LeaderboardPage() {
     <div className="p-6 max-w-6xl mx-auto space-y-8">
       {/* Header */}
       <div className="text-center space-y-4">
-        <h1 className="text-5xl font-display font-bold gradient-text">Rangliste</h1>
+        <h1 className="text-5xl font-display font-bold text-primary">Rangliste</h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Zeige deine Fähigkeiten und konkurriere mit anderen Lernenden
         </p>
@@ -22,7 +22,7 @@ export default function LeaderboardPage() {
             key={tab}
             className={`px-6 py-3 rounded-xl font-medium transition-all duration-200 ${
               i === 0
-                ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg"
+                ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg"
                 : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700"
             }`}
           >
@@ -69,8 +69,8 @@ export default function LeaderboardPage() {
 
       {/* Leaderboard List */}
       <div className="rounded-2xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-800">
-        <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-6">
-          <h2 className="text-2xl font-display font-bold text-white">Aktuelle Rangliste</h2>
+        <div className="bg-gradient-to-r bg-primary p-6">
+          <h2 className="text-2xl font-display font-bold text-primary-foreground">Aktuelle Rangliste</h2>
         </div>
         <CardContent className="p-12 text-center">
           <div className="text-7xl mb-6">🏆</div>
@@ -79,7 +79,7 @@ export default function LeaderboardPage() {
             Starte Lektionen, sammle XP und lande auf dem Podium!
           </p>
           <a href="/learn">
-            <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg py-6 px-8">
+            <Button size="lg" className="bg-primary hover:bg-primary-hover text-lg py-6 px-8">
               Jetzt lernen →
             </Button>
           </a>

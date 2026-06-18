@@ -58,7 +58,7 @@ export default function PlacementTestPage() {
       <div className="w-full max-w-xl space-y-6">
         {step === 0 && (
           <Card className="card-premium overflow-hidden">
-            <div className="h-1.5 bg-gradient-to-r from-[hsl(235,45%,55%)] to-[hsl(38,92%,50%)]" />
+            <div className="h-1.5 bg-gradient-to-r from-primary to-accent/60" />
             <CardHeader className="text-center pb-2 pt-8">
               <div className="mx-auto w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-5">
                 <GraduationCap size={30} className="text-primary" />

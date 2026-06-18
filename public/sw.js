@@ -1,7 +1,7 @@
-const CACHE_NAME = "wortheld-v4";
+const CACHE_NAME = "echo-v4";
 const STATIC_ASSETS = ["/", "/offline", "/manifest.json", "/favicon.svg", "/bamf", "/speaking"];
-const API_CACHE = "wortheld-api-v1";
-const VERSION_CACHE = "wortheld-version";
+const API_CACHE = "echo-api-v1";
+const VERSION_CACHE = "echo-version";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

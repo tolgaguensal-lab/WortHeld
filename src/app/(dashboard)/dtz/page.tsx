@@ -66,7 +66,7 @@ export default function DTZPage() {
     <div className="p-6 max-w-6xl mx-auto space-y-8">
       {/* Header */}
       <div className="space-y-4">
-        <h1 className="text-4xl font-display font-bold gradient-text">DTZ-Prüfungsvorbereitung</h1>
+        <h1 className="text-4xl font-display font-bold text-primary">DTZ-Prüfungsvorbereitung</h1>
         <p className="text-lg text-muted-foreground">
           Deutsch-Test für Zuwanderer – Vorbereitung für alle 4 Fertigkeiten
         </p>
@@ -109,19 +109,19 @@ export default function DTZPage() {
               <div className={`relative bg-gradient-to-r ${gradient} p-6 text-white`}>
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center text-4xl">
+                    <div className="w-16 h-16 rounded-2xl bg-primary-muted/50 flex items-center justify-center text-4xl">
                       {skillIcons[test.skill] || "📝"}
                     </div>
                     <div>
-                      <Badge className="bg-white/30 text-white border-0 mb-2">{test.level}</Badge>
+                      <Badge className="bg-primary-muted text-primary-foreground border-0 mb-2">{test.level}</Badge>
                       <h2 className="text-2xl font-display font-bold">{skillLabels[test.skill] || test.skill}</h2>
-                      <p className="text-white/80 text-sm mt-1">
+                      <p className="text-primary-foreground/80 text-sm mt-1">
                         {test.timeLimit} Minuten • +{test.xpReward} XP
                       </p>
                     </div>
                   </div>
                   {hasResult && (
-                    <Badge className="bg-success text-white border-0 px-3 py-1">
+                    <Badge className="bg-success text-primary-foreground border-0 px-3 py-1">
                       ✅ Abgeschlossen
                     </Badge>
                   )}

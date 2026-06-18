@@ -20,7 +20,7 @@ function ResultContent() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-6">
       <Card className="w-full max-w-md card-premium text-center">
-        <div className="h-1.5 bg-gradient-to-r from-[hsl(235,45%,55%)] to-[hsl(38,92%,50%)]" />
+        <div className="h-1.5 bg-gradient-to-r from-primary to-accent/60" />
         <CardContent className="p-8 space-y-6">
           <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto">
             {percentage >= 80 ? <Trophy size={40} className="text-amber-500" /> :

@@ -24,11 +24,11 @@ export default async function DashboardLayout({ children }: { children: React.Re
         {/* Brand */}
         <div className="p-5 border-b border-border/40">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[hsl(235,45%,55%)] to-[hsl(235,45%,40%)] flex items-center justify-center shadow-sm">
-              <span className="text-white font-display font-bold text-sm">W</span>
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-sm">
+              <span className="text-white font-display font-bold text-sm">E</span>
             </div>
             <div>
-              <h1 className="text-base font-display font-bold text-foreground tracking-tight">WortHeld</h1>
+              <h1 className="text-base font-display font-bold text-foreground tracking-tight">Echo</h1>
               <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">Deutsch lernen</p>
             </div>
           </div>
@@ -52,7 +52,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
         {/* User footer */}
         <div className="p-3 border-t border-border/40">
           <div className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-secondary/40 transition-colors cursor-pointer group">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-[hsl(235,45%,55%)] to-[hsl(235,45%,40%)] flex items-center justify-center text-white text-xs font-bold shrink-0 shadow-sm">
+            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center text-white text-xs font-bold shrink-0 shadow-sm">
               {(session.user?.name?.[0] ?? "U").toUpperCase()}
             </div>
             <div className="flex-1 min-w-0">

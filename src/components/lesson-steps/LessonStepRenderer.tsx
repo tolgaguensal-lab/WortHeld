@@ -40,7 +40,7 @@ const stepIcons: Record<string, string> = {
 
 const stepColors: Record<string, string> = {
   WORTSCHATZ: "from-blue-500 to-blue-600",
-  GRAMMATIK: "from-purple-500 to-purple-600",
+  GRAMMATIK: "from-primary to-primary/80",
   HOEREN: "from-green-500 to-green-600",
   LESEN: "from-orange-500 to-orange-600",
   SCHREIBEN: "from-pink-500 to-pink-600",
@@ -137,11 +137,11 @@ export function LessonStepRenderer({ steps, onComplete }: Props) {
 
       {/* Step content */}
       <Card className="mb-6">
-        <div className={`bg-gradient-to-r ${stepColors[step.stepType]} p-4 text-white rounded-t-xl`}>
+        <div className={`bg-gradient-to-r ${stepColors[step.stepType]} p-4 text-primary-foreground rounded-t-xl`}>
           <div className="flex items-center gap-3">
             <span className="text-2xl">{stepIcons[step.stepType]}</span>
             <div>
-              <Badge className="bg-white/20 text-white border-0 mb-1">{step.stepType}</Badge>
+              <Badge className="bg-primary-muted/50 text-primary-foreground border-0 mb-1">{step.stepType}</Badge>
               <h2 className="text-xl font-display font-bold">{step.title}</h2>
             </div>
           </div>

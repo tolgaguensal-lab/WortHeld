@@ -29,7 +29,7 @@ export function FeedbackOverlay({ correct, correctAnswer, xpEarned, onDismiss }:
       onClick={() => { setVisible(false); onDismiss(); }}
     >
       <div className={`absolute inset-0 ${correct ? "bg-green-500/90" : "bg-red-500/90"}`} />
-      <div className="relative text-center text-white z-10">
+      <div className="relative text-center text-primary-foreground z-10">
         {correct ? (
           <>
             <CheckCircle className="h-20 w-20 mx-auto mb-4 animate-bounce" />

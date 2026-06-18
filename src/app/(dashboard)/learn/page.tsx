@@ -12,7 +12,7 @@ const levelMeta: Record<string, { label: string; accent: string; border: string;
   A1: { label: "Anfanger", accent: "from-emerald-500 to-emerald-600", border: "border-emerald-500/20", text: "text-emerald-600 dark:text-emerald-400" },
   A2: { label: "Grundlagen", accent: "from-sky-500 to-sky-600", border: "border-sky-500/20", text: "text-sky-600 dark:text-sky-400" },
   B1: { label: "Fortgeschritten", accent: "from-amber-500 to-amber-600", border: "border-amber-500/20", text: "text-amber-600 dark:text-amber-400" },
-  B2: { label: "Selbstandig", accent: "from-purple-500 to-purple-600", border: "border-purple-500/20", text: "text-purple-600 dark:text-purple-400" },
+  B2: { label: "Selbstandig", accent: "from-primary to-primary/80", border: "border-purple-500/20", text: "text-purple-600 dark:text-purple-400" },
   C1: { label: "Experte", accent: "from-rose-500 to-rose-600", border: "border-rose-500/20", text: "text-rose-600 dark:text-rose-400" },
 };
 
@@ -89,31 +89,31 @@ export default function LearnPage() {
           const hasAccess = course.levelAccess !== false;
           return (
             <div key={course.id} className={`card-premium overflow-hidden ${isRecommended ? "ring-2 ring-primary/30" : ""} ${!hasAccess ? "opacity-70" : ""}`}>
-              <div className={`bg-gradient-to-r ${meta.accent} p-6 md:p-8 text-white relative ${!hasAccess ? "grayscale-[30%]" : ""}`}>
+              <div className={`bg-gradient-to-r ${meta.accent} p-6 md:p-8 text-primary-foreground relative ${!hasAccess ? "grayscale-[30%]" : ""}`}>
                 <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNjBWMGg2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcmVmPSJhIi8+PC9zdmc+')] opacity-50" />
                 <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div className="flex items-center gap-5">
-                    <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
-                      {hasAccess ? <GraduationCap size={32} className="text-white" /> : <Lock size={32} className="text-white/70" />}
+                    <div className="w-16 h-16 rounded-2xl bg-primary-muted/50 flex items-center justify-center backdrop-blur-sm">
+                      {hasAccess ? <GraduationCap size={32} className="text-primary-foreground" /> : <Lock size={32} className="text-primary-foreground/70" />}
                     </div>
                     <div>
                       <div className="flex items-center gap-2 mb-1.5">
-                        <span className="badge-premium bg-white/20 text-white border-0 text-sm">{course.level}</span>
-                        {isRecommended && <span className="badge-premium bg-white/30 text-white border-0 text-xs animate-pulse">Empfohlen</span>}
-                        {!hasAccess && <span className="badge-premium bg-white/15 text-white/60 border-0 text-xs">In-App-Kauf</span>}
+                        <span className="badge-premium bg-primary-muted/50 text-primary-foreground border-0 text-sm">{course.level}</span>
+                        {isRecommended && <span className="badge-premium bg-primary-muted text-primary-foreground border-0 text-xs animate-pulse">Empfohlen</span>}
+                        {!hasAccess && <span className="badge-premium bg-muted/50 text-primary-foreground/60 border-0 text-xs">In-App-Kauf</span>}
                       </div>
                       <h2 className="text-xl md:text-2xl font-display font-bold">{course.name}</h2>
-                      <p className="text-white/80 text-sm mt-0.5">{course.description}</p>
+                      <p className="text-primary-foreground/80 text-sm mt-0.5">{course.description}</p>
                     </div>
                   </div>
                   {hasAccess ? (
                     <Link href={`/learn/${course.id}`}>
-                      <Button className="bg-white text-foreground hover:bg-white/90 shadow-xl shrink-0 group">
+                      <Button className="bg-card text-foreground hover:bg-card/90 shadow-xl shrink-0 group">
                         Starten <ChevronRight size={16} className="ml-1 group-hover:translate-x-0.5 transition-transform" />
                       </Button>
                     </Link>
                   ) : (
-                    <Button className="bg-white/10 text-white border border-white/20 hover:bg-white/20 shadow-xl shrink-0 group" variant="outline">
+                    <Button className="bg-muted text-primary-foreground border border-border hover:bg-primary-muted/50 shadow-xl shrink-0 group" variant="outline">
                       <ShoppingCart size={16} className="mr-2" />Freischalten
                     </Button>
                   )}

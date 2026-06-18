@@ -8,7 +8,7 @@ const levelColors: Record<string, string> = {
   A1: "from-green-400 to-green-600",
   A2: "from-blue-400 to-blue-600",
   B1: "from-orange-400 to-orange-600",
-  B2: "from-purple-400 to-purple-600",
+  B2: "from-primary to-primary/80",
   C1: "from-red-400 to-red-600",
 };
 
@@ -100,25 +100,25 @@ export default function CoursePage({
       </Link>
 
       {/* Course Header */}
-      <div className={`relative bg-gradient-to-r ${gradient} rounded-3xl p-8 md:p-12 text-white shadow-2xl overflow-hidden`}>
+      <div className={`relative bg-gradient-to-r ${gradient} rounded-3xl p-8 md:p-12 text-primary-foreground shadow-2xl overflow-hidden`}>
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdHRlcm4gaWQ9ImEiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNjBWMGg2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiByZWY9IiNhIi8+PC9zdmc+')]"></div>
         </div>
         
         <div className="flex items-start gap-6 relative z-10">
-          <div className="w-24 h-24 rounded-2xl bg-white/20 flex items-center justify-center text-6xl shadow-2xl">
+          <div className="w-24 h-24 rounded-2xl bg-primary-muted/50 flex items-center justify-center text-6xl shadow-2xl">
             {icon}
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-3">
-              <Badge className="bg-white/30 text-white border-0 text-base px-4 py-1">{course.level}</Badge>
-              <div className="text-white/80 text-sm">
+              <Badge className="bg-primary-muted text-primary-foreground border-0 text-base px-4 py-1">{course.level}</Badge>
+              <div className="text-primary-foreground/80 text-sm">
                 <span className="font-semibold">{completedCount}</span>/{totalCount} Lektionen abgeschlossen
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-display font-bold">{course.name}</h1>
-            <p className="text-white/90 text-lg mt-2 max-w-3xl">{course.description}</p>
+            <p className="text-primary-foreground/90 text-lg mt-2 max-w-3xl">{course.description}</p>
 
             {/* Progress Bar */}
             <div className="mt-6">
@@ -126,7 +126,7 @@ export default function CoursePage({
                 <span className="font-medium">Fortschritt</span>
                 <span className="font-bold text-xl">{progressPct}%</span>
               </div>
-              <div className="bg-white/20 rounded-full h-4 overflow-hidden shadow-inner">
+              <div className="bg-primary-muted/50 rounded-full h-4 overflow-hidden shadow-inner">
                 <div
                   className="bg-gradient-to-r from-white to-blue-100 h-full rounded-full transition-all duration-700 shadow-lg"
                   style={{ width: `${progressPct}%` }}
@@ -143,7 +143,7 @@ export default function CoursePage({
           <div key={unit.id} className="animate-fade-in" style={{ animationDelay: `${ui * 100}ms` }}>
             <div className="flex items-center gap-4 mb-6">
               <div
-                className="h-14 w-14 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg shrink-0"
+                className="h-14 w-14 rounded-2xl flex items-center justify-center text-primary-foreground font-bold text-xl shadow-lg shrink-0"
                 style={{
                   background: unit.themeColor
                     ? `linear-gradient(135deg, ${unit.themeColor}, ${unit.themeColor}dd)`

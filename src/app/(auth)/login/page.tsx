@@ -36,10 +36,10 @@ export default function LoginPage() {
       <div className="w-full max-w-md space-y-6">
         <div className="text-center">
           <Link href="/" className="inline-flex items-center gap-2 mb-8">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[hsl(235,45%,55%)] to-[hsl(235,45%,40%)] flex items-center justify-center shadow-sm">
-              <span className="text-white font-display font-bold text-sm">W</span>
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-sm">
+              <span className="text-white font-display font-bold text-sm">E</span>
             </div>
-            <span className="text-lg font-display font-bold text-foreground tracking-tight">WortHeld</span>
+            <span className="text-lg font-display font-bold text-foreground tracking-tight">Echo</span>
           </Link>
         </div>
 

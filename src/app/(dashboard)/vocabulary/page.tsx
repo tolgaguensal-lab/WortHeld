@@ -65,7 +65,7 @@ export default function VocabularyPage() {
     <div className="p-6 max-w-6xl mx-auto space-y-8">
       {/* Header */}
       <div className="text-center space-y-4">
-        <h1 className="text-5xl font-display font-bold gradient-text">Vokabeltrainer</h1>
+        <h1 className="text-5xl font-display font-bold text-primary">Vokabeltrainer</h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           {vocabulary.length} Vokabeln in deiner Sammlung
         </p>
@@ -91,14 +91,14 @@ export default function VocabularyPage() {
         {[
           { label: "Gesamt", value: vocabulary.length, icon: "📚", color: "from-blue-500 to-indigo-600" },
           { label: "A1-A2", value: (levelCounts.A1 || 0) + (levelCounts.A2 || 0), icon: "🌱", color: "from-green-500 to-emerald-600" },
-          { label: "B1-C1", value: (levelCounts.B1 || 0) + (levelCounts.B2 || 0) + (levelCounts.C1 || 0), icon: "🎓", color: "from-purple-500 to-pink-600" },
+          { label: "B1-C1", value: (levelCounts.B1 || 0) + (levelCounts.B2 || 0) + (levelCounts.C1 || 0), icon: "🎓", color: "from-primary to-primary/80" },
         ].map((s, i) => (
           <div key={i} className="relative overflow-hidden rounded-2xl shadow-xl">
             <div className={`absolute inset-0 bg-gradient-to-br ${s.color}`} />
-            <CardContent className="p-8 text-center relative z-10 text-white">
+            <CardContent className="p-8 text-center relative z-10 text-primary-foreground">
               <div className="text-6xl mb-3">{s.icon}</div>
               <p className="text-5xl font-display font-bold">{s.value}</p>
-              <p className="text-white/90 font-medium mt-2">{s.label}</p>
+              <p className="text-primary-foreground/90 font-medium mt-2">{s.label}</p>
             </CardContent>
           </div>
         ))}
@@ -106,8 +106,8 @@ export default function VocabularyPage() {
 
       {/* Vocabulary List */}
       <div className="rounded-2xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-800">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-6">
-          <h2 className="text-2xl font-display font-bold text-white">Meine Vokabeln</h2>
+        <div className="bg-gradient-to-r from-primary to-primary/80 p-6">
+          <h2 className="text-2xl font-display font-bold text-primary-foreground">Meine Vokabeln</h2>
         </div>
         <CardContent className="p-6">
           {vocabulary.length === 0 ? (
@@ -116,7 +116,7 @@ export default function VocabularyPage() {
               <p className="text-xl font-semibold mb-2">Noch keine Vokabeln</p>
               <p className="text-muted-foreground mb-6">Starte eine Lektion, um Vokabeln zu lernen!</p>
               <a href="/learn">
-                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-primary/80">
                   Erste Lektion starten →
                 </Button>
               </a>
@@ -140,7 +140,7 @@ export default function VocabularyPage() {
                   </div>
                   {vocab.exampleSentence && (
                     <div className="mt-3 p-3 bg-white dark:bg-slate-800 rounded-lg text-sm">
-                      <p className="text-slate-700 dark:text-slate-300 italic">{`"${vocab.exampleSentence}"`}</p>
+                      <p className="text-foreground dark:text-slate-300 italic">{`"${vocab.exampleSentence}"`}</p>
                     </div>
                   )}
                 </div>

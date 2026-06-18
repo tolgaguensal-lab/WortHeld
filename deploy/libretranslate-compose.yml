@@ -3,14 +3,14 @@ version: "3.8"
 services:
   libretranslate:
     image: libretranslate/libretranslate:v1.9.6
-    container_name: wortheld-libretranslate
+    container_name: echo-libretranslate
     restart: unless-stopped
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
     ports:
       - "5001:5000"
     networks:
-      - wortheld-internal
+      - echo-internal
     env_file:
       - ./libretranslate.env
     volumes:
@@ -30,6 +30,6 @@ volumes:
     name: libretranslate-api-keys
 
 networks:
-  wortheld-internal:
+  echo-internal:
     external: true
-    name: wortheld_wortheld-internal
+    name: echo_echo-internal
