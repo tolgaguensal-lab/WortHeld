@@ -63,19 +63,7 @@ export default function ReviewPage() {
 
   useEffect(() => { fetchDue(); }, [fetchDue]);
 
-  // Keyboard shortcuts
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (complete || items.length === 0) return;
-      if (!flipped) { if (e.key === " " || e.key === "Enter") { e.preventDefault(); setFlipped(true); } return; }
-      const map: Record<string, Quality> = { "1": "perfect", "2": "good", "3": "hard", "4": "blackout" };
-      if (map[e.key]) handleRate(map[e.key]);
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [flipped, currentIdx, items, complete]);
-
-  const handleRate = async (quality: Quality) => {
+  const handleRate = useCallback(async (quality: Quality) => {
     const item = items[currentIdx];
     if (!item) return;
     try {
@@ -98,7 +86,19 @@ export default function ReviewPage() {
     } else {
       setComplete(true);
     }
-  };
+  }, [currentIdx, items]);
+
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (complete || items.length === 0) return;
+      if (!flipped) { if (e.key === " " || e.key === "Enter") { e.preventDefault(); setFlipped(true); } return; }
+      const map: Record<string, Quality> = { "1": "perfect", "2": "good", "3": "hard", "4": "blackout" };
+      if (map[e.key]) handleRate(map[e.key]);
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [flipped, currentIdx, items, complete, handleRate]);
 
   // Loading state
   if (loading) {
