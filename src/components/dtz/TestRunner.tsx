@@ -115,7 +115,7 @@ export function TestRunner({ testId, test, onComplete }: TestRunnerProps) {
               {currentQ.options.map((option, i) => (
                 <Button
                   key={i}
-                  variant={answers[currentQuestion] === option ? "default" : "outline"}
+                  variant={answers[currentQuestion] === option ? "primary" : "outline"}
                   onClick={() => handleAnswer(option)}
                   className="w-full justify-start text-left h-auto py-4 px-6 text-base"
                   disabled={answers[currentQuestion] !== undefined}

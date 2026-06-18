@@ -1,7 +1,7 @@
-const CACHE_NAME = "deutschquest-v3";
-const STATIC_ASSETS = ["/", "/manifest.json"];
-const API_CACHE = "deutschquest-api-v1";
-const VERSION_CACHE = "deutschquest-version";
+const CACHE_NAME = "wortheld-v4";
+const STATIC_ASSETS = ["/", "/offline", "/manifest.json", "/favicon.svg", "/bamf", "/speaking"];
+const API_CACHE = "wortheld-api-v1";
+const VERSION_CACHE = "wortheld-version";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -66,6 +66,11 @@ self.addEventListener("fetch", (event) => {
             caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
           }
           return response;
+        }).catch(() => {
+          if (request.mode === "navigate") {
+            return caches.match("/offline");
+          }
+          return cached || new Response("Offline", { status: 503 });
         });
         return cached || fetched;
       })

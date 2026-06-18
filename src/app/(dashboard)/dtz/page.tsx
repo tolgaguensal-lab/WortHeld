@@ -75,7 +75,7 @@ export default function DTZPage() {
       {/* Level Filter */}
       <div className="flex gap-4">
         <Button
-          variant={selectedLevel === null ? "default" : "outline"}
+          variant={selectedLevel === null ? "primary" : "outline"}
           onClick={() => setSelectedLevel(null)}
           className="px-6 py-6 text-lg"
         >
@@ -84,7 +84,7 @@ export default function DTZPage() {
         {["A2", "B1"].map((level) => (
           <Button
             key={level}
-            variant={selectedLevel === level ? "default" : "outline"}
+            variant={selectedLevel === level ? "primary" : "outline"}
             onClick={() => setSelectedLevel(level)}
             className="px-6 py-6 text-lg"
           >

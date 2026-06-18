@@ -75,8 +75,8 @@ export function AnimatedStat({ value, label, delay = 0 }: { value: string; label
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay, ease: [0.25, 0.1, 0.25, 1] }}
     >
-      <div className="text-2xl md:text-3xl font-display font-bold text-white">{value}</div>
-      <div className="text-xs text-white/30 mt-1 font-medium uppercase tracking-wider">{label}</div>
+      <div className="text-2xl md:text-3xl font-display font-bold text-foreground">{value}</div>
+      <div className="text-xs text-muted-foreground mt-1 font-medium uppercase tracking-wider">{label}</div>
     </motion.div>
   );
 }

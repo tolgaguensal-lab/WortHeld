@@ -135,7 +135,7 @@ export default function PricingPage() {
                 ))}
               </ul>
               <Button
-                variant={tier.level === "A1" ? "outline" : "default"}
+                variant={tier.level === "A1" ? "outline" : "primary"}
                 className={`w-full ${tier.level === "A1" ? "" : "shadow-lg shadow-primary/20"}`}
               >
                 {tier.level === "A1" ? "Kostenlos starten" : "Freischalten"}
