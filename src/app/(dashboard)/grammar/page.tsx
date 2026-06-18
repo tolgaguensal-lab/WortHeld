@@ -69,12 +69,12 @@ export default function GrammarPage() {
 
       {/* Level Filter */}
       <div className="flex justify-center">
-        <Select value={level || ""} onValueChange={(val) => setLevel(val || null)}>
+        <Select value={level || "all"} onValueChange={(val) => setLevel(val === "all" ? null : val)}>
           <SelectTrigger className="w-48">
             <SelectValue placeholder="Alle Niveaus" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Alle Niveaus ({grammarTopics.length})</SelectItem>
+            <SelectItem value="all">Alle Niveaus ({grammarTopics.length})</SelectItem>
             {["A1", "A2", "B1", "B2", "C1"].map((lvl) => (
               <SelectItem key={lvl} value={lvl}>{lvl} ({levelCounts[lvl as keyof typeof levelCounts] || 0})</SelectItem>
             ))}
