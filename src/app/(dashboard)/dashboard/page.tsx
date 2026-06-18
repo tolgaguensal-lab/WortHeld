@@ -63,7 +63,7 @@ export default function DashboardPage() {
             </div>
             <div className="mt-5">
               <div className="h-2.5 bg-white/20 rounded-full overflow-hidden">
-                <Progress value={0} className="h-full bg-white/80" />
+                <Progress value={0} className="h-full bg-white/80" aria-label="Tagesziel Fortschritt" />
               </div>
               <p className="text-white/50 text-xs mt-1.5">0 / 50 XP heute</p>
             </div>

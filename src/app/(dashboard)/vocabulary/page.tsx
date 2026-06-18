@@ -73,7 +73,7 @@ export default function VocabularyPage() {
 
       {/* Level Filter */}
       <div className="flex justify-center">
-        <Select value={level || "all"} onValueChange={(val) => setLevel(val === "all" ? null : val)}>
+        <Select value={level || "all"} onValueChange={(val) => setLevel(val === "all" ? null : val)} aria-label="Niveau filtern">
           <SelectTrigger className="w-48">
             <SelectValue placeholder="Alle Niveaus" />
           </SelectTrigger>

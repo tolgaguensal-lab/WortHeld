@@ -59,7 +59,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
               <p className="text-sm font-medium text-foreground truncate">{session.user?.name ?? "Benutzer"}</p>
               <p className="text-xs text-muted-foreground truncate">{session.user?.email}</p>
             </div>
-            <Link href="/settings">
+            <Link href="/settings" aria-label="Einstellungen">
               <LogOut size={14} className="text-muted-foreground/50 group-hover:text-muted-foreground transition-colors" />
             </Link>
           </div>
