@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { auth } from "@/lib/auth";
+import { canAccessLevel } from "@/lib/auth/entitlements";
 
 export const dynamic = "force-dynamic";
 
@@ -8,6 +9,7 @@ export async function GET() {
   const session = await auth();
   if (!session?.user) return NextResponse.json({ error: "Nicht authentifiziert" }, { status: 401 });
 
+  const userId = session.user.id;
   const courses = await prisma.course.findMany({
     orderBy: { order: "asc" },
     include: {
@@ -19,15 +21,21 @@ export async function GET() {
     },
   });
 
-  const result = courses.map((c) => ({
-    id: c.id,
-    level: c.level,
-    name: c.name,
-    description: c.description,
-    order: c.order,
-    totalLessons: c.units.reduce((sum, u) => sum + u._count.lessons, 0),
-    totalUnits: c.units.length,
-  }));
+  const result = await Promise.all(
+    courses.map(async (c) => {
+      const access = await canAccessLevel(userId, c.level);
+      return {
+        id: c.id,
+        level: c.level,
+        name: c.name,
+        description: c.description,
+        order: c.order,
+        totalLessons: c.units.reduce((sum, u) => sum + u._count.lessons, 0),
+        totalUnits: c.units.length,
+        levelAccess: access.allowed,
+      };
+    })
+  );
 
   return NextResponse.json(result);
 }

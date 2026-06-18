@@ -246,7 +246,7 @@ async function main() {
             id: lessonId, unitId, name: lessonName,
             description: `${lessonName} – ${u.description}`,
             order: lIdx + 1, xpReward: lessonXp,
-            isLocked: uIdx === 0 && lIdx === 0 ? false : true,
+            isLocked: false,
             isPublished: true,
             requiredXp,
             skillCategory: lIdx % 2 === 0 ? SkillCategory.WORTSCHATZ : SkillCategory.GRAMMATIK,

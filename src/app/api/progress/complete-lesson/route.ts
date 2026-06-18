@@ -16,26 +16,5 @@ export async function POST(req: Request) {
     create: { userId, lessonId, score, timeSpent, completed: true, completedAt: new Date() },
   });
 
-  // 2. Finde die abgeschlossene Lektion, um den Unit-Kontext zu ermitteln
-  const completedLesson = await prisma.lesson.findUnique({
-    where: { id: lessonId },
-    include: { unit: { include: { lessons: { orderBy: { order: "asc" } } } } },
-  });
-
-  if (completedLesson?.unit) {
-    const unit = completedLesson.unit;
-    const lessons = unit.lessons;
-    const currentIdx = lessons.findIndex((l) => l.id === lessonId);
-    const nextLesson = currentIdx >= 0 && currentIdx < lessons.length - 1 ? lessons[currentIdx + 1] : null;
-
-    // 3. Entriegele die nächste Lektion in derselben Unit
-    if (nextLesson && nextLesson.isLocked) {
-      await prisma.lesson.update({
-        where: { id: nextLesson.id },
-        data: { isLocked: false },
-      });
-    }
-  }
-
   return NextResponse.json({ completed: true, score, progressId: progress.id });
 }

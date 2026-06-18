@@ -161,7 +161,7 @@ export default function CoursePage({
             <div className="flex flex-wrap gap-6 ml-5">
               {unit.lessons.map((lesson, li) => {
                 const isLast = li === unit.lessons.length - 1;
-                const isTrulyLocked = lesson.isLocked && !lesson.isCurrent;
+                const isLocked = false; // Level-based access now, not lesson-based
                 return (
                   <div key={lesson.id} className="relative">
                     {!isLast && (

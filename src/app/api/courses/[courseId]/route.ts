@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { auth } from "@/lib/auth";
+import { canAccessLevel } from "@/lib/auth/entitlements";
 
 export const dynamic = "force-dynamic";
 
@@ -60,11 +61,18 @@ export async function GET(
     firstIncompleteId = lessonIds[lessonIds.length - 1];
   }
 
+  let levelAccess = true;
+  if (userId) {
+    const access = await canAccessLevel(userId, course.level);
+    levelAccess = access.allowed;
+  }
+
   const result = {
     id: course.id,
     level: course.level,
     name: course.name,
     description: course.description,
+    levelAccess,
     units: course.units.map((u) => ({
       id: u.id,
       name: u.name,
