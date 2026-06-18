@@ -21,6 +21,8 @@ services:
       - "3035:3000"
     env_file:
       - ./zimaos.env
+    environment:
+      - NEXTAUTH_URL=http://192.168.178.91:3035
     depends_on:
       postgres:
         condition: service_healthy
