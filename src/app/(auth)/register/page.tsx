@@ -7,19 +7,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { ArrowRight, User, Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
   const [form, setForm] = useState({ name: "", email: "", password: "", confirmPassword: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPw, setShowPw] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError("");
     if (form.password !== form.confirmPassword) {
-      setError("Passwörter stimmen nicht überein");
+      setError("Passworter stimmen nicht uberein");
       setLoading(false);
       return;
     }
@@ -46,41 +48,70 @@ export default function RegisterPage() {
   }
 
   return (
-    <Card className="shadow-xl border-0">
-      <CardHeader className="text-center">
-        <CardTitle className="text-2xl font-display">Registrieren</CardTitle>
-        <CardDescription>Erstelle dein DeutschQuest-Konto</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <Input id="name" placeholder="Dein Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">E-Mail</Label>
-            <Input id="email" type="email" placeholder="name@beispiel.de" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="password">Passwort</Label>
-            <Input id="password" type="password" placeholder="Mindestens 8 Zeichen" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="confirm">Passwort bestätigen</Label>
-            <Input id="confirm" type="password" placeholder="Passwort wiederholen" value={form.confirmPassword} onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })} required />
-          </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Wird erstellt..." : "Konto erstellen"}
-          </Button>
-        </form>
-      </CardContent>
-      <CardFooter className="justify-center">
-        <p className="text-sm text-muted-foreground">
-          Bereits ein Konto?{" "}
-          <Link href="/login" className="text-primary font-semibold hover:underline">Anmelden</Link>
-        </p>
-      </CardFooter>
-    </Card>
+    <div className="min-h-screen bg-gradient-to-b from-background via-primary/5 to-background flex items-center justify-center p-4">
+      <div className="w-full max-w-md space-y-6">
+        <div className="text-center">
+          <Link href="/" className="inline-flex items-center gap-2 mb-8">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[hsl(235,45%,55%)] to-[hsl(235,45%,40%)] flex items-center justify-center shadow-sm">
+              <span className="text-white font-display font-bold text-sm">W</span>
+            </div>
+            <span className="text-lg font-display font-bold text-foreground tracking-tight">WortHeld</span>
+          </Link>
+        </div>
+
+        <Card className="card-premium">
+          <CardHeader className="text-center pb-4">
+            <CardTitle className="text-2xl font-display font-bold">Konto erstellen</CardTitle>
+            <CardDescription className="text-sm">Starte deine Deutsch-Lern-Reise</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-sm font-medium">Name</Label>
+                <div className="relative">
+                  <User size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground/60" />
+                  <Input id="name" placeholder="Dein Name" className="pl-9 h-11" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-sm font-medium">E-Mail</Label>
+                <div className="relative">
+                  <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground/60" />
+                  <Input id="email" type="email" placeholder="name@beispiel.de" className="pl-9 h-11" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="password" className="text-sm font-medium">Passwort</Label>
+                <div className="relative">
+                  <Lock size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground/60" />
+                  <Input id="password" type={showPw ? "text" : "password"} placeholder="Mindestens 8 Zeichen" className="pl-9 pr-9 h-11" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
+                  <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground/60 hover:text-foreground transition-colors">
+                    {showPw ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword" className="text-sm font-medium">Passwort wiederholen</Label>
+                <div className="relative">
+                  <Lock size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground/60" />
+                  <Input id="confirmPassword" type={showPw ? "text" : "password"} placeholder="Passwort wiederholen" className="pl-9 h-11" value={form.confirmPassword} onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })} required />
+                </div>
+              </div>
+              {error && <p className="text-sm text-destructive flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-destructive shrink-0" />{error}</p>}
+              <Button type="submit" className="w-full h-11 font-semibold shadow-lg shadow-primary/20" disabled={loading}>
+                {loading ? "Wird registriert..." : "Kostenlos starten"}
+                <ArrowRight size={16} className="ml-2" />
+              </Button>
+            </form>
+          </CardContent>
+          <CardFooter className="flex justify-center pb-6 pt-2">
+            <p className="text-sm text-muted-foreground">
+              Bereits ein Konto?{" "}
+              <Link href="/login" className="text-primary font-medium hover:underline">Anmelden</Link>
+            </p>
+          </CardFooter>
+        </Card>
+      </div>
+    </div>
   );
 }
