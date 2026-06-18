@@ -1,46 +1,75 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
+import { calculatePlacementLevel, generateLearningPlan, PlacementAnswer } from "@/lib/placement/engine";
 import { CEFRLevel } from "@prisma/client";
-import { placementResultSchema, validate, handleValidation, parseBody } from "@/lib/validation";
 
-export async function POST(req: Request) {
-  const session = await auth();
-  if (!session?.user) return NextResponse.json({ error: "Nicht authentifiziert" }, { status: 401 });
+export async function POST(req: NextRequest) {
+  try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: "Nicht authentifiziert" }, { status: 401 });
+    }
 
-  return handleValidation(async () => {
-    const userId = (session.user as any).id;
-    const body = await parseBody(req);
-    const { score, level } = validate(placementResultSchema, body);
+    const body = await req.json();
+    const { answers } = body;
 
-    let placementTest = await prisma.placementTest.findFirst({
-      where: { title: "Einstufungstest" },
+    if (!Array.isArray(answers) || answers.length === 0) {
+      return NextResponse.json({ error: "Ungültige Antworten bereitgestellt" }, { status: 400 });
+    }
+
+    // 1. Berechne das Ergebnis mit der professionellen Scoring Engine
+    const result = calculatePlacementLevel(answers as PlacementAnswer[]);
+    const learningPlan = generateLearningPlan(result);
+
+    // 2. UserProfile aktualisieren (PlacementLevel & CurrentLevel)
+    const updatedProfile = await prisma.userProfile.upsert({
+      where: { userId: session.user.id },
+      update: {
+        placementLevel: result.recommendedLevel,
+        currentLevel: result.recommendedLevel,
+      },
+      create: {
+        userId: session.user.id,
+        placementLevel: result.recommendedLevel,
+        currentLevel: result.recommendedLevel,
+      },
     });
+
+    // 3. Das spezifische Testergebnis für das Audit-Log speichern
+    // Wir suchen einen Standard-Test-Eintrag oder erstellen einen
+    let placementTest = await prisma.placementTest.findFirst({
+      where: { title: "Standard Einstufungstest" },
+    });
+
     if (!placementTest) {
       placementTest = await prisma.placementTest.create({
         data: {
-          title: "Einstufungstest",
-          description: "Automatischer Einstufungstest A1-B2",
-          cefrLevel: "B2",
+          title: "Standard Einstufungstest",
+          description: "Automatischer Einstufungstest basierend auf CEFR-Standards",
+          cefrLevel: "C1", // Max Level des Tests
           questions: JSON.stringify([]),
         },
       });
     }
 
-    const result = await prisma.placementTestResult.create({
+    await prisma.placementTestResult.create({
       data: {
-        userId,
+        userId: session.user.id,
         testId: placementTest.id,
-        score,
-        level: level as CEFRLevel,
+        score: result.scorePercentage,
+        level: result.recommendedLevel,
       },
     });
 
-    await prisma.userProfile.update({
-      where: { userId },
-      data: { placementLevel: level as CEFRLevel, currentLevel: level as CEFRLevel },
+    return NextResponse.json({
+      success: true,
+      result,
+      learningPlan,
+      profile: updatedProfile,
     });
-
-    return NextResponse.json({ success: true, result });
-  });
+  } catch (error) {
+    console.error("[PLACEMENT_RESULT_ERROR]:", error);
+    return NextResponse.json({ error: "Interner Serverfehler" }, { status: 500 });
+  }
 }
