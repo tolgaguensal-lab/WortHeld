@@ -95,7 +95,7 @@ export function AIChat() {
 
         const reader = response.body?.getReader();
         if (!reader) throw new Error("No stream");
-        const decoder = new TextDecoder();
+        const decoder = new TextDecoder("utf-8");
         let assistantContent = "";
         setMessages(prev => [...prev, { role: "assistant", content: "" }]);
 
