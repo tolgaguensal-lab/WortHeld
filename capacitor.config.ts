@@ -7,7 +7,6 @@ const config: CapacitorConfig = {
   appName: "Wortwende",
   webDir: "public",
   server: {
-    // Lädt die Live-URL im WebView – alle Features (Auth, API, Tutor) funktionieren
     url: isProd
       ? "https://wortwende.guenlab.de"
       : "http://192.168.178.91:3035",
@@ -21,9 +20,19 @@ const config: CapacitorConfig = {
       backgroundColor: "#0D2B45",
       showSpinner: false,
     },
+    PushNotifications: {
+      presentationOptions: ["badge", "sound", "alert"],
+    },
+    LocalNotifications: {
+      smallIcon: "ic_launcher",
+      iconColor: "#FF6B4A",
+    },
   },
   android: {
     allowMixedContent: true,
+  },
+  ios: {
+    contentInset: "always",
   },
 };
 

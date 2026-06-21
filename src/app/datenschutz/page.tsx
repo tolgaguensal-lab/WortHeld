@@ -25,6 +25,18 @@ export default function DatenschutzPage() {
 
           <h2 className="text-xl font-display font-semibold text-foreground">7. Kontakt</h2>
           <p>Bei Datenschutzanfragen wenden Sie sich bitte an: hallo@guenlab.de</p>
+
+          <h2 className="text-xl font-display font-semibold text-foreground">8. Mobile App (iOS &amp; Android)</h2>
+          <p>Die Wortwende-App ist als Progressive Web App (PWA) sowie als native App f&uuml;r iOS und Android verf&uuml;gbar. Zus&auml;tzlich zur Website-Nutzung gilt:</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li><strong>Mikrofon:</strong> Wird ausschlie&szlig;lich f&uuml;r die Sprach-Eingabe im KI-Tutor verwendet. Keine Aufzeichnung, keine Speicherung.</li>
+            <li><strong>Push-Benachrichtigungen:</strong> Optionale Lernerinnerungen. K&ouml;nnen in den Ger&auml;te-Einstellungen deaktiviert werden.</li>
+            <li><strong>Offline-Daten:</strong> Die App speichert keine personenbezogenen Daten lokal. Alle Daten liegen auf unseren Servern in Deutschland.</li>
+            <li><strong>Tracking:</strong> Keine Werbe-Tracker. Keine Analyse-Tools. Keine Weitergabe an Dritte.</li>
+          </ul>
+
+          <h2 className="text-xl font-display font-semibold text-foreground">9. Kinder &amp; Jugendschutz</h2>
+          <p>Wortwende ist f&uuml;r Lernende jeden Alters geeignet. Wir erf&uuml;llen die Anforderungen der DSGVO f&uuml;r Minderj&auml;hrige.</p>
         </div>
       </div>
     </div>
