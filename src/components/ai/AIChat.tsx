@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import {
@@ -221,7 +221,7 @@ export function AIChat() {
                   : "bg-card border border-border/50 text-foreground rounded-bl-md shadow-sm"
               }`}
               dangerouslySetInnerHTML={{ __html: msg.content
-                .replace(/\[ÜBUNG:(MC|LÜCKE|SATZ)\][^]*?\[\/ÜBUNG\]/g, '<div class="mt-2 p-3 rounded-xl bg-accent/5 border border-accent/20 text-xs font-medium">🎯 Übungsaufgabe</div>')
+                .replace(/\[\u00dcBUNG:(MC|L\u00dcCKE|SATZ)\][^]*?\[\/\u00dcBUNG\]/g, '<div class="mt-2 p-3 rounded-xl bg-accent/5 border border-accent/20 text-xs font-medium">🎯 \u00dcbungsaufgabe</div>')
                 .replace(/\[SESSION_ENDE:\s*\+\d+\]/g, '<div class="mt-2 text-xs text-accent font-bold">âœ… Session abgeschlossen!</div>')
                 .replace(/\n/g, '<br/>')
               }}
