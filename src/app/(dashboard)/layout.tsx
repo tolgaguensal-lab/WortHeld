@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { LayoutDashboard, BookOpen, BookA, Sigma, ScrollText, Repeat, Trophy, User, LogOut, ChevronRight, Bot } from "lucide-react";
+import { LangSelectorWrapper } from "@/components/shared/LangSelectorWrapper";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -49,6 +50,11 @@ export default async function DashboardLayout({ children }: { children: React.Re
             </Link>
           ))}
         </nav>
+
+        {/* Language Selector */}
+        <div className="px-3 pb-2">
+          <LangSelectorWrapper />
+        </div>
 
         {/* User footer */}
         <div className="p-3 border-t border-border/40">
