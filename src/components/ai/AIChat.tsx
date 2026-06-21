@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import {
@@ -19,10 +19,10 @@ const SESSION_TOPICS = [
   { id: "dativ", label: "Dativ", icon: "ðŸ“š", desc: "Wem? â€“ Den Dativ verstehen" },
   { id: "akkusativ", label: "Akkusativ", icon: "ðŸ“–", desc: "Wen oder was?" },
   { id: "perfekt", label: "Perfekt", icon: "â°", desc: "Vergangenheit bilden" },
-  { id: "praepositionen", label: "PrÃ¤positionen", icon: "ðŸ“", desc: "in, an, auf, bei..." },
+  { id: "praepositionen", label: "Pr&auml;positionen", icon: "ðŸ“", desc: "in, an, auf, bei..." },
   { id: "artikel", label: "Artikel", icon: "ðŸ“", desc: "der, die, das trainieren" },
   { id: "satzbau", label: "Satzbau", icon: "ðŸ—ï¸", desc: "Hauptsatz & Nebensatz" },
-  { id: "alltag", label: "Alltag", icon: "ðŸ›’", desc: "Einkaufen, Arzt, BehÃ¶rden" },
+  { id: "alltag", label: "Alltag", icon: "ðŸ›’", desc: "Einkaufen, Arzt, Beh&ouml;rden" },
   { id: "beruf", label: "Beruf", icon: "ðŸ’¼", desc: "Bewerbung, Arbeit" },
 ];
 
@@ -54,7 +54,7 @@ export function AIChat() {
     {
       role: "assistant",
       content:
-        "Hallo! ðŸ‘‹ Ich bin dein Wortwende-Tutor. WÃ¤hle ein <strong>Thema</strong> fÃ¼r eine gefÃ¼hrte Lernsession â€“ oder stell mir einfach eine Frage!",
+        "Hallo! ðŸ‘‹ Ich bin dein Wortwende-Tutor. W&auml;hle ein <strong>Thema</strong> f&uuml;r eine gef&uuml;hrte Lernsession â€“ oder stell mir einfach eine Frage!",
     },
   ]);
   const [input, setInput] = useState("");
@@ -137,7 +137,7 @@ export function AIChat() {
     setMode("session");
     setSessionTopic(topic.label);
     setSessionXp(0);
-    const msg = `[SESSION_START: ${topic.label}] Ich mÃ¶chte ${topic.desc.toLowerCase()} lernen.`;
+    const msg = `[SESSION_START: ${topic.label}] Ich m&ouml;chte ${topic.desc.toLowerCase()} lernen.`;
     setMessages([
       { role: "assistant", content: `ðŸŽ¯ <strong>Session: ${topic.label}</strong> â€“ ${topic.desc}\n\nLass uns starten!` },
       { role: "user", content: msg },
@@ -162,7 +162,7 @@ export function AIChat() {
             Wortwende Tutor {sessionTopic && <span className="text-accent">Â· {sessionTopic}</span>}
           </h2>
           <p className="text-xs text-muted-foreground">
-            {loading ? "Schreibt..." : mode === "session" ? `Session Â· +${sessionXp} XP` : "Online Â· KI-gestÃ¼tzt"}
+            {loading ? "Schreibt..." : mode === "session" ? `Session Â· +${sessionXp} XP` : "Online Â· KI-gest&uuml;tzt"}
           </p>
         </div>
         {mode === "session" && (
@@ -176,7 +176,7 @@ export function AIChat() {
       {mode === "chat" && messages.length <= 1 && (
         <div className="px-4 py-3 border-b border-border/30 bg-gradient-to-r from-primary/5 to-accent/5">
           <p className="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1.5">
-            <Sparkles size={12} className="text-accent" /> GefÃ¼hrte Lernsessions
+            <Sparkles size={12} className="text-accent" /> Gef&uuml;hrte Lernsessions
           </p>
           <div className="grid grid-cols-4 gap-2">
             {SESSION_TOPICS.slice(0, 4).map(t => (
@@ -265,7 +265,7 @@ export function AIChat() {
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder={isListening ? "HÃ¶re zu..." : mode === "session" ? "Deine Antwort..." : "Frag mich etwas auf Deutsch..."}
+            placeholder={isListening ? "H&ouml;re zu..." : mode === "session" ? "Deine Antwort..." : "Frag mich etwas auf Deutsch..."}
             disabled={loading}
             className="flex-1 bg-background border border-border/60 rounded-xl px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent disabled:opacity-50"
           />
@@ -279,7 +279,7 @@ export function AIChat() {
           </Button>
         </div>
         <p className="text-[10px] text-muted-foreground/50 mt-1.5 text-center">
-          {isListening ? "ðŸŽ¤ Sprich jetzt..." : mode === "session" ? "Antworte auf die Ãœbung â€“ der Tutor korrigiert dich." : "Tippe oder sprich â€“ der Tutor versteht beides."}
+          {isListening ? "ðŸŽ¤ Sprich jetzt..." : mode === "session" ? "Antworte auf die &Uuml;bung â€“ der Tutor korrigiert dich." : "Tippe oder sprich â€“ der Tutor versteht beides."}
         </p>
       </div>
     </div>
