@@ -39,3 +39,8 @@ public/version.json
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Capacitor
+/android/
+/ios/
+

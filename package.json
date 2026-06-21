@@ -22,11 +22,22 @@
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
     "db:studio": "prisma studio",
-    "postinstall": "prisma generate || true"
+    "postinstall": "prisma generate || true",
+    "mobile:sync": "npx cap sync",
+    "mobile:android": "npx cap sync && cd android && ./gradlew assembleDebug && cd .. && echo 'APK: android/app/build/outputs/apk/debug/app-debug.apk'",
+    "mobile:android:aab": "npx cap sync && cd android && ./gradlew bundleRelease && cd .. && echo 'AAB: android/app/build/outputs/bundle/release/app-release.aab'",
+    "mobile:ios": "npx cap sync && cd ios && xcodebuild -workspace App.xcworkspace -scheme App -configuration Release 2>/dev/null || echo 'iOS build requires macOS with Xcode'",
+    "mobile:open:android": "npx cap open android",
+    "mobile:open:ios": "npx cap open ios"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",
     "@base-ui/react": "^1.5.0",
+    "@capacitor/android": "^8.4.1",
+    "@capacitor/cli": "^8.4.1",
+    "@capacitor/core": "^8.4.1",
+    "@capacitor/ios": "^8.4.1",
+    "@capacitor/splash-screen": "^8.0.1",
     "@prisma/client": "^5.22.0",
     "@radix-ui/react-avatar": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.4",
