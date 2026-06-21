@@ -1,18 +1,24 @@
-name: echo
+name: wortwende
+
+# ═══════════════════════════════════════════════════════════════
+# Wortwende — Produktions-Stack für ZimaOS
+# Single Source of Truth → via GitHub immer aktuell
+# ═══════════════════════════════════════════════════════════════
 
 services:
+  # ── Next.js App ────────────────────────────────────────────
   app:
-    container_name: echo-app
-    image: ghcr.io/tolgaguensal-lab/echo:latest
+    image: ghcr.io/tolgaguensal-lab/wortwende:latest
+    container_name: wortwende-app
     restart: unless-stopped
     networks:
-      - echo-internal
+      - wortwende-internal
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
-      - "casaos.name=Echo"
-      - "casaos.title=Echo"
-      - "casaos.description=Deutsch spielerisch lernen — Kurse, Vokabeln &amp; Grammatik von A1 bis C1"
-      - "casaos.icon=https://raw.githubusercontent.com/tolgaguensal-lab/echo/main/public/icons/icon-192x192.svg"
+      - "casaos.name=Wortwende"
+      - "casaos.title=Wortwende"
+      - "casaos.description=Deutsch lernen von A1 bis C1 — mit KI-Tutor, Vokabeln, Grammatik"
+      - "casaos.icon=https://raw.githubusercontent.com/tolgaguensal-lab/wortwende/main/public/icons/icon-192x192.svg"
       - "casaos.category=Education"
       - "casaos.port=3035"
       - "casaos.author=Tolga Günsal"
@@ -23,6 +29,14 @@ services:
       - ./zimaos.env
     environment:
       - NEXTAUTH_URL=http://192.168.178.91:3035
+      - DATABASE_URL=postgresql://wortwende:${DB_PASSWORD:-wortwende}@postgres:5432/wortwende?schema=public
+      - LIBRETRANSLATE_URL=http://libretranslate:5000
+      - LANGUAGE_TOOL_API_URL=http://languagetool:8010
+      - PIPER_TTS_URL=http://piper-tts:10200
+      - TATOEBA_API_URL=https://tatoeba.org/deu/api_v0
+      - WIKTIONARY_API_URL=https://de.wiktionary.org/api/rest_v1
+      - OPENTHESAURUS_API_URL=https://www.openthesaurus.de/synonyme
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
     depends_on:
       postgres:
         condition: service_healthy
@@ -33,47 +47,127 @@ services:
       retries: 3
       start_period: 60s
 
+  # ── PostgreSQL ────────────────────────────────────────────
   postgres:
-    container_name: echo-postgres
     image: postgres:16-alpine
+    container_name: wortwende-postgres
     restart: unless-stopped
     networks:
-      - echo-internal
-    env_file:
-      - ./zimaos.env
+      - wortwende-internal
     environment:
-      POSTGRES_USER: echo
-      POSTGRES_DB: echo
-    # Kein Port-Mapping nach draußen — nur App erreicht die DB über das interne Netzwerk
+      POSTGRES_USER: wortwende
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-wortwende}
+      POSTGRES_DB: wortwende
     volumes:
-      - echo-pgdata:/var/lib/postgresql/data
+      - wortwende-pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U echo -d echo"]
+      test: ["CMD-SHELL", "pg_isready -U wortwende -d wortwende"]
       interval: 5s
       timeout: 5s
       retries: 5
 
+  # ── LibreTranslate (Open Source) ──────────────────────────
+  libretranslate:
+    image: libretranslate/libretranslate:v1.9.6
+    container_name: wortwende-libretranslate
+    restart: unless-stopped
+    networks:
+      - wortwende-internal
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    env_file:
+      - ./libretranslate.env
+    volumes:
+      - libretranslate-models:/home/libretranslate/.local
+      - libretranslate-api-keys:/app/db
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5000/frontend/settings || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 90s
+
+  # ── LanguageTool (Open Source) ────────────────────────────
+  languagetool:
+    image: erikvl87/languagetool:latest
+    container_name: wortwende-languagetool
+    restart: unless-stopped
+    networks:
+      - wortwende-internal
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    environment:
+      - langtool_languageModel=/ngrams
+      - Java_Xms=256m
+      - Java_Xmx=1g
+    volumes:
+      - languagetool-ngrams:/ngrams
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8010/v2/languages || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 90s
+
+  # ── Piper TTS (Open Source) ───────────────────────────────
+  piper-tts:
+    image: ghcr.io/rhasspy/wyoming-piper:latest
+    container_name: wortwende-piper-tts
+    restart: unless-stopped
+    networks:
+      - wortwende-internal
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    environment:
+      - PIPER_VOICE=de_DE-thorsten-medium
+      - PIPER_LENGTH_SCALE=1.0
+      - PIPER_NOISE_SCALE=0.667
+      - PIPER_NOISE_W=0.8
+    volumes:
+      - piper-voices:/share/piper
+    entrypoint: >
+      sh -c "
+        if [ ! -f /share/piper/de_DE-thorsten-medium.onnx ]; then
+          echo 'Downloading German TTS voice...' &&
+          wget -q -O /share/piper/voice.json https://huggingface.co/rhasspy/piper-voices/resolve/main/de/thorsten/medium/de_DE-thorsten-medium.onnx.json &&
+          wget -q -O /share/piper/de_DE-thorsten-medium.onnx https://huggingface.co/rhasspy/piper-voices/resolve/main/de/thorsten/medium/de_DE-thorsten-medium.onnx;
+        fi &&
+        exec wyoming-piper --piper-voice de_DE-thorsten-medium
+      "
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'test' | timeout 2 nc -w1 localhost 10200 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 120s
+
+  # ── Watchtower (Auto-Updates von GitHub) ──────────────────
   watchtower:
-    container_name: echo-watchtower
     image: containrrr/watchtower:latest
+    container_name: wortwende-watchtower
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - WATCHTOWER_CLEANUP=true
-      - WATCHTOWER_POLL_INTERVAL=3600
+      - WATCHTOWER_POLL_INTERVAL=300
       - WATCHTOWER_LABEL_ENABLE=true
       - WATCHTOWER_INCLUDE_STOPPED=false
       - WATCHTOWER_TIMEOUT=120s
 
-# ──────────────────────────────────────────────
-# Isolation: Eigenes Netzwerk + eigenes Volume
-# → Kein Port-Conflict mit anderen PostgreSQL-Containern
-# → Kein Volume-Conflict
-# ──────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════
 networks:
-  echo-internal:
+  wortwende-internal:
     driver: bridge
 
 volumes:
-  echo-pgdata:
+  wortwende-pgdata:
+    name: wortwende_pgdata
+  libretranslate-models:
+    name: wortwende_libretranslate-models
+  libretranslate-api-keys:
+    name: wortwende_libretranslate-api-keys
+  languagetool-ngrams:
+    name: wortwende_languagetool-ngrams
+  piper-voices:
+    name: wortwende_piper-voices

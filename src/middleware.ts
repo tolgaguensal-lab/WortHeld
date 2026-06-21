@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const API_PREFIX = "/api/v1";
-const API_HOST = "api.orthheld.guenlab.de";
-const MAIN_HOST = "orthheld.guenlab.de";
+const API_HOST = "api.wortwende.guenlab.de";
+const MAIN_HOST = "wortwende.guenlab.de";
 
 /** Security-Header, die auf ALLE Responses angewendet werden */
 const SECURITY_HEADERS: Record<string, string> = {

@@ -1,4 +1,4 @@
-# WortHeld Public API — Design-Dokument
+# Wortwende Public API — Design-Dokument
 
 **Datum:** 2026-06-15
 **Status:** Entwurf
@@ -6,7 +6,7 @@
 
 ## 1. Ziel
 
-Eine produktionsreife Public REST API für externe Drittanbieter, die über `api.wortheld.guenlab.de` erreichbar ist. Die API exponiert WortHeld-Daten (Vokabeln, Grammatik, Sätze, Übungen, Lektionen) sowie Schreibzugriff auf Lernfortschritt und User-Management — mit API-Key-Authentifizierung, Rate-Limiting, Request-Logging und OpenAPI-Dokumentation.
+Eine produktionsreife Public REST API für externe Drittanbieter, die über `api.wortwende.guenlab.de` erreichbar ist. Die API exponiert Wortwende-Daten (Vokabeln, Grammatik, Sätze, Übungen, Lektionen) sowie Schreibzugriff auf Lernfortschritt und User-Management — mit API-Key-Authentifizierung, Rate-Limiting, Request-Logging und OpenAPI-Dokumentation.
 
 ## 2. Prisma-Modelle
 
@@ -52,7 +52,7 @@ model ApiRequestLog {
 
 ## 3. API-Endpoints
 
-Basis-URL: `https://api.wortheld.guenlab.de/api/v1`
+Basis-URL: `https://api.wortwende.guenlab.de/api/v1`
 
 Alle Endpoints benötigen `X-API-Key` Header (Ausnahme: `/health`, `/openapi.json`, `/docs`).
 
@@ -197,7 +197,7 @@ Fehler-Codes: `INVALID_KEY`, `EXPIRED_KEY`, `INSUFFICIENT_SCOPE`, `RATE_LIMITED`
 
 ### Phase 5 — Deployment
 - `deploy/zimaos.env` um ggf. fehlende Envs ergänzen
-- Bei Bedarf: Pangolin-Konfiguration für Subdomain `api.wortheld.guenlab.de`
+- Bei Bedarf: Pangolin-Konfiguration für Subdomain `api.wortwende.guenlab.de`
 - Watchtower deployt automatisch via GitHub Actions
 
 ## 7. Offene Fragen (geklärt)

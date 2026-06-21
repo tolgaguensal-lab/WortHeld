@@ -90,7 +90,7 @@ export default function VocabularyPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
           { label: "Gesamt", value: vocabulary.length, icon: "📚", color: "from-blue-500 to-indigo-600" },
-          { label: "A1-A2", value: (levelCounts.A1 || 0) + (levelCounts.A2 || 0), icon: "🌱", color: "from-green-500 to-emerald-600" },
+          { label: "A1-A2", value: (levelCounts.A1 || 0) + (levelCounts.A2 || 0), icon: "🌱", color: "from-primary to-primary-hover" },
           { label: "B1-C1", value: (levelCounts.B1 || 0) + (levelCounts.B2 || 0) + (levelCounts.C1 || 0), icon: "🎓", color: "from-primary to-primary/80" },
         ].map((s, i) => (
           <div key={i} className="relative overflow-hidden rounded-2xl shadow-xl">

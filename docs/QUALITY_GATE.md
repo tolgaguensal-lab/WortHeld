@@ -1,6 +1,6 @@
-# Quality Gate Prozess - WortHeld
+# Quality Gate Prozess - Wortwende
 
-Dieses Dokument beschreibt das Quality Gate Framework für WortHeld. Jede Funktion muss diese Kriterien erfüllen, bevor sie als "Done" markiert und in die Produktion überführt werden kann.
+Dieses Dokument beschreibt das Quality Gate Framework für Wortwende. Jede Funktion muss diese Kriterien erfüllen, bevor sie als "Done" markiert und in die Produktion überführt werden kann.
 
 ## 🚀 Überblick
 Das Quality Gate stellt sicher, dass jede Änderung höchsten Qualitätsstandards in Bezug auf Stabilität, Barrierefreiheit und Benutzererfahrung entspricht.

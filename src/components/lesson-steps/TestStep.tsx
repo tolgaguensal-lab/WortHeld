@@ -83,7 +83,7 @@ export function TestStep({ content, onComplete }: Props) {
             className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
               checked
                 ? idx === q.correct
-                  ? "border-green-500 bg-green-50 dark:bg-green-900/20"
+                  ? "border-success bg-success-muted dark:bg-success/10"
                   : idx === selected
                   ? "border-red-500 bg-red-50 dark:bg-red-900/20"
                   : "border-border opacity-50"

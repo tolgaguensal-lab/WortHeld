@@ -67,7 +67,7 @@ export function GrammarDuel({ question, sentences, onAnswer }: Props) {
             disabled={!!selected}
             className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
               feedback && sentence === current.correct
-                ? "border-green-500 bg-green-50"
+                ? "border-success bg-success-muted"
                 : feedback === "wrong" && sentence === selected
                 ? "border-red-500 bg-red-50"
                 : "border-border hover:border-primary/50"

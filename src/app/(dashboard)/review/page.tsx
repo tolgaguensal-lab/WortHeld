@@ -31,7 +31,7 @@ interface ReviewItem {
 type Quality = "perfect" | "good" | "hard" | "blackout";
 
 const qualityLabels: Record<Quality, { label: string; shortcut: string; color: string }> = {
-  perfect: { label: "Perfekt", shortcut: "1", color: "bg-emerald-500 hover:bg-emerald-600 text-white" },
+  perfect: { label: "Perfekt", shortcut: "1", color: "bg-accent hover:bg-accent-hover text-white" },
   good: { label: "Gut", shortcut: "2", color: "bg-sky-500 hover:bg-sky-600 text-white" },
   hard: { label: "Schwer", shortcut: "3", color: "bg-amber-500 hover:bg-amber-600 text-white" },
   blackout: { label: "Vergessen", shortcut: "4", color: "bg-rose-500 hover:bg-rose-600 text-white" },
@@ -130,8 +130,8 @@ export default function ReviewPage() {
     return (
       <div className="p-5 md:p-8 max-w-2xl mx-auto">
         <Card className="card-premium p-8 md:p-12 text-center">
-          <div className="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 flex items-center justify-center mx-auto mb-5">
-            <CheckCircle2 size={32} className="text-emerald-500" />
+          <div className="w-16 h-16 rounded-2xl bg-success-muted flex items-center justify-center mx-auto mb-5">
+            <CheckCircle2 size={32} className="text-success" />
           </div>
           <h1 className="text-2xl font-display font-bold text-foreground mb-2">Alles geschafft!</h1>
           <p className="text-muted-foreground mb-6 max-w-sm mx-auto">
@@ -192,7 +192,7 @@ export default function ReviewPage() {
           </p>
         </div>
         <div className="flex items-center gap-3 text-sm">
-          <span className="flex items-center gap-1 text-muted-foreground"><CheckCircle2 size={14} className="text-emerald-500" /> {sessionStats.reviewed}</span>
+          <span className="flex items-center gap-1 text-muted-foreground"><CheckCircle2 size={14} className="text-success" /> {sessionStats.reviewed}</span>
           <span className="flex items-center gap-1 text-muted-foreground"><Zap size={14} className="text-amber-500" /> +{sessionStats.xpEarned}</span>
         </div>
       </div>

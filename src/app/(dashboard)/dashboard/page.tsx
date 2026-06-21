@@ -25,7 +25,7 @@ export default function DashboardPage() {
       {/* Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: "Level", value: "A1", icon: Target, color: "from-emerald-500 to-emerald-600", bg: "bg-emerald-50 text-emerald-600", darkBg: "dark:bg-emerald-950/30" },
+          { label: "Level", value: "A1", icon: Target, color: "from-primary to-primary-hover", bg: "bg-primary-muted text-primary", darkBg: "dark:bg-primary/20" },
           { label: "XP heute", value: "0", icon: Zap, color: "from-amber-500 to-orange-600", bg: "bg-amber-50 text-amber-600", darkBg: "dark:bg-amber-950/30" },
           { label: "Serie", value: "0", icon: Flame, color: "from-orange-500 to-red-600", bg: "bg-orange-50 text-orange-600", darkBg: "dark:bg-orange-950/30" },
           { label: "Herzen", value: "5", icon: Heart, color: "from-rose-500 to-pink-600", bg: "bg-rose-50 text-rose-600", darkBg: "dark:bg-rose-950/30" },
@@ -108,7 +108,7 @@ export default function DashboardPage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="p-4 rounded-xl bg-gradient-to-r from-emerald-50/80 to-emerald-50/40 border border-emerald-200/50 dark:from-emerald-950/20 dark:border-emerald-800/30">
+            <div className="p-4 rounded-xl bg-gradient-to-r from-primary-muted/80 to-primary-muted/40 border border-primary/20 dark:from-primary/10 dark:border-primary/20">
               <p className="font-semibold text-foreground">Keine Wiederholungen fällig</p>
               <p className="text-sm text-muted-foreground mt-0.5">Du bist auf dem neuesten Stand!</p>
             </div>

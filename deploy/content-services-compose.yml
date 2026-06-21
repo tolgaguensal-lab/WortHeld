@@ -1,0 +1,77 @@
+version: "3.8"
+
+# ──────────────────────────────────────────────
+# Content Services: LanguageTool + Piper TTS
+# Open Source, kein API-Key nötig, 100% lokal
+# ──────────────────────────────────────────────
+
+services:
+  # ── Grammatik-Prüfung ──────────────────────
+  languagetool:
+    image: erikvl87/languagetool:latest
+    container_name: wortwende-languagetool
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    ports:
+      - "8010:8010"
+    networks:
+      - wortwende-internal
+    environment:
+      - langtool_languageModel=/ngrams
+      - Java_Xms=256m
+      - Java_Xmx=1g
+    volumes:
+      - languagetool-ngrams:/ngrams
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8010/v2/languages || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 90s
+
+  # ── Deutsche Sprachsynthese (TTS) ──────────
+  piper-tts:
+    image: ghcr.io/rhasspy/wyoming-piper:latest
+    container_name: wortwende-piper-tts
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    ports:
+      - "5002:10200"
+    networks:
+      - wortwende-internal
+    environment:
+      - PIPER_VOICE=de_DE-thorsten-medium
+      - PIPER_LENGTH_SCALE=1.0
+      - PIPER_NOISE_SCALE=0.667
+      - PIPER_NOISE_W=0.8
+    volumes:
+      - piper-voices:/share/piper
+    # Lade deutsche Stimme beim Start
+    entrypoint: >
+      sh -c "
+        if [ ! -f /share/piper/de_DE-thorsten-medium.onnx ]; then
+          echo 'Downloading German voice...' &&
+          wget -q -O /share/piper/voice.json https://huggingface.co/rhasspy/piper-voices/resolve/main/de/thorsten/medium/de_DE-thorsten-medium.onnx.json &&
+          wget -q -O /share/piper/de_DE-thorsten-medium.onnx https://huggingface.co/rhasspy/piper-voices/resolve/main/de/thorsten/medium/de_DE-thorsten-medium.onnx;
+        fi &&
+        exec wyoming-piper --piper-voice de_DE-thorsten-medium
+      "
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'test' | nc -w1 localhost 10200 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 120s
+
+volumes:
+  languagetool-ngrams:
+    name: languagetool-ngrams
+  piper-voices:
+    name: piper-voices
+
+networks:
+  wortwende-internal:
+    external: true
+    name: wortwende_wortwende-internal

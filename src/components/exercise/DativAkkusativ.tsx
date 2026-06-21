@@ -43,7 +43,7 @@ export function DativAkkusativ({ question, sentence, correctAnswer, onAnswer, di
             className={`p-6 rounded-xl border-2 text-center transition-all ${
               answered
                 ? c.value === correctAnswer
-                  ? "border-green-500 bg-green-50"
+                  ? "border-success bg-success-muted"
                   : c.value === selected
                   ? "border-red-500 bg-red-50"
                   : "border-border opacity-50"

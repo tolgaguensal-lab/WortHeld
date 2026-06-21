@@ -1,6 +1,6 @@
-# Barrierefreiheits-Checkliste (Accessibility) - WortHeld
+# Barrierefreiheits-Checkliste (Accessibility) - Wortwende
 
-Diese Checkliste basiert auf den **WCAG 2.2 Level AA** Richtlinien und stellt sicher, dass WortHeld für alle Menschen zugänglich ist.
+Diese Checkliste basiert auf den **WCAG 2.2 Level AA** Richtlinien und stellt sicher, dass Wortwende für alle Menschen zugänglich ist.
 
 ## 🎨 Visuelle Gestaltung
 - [ ] **Farbkontrast (Text):** Alle Texte haben ein Kontrastverhältnis von mindestens 4.5:1 zum Hintergrund (3:1 für großen Text).

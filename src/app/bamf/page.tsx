@@ -5,7 +5,7 @@ import { BookOpen, Headphones, MessageSquare, PenLine, Sigma, Building2, Heart, 
 const bamfModules = [
   {
     level: "A1",
-    color: "text-emerald-600 border-emerald-500/30 bg-emerald-500/5",
+    color: "text-primary border-primary/30 bg-primary/5",
     modules: [
       { name: "Ich und die anderen", topics: ["Begrüßung", "Familie", "Freunde", "Hobbys"], lessons: 12, hours: 50 },
       { name: "Einkaufen & Alltag", topics: ["Supermarkt", "Preise", "Öffnungszeiten", "Kleidung"], lessons: 10, hours: 45 },
@@ -46,7 +46,7 @@ const lifeSituationMap = [
   { icon: GraduationCap, label: "Schule & Bildung", lessons: 12, color: "text-purple-600 bg-purple-50" },
   { icon: Baby, label: "Kita & Familie", lessons: 8, color: "text-pink-600 bg-pink-50" },
   { icon: Home, label: "Wohnen & Umzug", lessons: 14, color: "text-amber-600 bg-amber-50" },
-  { icon: ShoppingCart, label: "Einkaufen", lessons: 10, color: "text-green-600 bg-green-50" },
+  { icon: ShoppingCart, label: "Einkaufen", lessons: 10, color: "text-success bg-success-muted" },
   { icon: Bus, label: "Verkehr & Mobilität", lessons: 10, color: "text-cyan-600 bg-cyan-50" },
   { icon: Landmark, label: "Bank & Finanzen", lessons: 8, color: "text-slate-600 bg-slate-50" },
   { icon: Shield, label: "Versicherung", lessons: 6, color: "text-orange-600 bg-orange-50" },

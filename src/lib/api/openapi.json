@@ -1,12 +1,12 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Echo API",
-    "description": "Öffentliche API für die Echo-Deutschlernplattform. Bietet Zugriff auf Vokabeln, Grammatik, Sätze, Übungen, Lektionen, Kurse und mehr.\n\nAuthentifizierung: API-Key via `X-API-Key` Header.\n\nScopes:\n- `read:vocabulary` - Vokabeln lesen\n- `read:grammar` - Grammatik lesen\n- `read:sentences` - Beispielsätze lesen\n- `read:exercises` - Übungen generieren\n- `read:lessons` - Lektionen lesen\n- `read:courses` - Kurse lesen\n- `read:life-situations` - Lebenssituationen lesen\n- `read:placement` - Einstufungstests lesen\n- `read:translate` - Übersetzungen\n- `write:progress` - Lernfortschritt schreiben\n- `write:user` - Benutzerdaten schreiben\n- `admin` - Voller Admin-Zugriff",
+    "title": "Wortwende API",
+    "description": "Öffentliche API für die Wortwende-Deutschlernplattform. Bietet Zugriff auf Vokabeln, Grammatik, Sätze, Übungen, Lektionen, Kurse und mehr.\n\nAuthentifizierung: API-Key via `X-API-Key` Header.\n\nScopes:\n- `read:vocabulary` - Vokabeln lesen\n- `read:grammar` - Grammatik lesen\n- `read:sentences` - Beispielsätze lesen\n- `read:exercises` - Übungen generieren\n- `read:lessons` - Lektionen lesen\n- `read:courses` - Kurse lesen\n- `read:life-situations` - Lebenssituationen lesen\n- `read:placement` - Einstufungstests lesen\n- `read:translate` - Übersetzungen\n- `write:progress` - Lernfortschritt schreiben\n- `write:user` - Benutzerdaten schreiben\n- `admin` - Voller Admin-Zugriff",
     "version": "0.1.0"
   },
   "servers": [
-    { "url": "https://api.wortheld.guenlab.de/api/v1", "description": "Production" },
+    { "url": "https://api.wortwende.guenlab.de/api/v1", "description": "Production" },
     { "url": "http://localhost:3035/api/v1", "description": "Local Development" }
   ],
   "paths": {

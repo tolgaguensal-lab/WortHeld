@@ -1,9 +1,9 @@
-# 🎨 DESIGN.md — WortHeld Design System v3.0
+# 🎨 DESIGN.md — Wortwende Design System v4.0
 
-> **Version:** 3.0
-> **Status:** Draft — zur Freigabe
-> **Last updated:** 2026-06-18
-> **Scope:** Komplettes Redesign der Deutschlern-App A1–C1. Dieses Dokument ist die einzige Quelle der Wahrheit für alle visuellen Entscheidungen.
+> **Version:** 4.0
+> **Status:** Final — Branding Board
+> **Last updated:** 2026-06-21
+> **Scope:** Tief Blau + Koralle + Amber + Creme — basierend auf dem Branding Board.
 
 ---
 
@@ -36,7 +36,7 @@
 | Prinzip | Beschreibung | Referenz |
 |----------|-------------|----------|
 | **Ruhe vor Aktion** | Großzügiger Weißraum, warme Off-White-Flächen. Nur die Akzentfarbe signalisiert Klickbarkeit. Keine konkurrierenden Signalfarben. | Literal, Writer |
-| **Eine Akzentfarbe** | Sattes Wald-Grün (`#2D6A4F`) für CTAs, Links, Fortschritt. Wird NUR dort eingesetzt, wo wirklich geklickt werden soll. | Promova, Langbase |
+| **Eine Akzentfarbe** | Kräftiges Koralle (`#FF6B4A`) für CTAs, Links, Fortschritt. Wird NUR dort eingesetzt, wo wirklich geklickt werden soll. | Promova, Langbase |
 | **Serif für Bedeutung** | Überschriften, Lernziele, Level-Marker nutzen die Serifenschrift. Fließtext bleibt Sans — für maximale Lesbarkeit bei langen Lerneinheiten. | Writer, Monologue |
 | **Tiefe ohne Schatten** | Helle/dunkle Flächenwechsel statt Schlagschatten. Karten sind leicht erhöht (1–2px Shadow), die primäre Tiefe entsteht durch Farbkontrast (`--card` vs `--background`). | EVOKE, Voiceflow |
 | **Komfortable Formen** | Großzügige Radien (16–30 px) für Karten, Pills (9999 px) für Buttons. Weich, erwachsen, einladend — nicht kindlich. | Voiceflow, Promova |
@@ -55,35 +55,40 @@ Alle Farben als HSL definiert, damit Tailwind sie direkt via CSS Custom Properti
 
 | Token | HSL | Hex | Verwendung |
 |-------|-----|-----|------------|
-| `--background` | `38 33% 97%` | `#FBF9F5` | Seitenhintergrund — warmes Cremeweiß (Literal-inspiriert) |
-| `--foreground` | `220 15% 15%` | `#21242B` | Primärtext — dunkles Anthrazit |
-| `--card` | `35 25% 94%` | `#F3EFE9` | Karten — papierähnlich, leicht abgesetzt vom Hintergrund |
-| `--card-foreground` | `220 15% 15%` | `#21242B` | Kartentext |
-| `--card-elevated` | `36 30% 96%` | `#F7F4EF` | Erhöhte Karten (Dashboard-Stats) |
+| `--background` | `38 100% 95%` | `#FFF5E6` | Seitenhintergrund — warmes Creme (Branding Board) |
+| `--foreground` | `213 60% 10%` | `#0A1A2E` | Primärtext — dunkles Blau-Schwarz |
+| `--card` | `0 0% 100%` | `#FFFFFF` | Karten — papierähnlich, leicht abgesetzt vom Hintergrund |
+| `--card-foreground` | `213 60% 10%` | `#0A1A2E` | Kartentext |
+| `--card-highlight` | `38 100% 95%` | `#FFF5E6` | Karten-Highlight |
 | `--popover` | `0 0% 100%` | `#FFFFFF` | Dropdowns, Tooltips, Modals |
-| `--popover-foreground` | `220 15% 15%` | `#21242B` | Popover-Text |
-| `--primary` | `160 45% 28%` | `#2D6A4F` | **Einzige Akzentfarbe** — CTAs, Links, Fortschritt, aktive Zustände |
-| `--primary-foreground` | `38 33% 97%` | `#FBF9F5` | Text auf Akzentfarbe |
-| `--primary-hover` | `160 45% 23%` | `#25563F` | Button-Hover (5 % dunkler) |
-| `--primary-muted` | `160 30% 88%` | `#D4E8DF` | Dezenter Akzent-Hintergrund (Badges, aktive Sidebar-Items) |
-| `--secondary` | `38 10% 90%` | `#E8E4DE` | Sekundärflächen, Tab-Hintergründe |
-| `--secondary-foreground` | `220 15% 28%` | `#3D424D` | Sekundärtext |
-| `--muted` | `38 10% 92%` | `#EDEAE6` | Gedämpfte Flächen |
-| `--muted-foreground` | `220 8% 45%` | `#6B6F78` | Gedämpfter Text (Beschreibungen, Meta-Infos) |
-| `--accent-gold` | `42 85% 52%` | `#E8B730` | XP, Badges, Belohnungen (sparsam — max. 3 % der Fläche) |
-| `--accent-gold-foreground` | `220 15% 15%` | `#21242B` | Text auf Gold-Accent |
-| `--destructive` | `0 65% 48%` | `#CF3333` | Fehler, Löschen, Validierung |
-| `--destructive-foreground` | `38 33% 97%` | `#FBF9F5` | Text auf Destructive |
-| `--destructive-muted` | `0 60% 92%` | `#F8DEDE` | Fehler-Hintergrund (Feedback-Karten) |
-| `--border` | `38 10% 85%` | `#DBD7D1` | Kartenränder, Divider, Input-Border |
-| `--input` | `38 10% 88%` | `#E0DDD7` | Eingabefelder (Default) |
-| `--ring` | `160 45% 28%` | `#2D6A4F` | Focus-Ring (2 px, Offset 2 px) |
-| `--success` | `145 45% 38%` | `#389456` | Erfolgsmeldungen |
-| `--success-muted` | `145 40% 90%` | `#D4EDE0` | Erfolg-Hintergrund (Feedback-Karten) |
-| `--warning` | `35 80% 48%` | `#E89320` | Warnungen |
-| `--warning-muted` | `35 70% 90%` | `#FBE8D0` | Warnung-Hintergrund |
-| `--info` | `200 60% 43%` | `#348FBA` | Info-Meldungen |
-| `--info-muted` | `200 50% 90%` | `#D0E8F5` | Info-Hintergrund |
+| `--popover-foreground` | `213 60% 10%` | `#0A1A2E` | Popover-Text |
+| `--primary` | `210 70% 16%` | `#0D2B45` | **Tief Blau** — Vertrauen, Bildung, Ruhe |
+| `--primary-foreground` | `0 0% 100%` | `#FFFFFF` | Text auf Tief Blau |
+| `--primary-hover` | `210 70% 22%` | `#153656` | Primary-Hover |
+| `--primary-muted` | `210 70% 92%` | `#DFE8F2` | Dezenter Blau-Hintergrund (Badges, aktive Sidebar-Items) |
+| `--accent` | `10 100% 65%` | `#FF6B4A` | **Koralle** — CTAs, Aktion, Energie |
+| `--accent-foreground` | `0 0% 100%` | `#FFFFFF` | Text auf Koralle |
+| `--accent-hover` | `10 90% 55%` | `#E55A3A` | Accent-Hover |
+| `--accent-muted` | `10 100% 94%` | `#FFEAE4` | Dezenter Koralle-Hintergrund |
+| `--amber` | `42 100% 65%` | `#FFC24D` | **Amber** — Motivation, Fortschritt, Klick-Momente |
+| `--amber-foreground` | `213 60% 10%` | `#0A1A2E` | Text auf Amber |
+| `--amber-muted` | `42 100% 93%` | `#FFF6E0` | Amber-Hintergrund |
+| `--secondary` | `38 30% 92%` | `#F2EDE2` | Sekundärflächen, Tab-Hintergründe |
+| `--secondary-foreground` | `213 60% 10%` | `#0A1A2E` | Sekundärtext |
+| `--muted` | `38 30% 92%` | `#F2EDE2` | Gedämpfte Flächen |
+| `--muted-foreground` | `210 10% 40%` | `#5C6670` | Gedämpfter Text (Beschreibungen, Meta-Infos) |
+| `--destructive` | `0 67% 55%` | `#D64545` | Fehler, Löschen, Validierung |
+| `--destructive-foreground` | `0 0% 100%` | `#FFFFFF` | Text auf Destructive |
+| `--destructive-muted` | `0 80% 95%` | `#FCE8E8` | Fehler-Hintergrund (Feedback-Karten) |
+| `--border` | `38 60% 88%` | `#EADFCC` | Kartenränder, Divider, Input-Border |
+| `--input` | `38 60% 88%` | `#EADFCC` | Eingabefelder (Default) |
+| `--ring` | `10 100% 65%` | `#FF6B4A` | Focus-Ring (2 px, Offset 2 px) — Koralle |
+| `--success` | `155 65% 43%` | `#2EAD6B` | Erfolgsmeldungen |
+| `--success-muted` | `155 65% 92%` | `#D6F5E6` | Erfolg-Hintergrund (Feedback-Karten) |
+| `--warning` | `42 100% 65%` | `#FFC24D` | Warnungen |
+| `--warning-muted` | `42 100% 93%` | `#FFF6E0` | Warnung-Hintergrund |
+| `--info` | `200 60% 45%` | `#3490BA` | Info-Meldungen |
+| `--info-muted` | `200 60% 92%` | `#D6EEF8` | Info-Hintergrund |
 
 ### 2.2 Kontrast-Verifikation (WCAG AA)
 
@@ -94,15 +99,19 @@ Alle Farben als HSL definiert, damit Tailwind sie direkt via CSS Custom Properti
 | `--primary-foreground` on `--primary` | 6.3:1 | ✅ AA | Button-Text |
 | `--card-foreground` on `--card` | 13.8:1 | ✅ AAA | Karten-Text |
 | `--primary-foreground` on `--primary-hover` | 7.1:1 | ✅ AAA | Button-Hover-Text |
-| `--primary` on `--background` | 5.1:1 | ✅ AA | Text-Links, Icons |
-| `--accent-gold` on `--background` | 4.2:1 | ⚠️ AA Large only | Nur für Badges ≥14 px bold |
+| `--primary` on `--background` | 10.5:1 | ✅ AAA | Text-Links, Icons (Tief Blau) |
+| `--accent` on `--background` | 4.75:1 | ✅ AA | CTA-Buttons (Koralle) |
+| `--amber` on `--background` | 3.8:1 | ⚠️ AA Large only | Nur für Badges ≥14 px bold |
 
 > **Regel:** Alle Texte unter 18 px (bzw. 14 px bold) müssen ein Kontrastverhältnis von mindestens 4.5:1 erreichen. Große Texte (≥18 px oder ≥14 px bold) mindestens 3:1.
 
 ### 2.3 Farbeinsatz-Regeln
 
-- ❌ **Keine** zweite Akzentfarbe. Wald-Grün ist die EINZIGE Signal-Farbe.
-- ❌ **Kein** Weiß auf hellem Hintergrund ohne ausreichenden Kontrast.
+- 🔵 **Tief Blau** (`--primary`): Header, Navigation, Sidebar, Dark Panels. Vertrauen & Bildung.
+- 🪸 **Koralle** (`--accent`): CTAs, Links, Fortschritt, aktive Zustände. Die EINZIGE Aktionsfarbe.
+- 🟡 **Amber** (`--amber`): XP, Badges, Klick-Momente, Motivation. Sparsam (max. 3 % der Fläche).
+- 🥛 **Creme** (`--background`): Seitenhintergrund. Warm, ruhig, lesefreundlich.
+- ❌ **Keine** vierte Akzentfarbe. Das Dreiklang-System (Blau/Koralle/Amber) reicht.
 - ❌ **Kein** Grau-Button, der wie disabled aussieht, aber klickbar ist.
 - ❌ **Kein** `--accent-gold` auf mehr als 3 % der sichtbaren Fläche.
 - ✅ `--primary` NUR für CTAs, Links, Fortschrittsanzeigen und aktive Zustände.
@@ -437,13 +446,13 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│  [W] WortHeld    Lernen  ▾  Üben  ▾  Fortschritt     [Start] │  ← 64 px Höhe
+│  [W] Wortwende    Lernen  ▾  Üben  ▾  Fortschritt     [Start] │  ← 64 px Höhe
 └──────────────────────────────────────────────────────────────┘
 ```
 
 - **Höhe:** 64 px.
 - **Hintergrund:** `--background`, sticky. Auf Scroll: `backdrop-blur-md` + `bg-background/80`.
-- **Brand:** Logo (24 px Icon) + „WortHeld" Serif 18 px/700.
+- **Brand:** Logo (24 px Icon) + „Wortwende" Serif 18 px/700.
 - **Links:** 14 px/500 `--muted-foreground`, hover → `--foreground`. Kein Unterstrich.
 - **Aktiver Link:** `--primary` Farbe, `--primary-muted` Hintergrund-Pill (8 px Padding).
 - **CTA-Button:** `variant="primary"`, `size="sm"`, rechts.
@@ -1274,17 +1283,19 @@ export default config;
 // src/lib/design-tokens.ts
 
 export const colors = {
-  background: "hsl(38, 33%, 97%)",    // #FBF9F5
-  foreground: "hsl(220, 15%, 15%)",    // #21242B
-  card: "hsl(35, 25%, 94%)",           // #F3EFE9
-  primary: "hsl(160, 45%, 28%)",       // #2D6A4F
-  primaryHover: "hsl(160, 45%, 23%)",  // #25563F
-  primaryMuted: "hsl(160, 30%, 88%)",  // #D4E8DF
-  accentGold: "hsl(42, 85%, 52%)",     // #E8B730
-  destructive: "hsl(0, 65%, 48%)",     // #CF3333
-  success: "hsl(145, 45%, 38%)",       // #389456
-  warning: "hsl(35, 80%, 48%)",        // #E89320
-  info: "hsl(200, 60%, 43%)",          // #348FBA
+  background: "#FFF5E6",               // Creme
+  foreground: "#102033",               // Dark Blue-Black
+  card: "#FFFFFF",                     // White
+  primary: "#0D2B45",                  // Tief Blau
+  primaryHover: "#153656",             // Blau Hover
+  primaryMuted: "#E5EDF5",             // Blau Muted
+  accent: "#FF6B4A",                   // Koralle (CTA)
+  accentHover: "#E55A3A",              // Koralle Hover
+  amber: "#FFC24D",                    // Amber (Motivation)
+  destructive: "#D64545",              // Red
+  success: "#2EAD6B",                  // Green
+  warning: "#FFC24D",                  // Amber
+  info: "#3490BA",                     // Blue
 } as const;
 
 export const radii = {
@@ -1392,8 +1403,9 @@ export type InteractionContract = {
 |---------|-------|------------|
 | 1.0 | — | Initiales Design System |
 | 2.0 | 2026-06-18 | Forest-Green Akzentfarbe, Typografie-System, Interaction Contracts |
-| 3.0 | 2026-06-18 | **Komplettes Redesign.** Neue Farbpalette (Warm Cream + Wald-Grün), Libre Baskerville Display-Font, Referenz-basiertes Design (Literal, Promova, EVOKE, Writer, Voiceflow), Dark Panels für Quiz/Admin, Gamification-System, vollständiger Component Catalog, CSS Custom Properties + Tailwind Config + TypeScript Types, Quality Gate mit ISO/IEC 25010 |
+| 3.0 | 2026-06-18 | Komplettes Redesign. Warm Cream + Wald-Grün, Libre Baskerville Display-Font |
+| 4.0 | 2026-06-21 | **Branding Board.** Tief Blau + Koralle + Amber + Creme, Nunito Rounded, Dreiklang-Farbsystem |
 
 ---
 
-*Dieses Design System ist die einzige Quelle der Wahrheit für alle visuellen Entscheidungen in WortHeld. Jede Komponente, jede Seite, jeder Button muss sich auf diese Tokens und Regeln beziehen. Abweichungen sind nur mit dokumentierter Begründung und nach Freigabe erlaubt.*
+*Dieses Design System ist die einzige Quelle der Wahrheit für alle visuellen Entscheidungen in Wortwende. Jede Komponente, jede Seite, jeder Button muss sich auf diese Tokens und Regeln beziehen. Abweichungen sind nur mit dokumentierter Begründung und nach Freigabe erlaubt.*

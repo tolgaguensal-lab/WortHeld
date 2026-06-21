@@ -28,7 +28,7 @@ export function FeedbackOverlay({ correct, correctAnswer, xpEarned, onDismiss }:
       }`}
       onClick={() => { setVisible(false); onDismiss(); }}
     >
-      <div className={`absolute inset-0 ${correct ? "bg-green-500/90" : "bg-red-500/90"}`} />
+      <div className={`absolute inset-0 ${correct ? "bg-success/90" : "bg-destructive/90"}`} />
       <div className="relative text-center text-primary-foreground z-10">
         {correct ? (
           <>

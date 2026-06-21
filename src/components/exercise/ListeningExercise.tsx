@@ -62,7 +62,7 @@ export function ListeningExercise({ question, word, options, onAnswer, disabled 
             className={`p-4 rounded-xl border-2 text-left font-medium transition-all ${
               answered
                 ? opt.isCorrect
-                  ? "border-green-500 bg-green-50 text-green-800"
+                  ? "border-success bg-success-muted text-success"
                   : i === selected
                   ? "border-red-500 bg-red-50 text-red-800"
                   : "border-border opacity-50"

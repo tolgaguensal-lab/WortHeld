@@ -9,7 +9,7 @@ import Link from "next/link";
 import { BookOpen, GraduationCap, Clock, ChevronRight, Sparkles, Target, Library, ArrowRight, Lock, ShoppingCart } from "lucide-react";
 
 const levelMeta: Record<string, { label: string; accent: string; border: string; text: string }> = {
-  A1: { label: "Anfanger", accent: "from-emerald-500 to-emerald-600", border: "border-emerald-500/20", text: "text-emerald-600 dark:text-emerald-400" },
+  A1: { label: "Anfanger", accent: "from-primary to-primary-hover", border: "border-primary/20", text: "text-primary dark:text-primary-foreground/80" },
   A2: { label: "Grundlagen", accent: "from-sky-500 to-sky-600", border: "border-sky-500/20", text: "text-sky-600 dark:text-sky-400" },
   B1: { label: "Fortgeschritten", accent: "from-amber-500 to-amber-600", border: "border-amber-500/20", text: "text-amber-600 dark:text-amber-400" },
   B2: { label: "Selbstandig", accent: "from-primary to-primary/80", border: "border-purple-500/20", text: "text-purple-600 dark:text-purple-400" },

@@ -155,7 +155,7 @@ export default function LessonPage({ params }: { params: { lessonId: string } })
                       className={`p-4 rounded-xl border-2 text-left transition-all font-medium ${
                         checked
                           ? opt.isCorrect
-                            ? "border-green-500 bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-300"
+                            ? "border-success bg-success-muted text-success dark:bg-success/10 dark:text-success"
                             : i === selected
                             ? "border-red-500 bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-300"
                             : "border-border opacity-50"
@@ -183,7 +183,7 @@ export default function LessonPage({ params }: { params: { lessonId: string } })
 
               {checked && (
                 <div className="mt-4 space-y-2">
-                  <div className={`p-4 rounded-xl text-center ${correct ? "bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-300" : "bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-300"}`}>
+                  <div className={`p-4 rounded-xl text-center ${correct ? "bg-success-muted text-success dark:bg-success/10 dark:text-success" : "bg-destructive-muted text-destructive dark:bg-destructive/10 dark:text-destructive"}`}>
                     {correct ? "Richtig! 🎉" : "Leider falsch!"}
                   </div>
                   {exercise.explanation && (

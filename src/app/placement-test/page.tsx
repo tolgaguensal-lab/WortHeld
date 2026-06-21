@@ -21,7 +21,7 @@ const PLACEMENT_QUESTIONS = [
 ];
 
 const levelColors: Record<string, string> = {
-  A1: "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/30 dark:text-emerald-400 dark:border-emerald-800",
+  A1: "bg-primary-muted text-primary border-primary/30 dark:bg-primary/20 dark:text-primary-foreground/80 dark:border-primary/40",
   A2: "bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/30 dark:text-sky-400 dark:border-sky-800",
   B1: "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/30 dark:text-amber-400 dark:border-amber-800",
   B2: "bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/30 dark:text-orange-400 dark:border-orange-800",
@@ -71,15 +71,15 @@ export default function PlacementTestPage() {
             <CardContent className="text-center py-6 px-8">
               <ul className="text-left max-w-xs mx-auto space-y-3 text-sm">
                 <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
+                  <CheckCircle2 size={16} className="text-success shrink-0" />
                   <span>10 gezielte Fragen</span>
                 </li>
                 <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
+                  <CheckCircle2 size={16} className="text-success shrink-0" />
                   <span>Grammatik &amp; Wortschatz</span>
                 </li>
                 <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
+                  <CheckCircle2 size={16} className="text-success shrink-0" />
                   <span>Sofortige Niveaustufung (GER/CEFR)</span>
                 </li>
               </ul>
@@ -140,8 +140,8 @@ export default function PlacementTestPage() {
         {step > PLACEMENT_QUESTIONS.length && (
           <Card className="card-premium text-center">
             <CardHeader className="pt-8">
-              <div className="mx-auto w-20 h-20 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 flex items-center justify-center mb-4">
-                <CheckCircle2 size={40} className="text-emerald-500" />
+              <div className="mx-auto w-20 h-20 rounded-2xl bg-success-muted flex items-center justify-center mb-4">
+                <CheckCircle2 size={40} className="text-success" />
               </div>
               <CardTitle className="text-2xl font-display font-bold">Test abgeschlossen!</CardTitle>
               <CardDescription className="text-sm mt-1">

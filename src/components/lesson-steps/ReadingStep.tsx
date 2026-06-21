@@ -86,7 +86,7 @@ export function ReadingStep({ content, onComplete }: Props) {
                     className="w-full p-3 rounded-lg border border-border/60 bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                   {submitted && (
-                    <div className={`mt-3 flex items-start gap-2 text-sm ${isCorrect ? "text-emerald-600" : "text-rose-600"}`}>
+                    <div className={`mt-3 flex items-start gap-2 text-sm ${isCorrect ? "text-success" : "text-rose-600"}`}>
                       {isCorrect ? <CheckCircle2 size={14} className="shrink-0 mt-0.5" /> : <XCircle size={14} className="shrink-0 mt-0.5" />}
                       <span>Richtige Antwort: <span className="font-medium">{q.a}</span></span>
                     </div>

@@ -1,6 +1,6 @@
-# Testplan - WortHeld (ISO 29119 konform)
+# Testplan - Wortwende (ISO 29119 konform)
 
-Dieses Dokument beschreibt die Teststrategie und den Testplan für die Qualitätssicherung der WortHeld Applikation.
+Dieses Dokument beschreibt die Teststrategie und den Testplan für die Qualitätssicherung der Wortwende Applikation.
 
 ## 1. Testumfang (Scope)
 ### 1.1 Testobjekte

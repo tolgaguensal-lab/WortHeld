@@ -1,4 +1,4 @@
-# Interaktionsverträge (Interaction Contracts) - WortHeld
+# Interaktionsverträge (Interaction Contracts) - Wortwende
 
 Dieses Dokument definiert die exakten Systemantworten auf Benutzerinteraktionen, um Konsistenz zwischen Design, Entwicklung und QA zu gewährleisten.
 

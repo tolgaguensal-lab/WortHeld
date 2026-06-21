@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
 const levelColors: Record<string, string> = {
-  A1: "from-green-400 to-green-600",
+  A1: "from-primary to-primary-hover",
   A2: "from-blue-400 to-blue-600",
   B1: "from-orange-400 to-orange-600",
   B2: "from-primary to-primary/80",
@@ -181,11 +181,11 @@ export default function CoursePage({
                       </div>
                     ) : lesson.progress?.completed ? (
                       <div className="relative z-10 flex flex-col items-center gap-2">
-                        <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center text-3xl shadow-lg transform hover:scale-105 transition-transform">
+                        <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary to-primary-hover flex items-center justify-center text-3xl shadow-lg transform hover:scale-105 transition-transform">
                           ✅
                         </div>
                         <div className="text-center">
-                          <p className="text-xs font-bold text-green-600 dark:text-green-400 w-20">
+                          <p className="text-xs font-bold text-success w-20">
                             {lesson.progress.score}%
                           </p>
                           <p className="text-[10px] text-gray-500 dark:text-gray-400 w-20 truncate mt-0.5">

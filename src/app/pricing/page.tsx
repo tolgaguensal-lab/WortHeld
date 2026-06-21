@@ -129,7 +129,7 @@ export default function PricingPage() {
               <ul className="space-y-2 mb-5 flex-1">
                 {tier.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
-                    <CheckCircle2 size={12} className="text-emerald-500 shrink-0 mt-0.5" />
+                    <CheckCircle2 size={12} className="text-success shrink-0 mt-0.5" />
                     {f}
                   </li>
                 ))}

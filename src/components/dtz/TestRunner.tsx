@@ -138,7 +138,7 @@ export function TestRunner({ testId, test, onComplete }: TestRunnerProps) {
               <Button
                 onClick={handleSubmit}
                 disabled={answers.some((a) => a === undefined)}
-                className="bg-gradient-to-r from-success to-emerald-600 hover:from-success/90 hover:to-emerald-700"
+                className="bg-gradient-to-r from-success to-success/80 hover:from-success/90 hover:to-success/70"
               >
                 Test beenden →
               </Button>

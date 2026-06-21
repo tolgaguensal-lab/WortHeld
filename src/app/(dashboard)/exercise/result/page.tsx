@@ -24,7 +24,7 @@ function ResultContent() {
         <CardContent className="p-8 space-y-6">
           <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto">
             {percentage >= 80 ? <Trophy size={40} className="text-amber-500" /> :
-             percentage >= 50 ? <CheckCircle2 size={40} className="text-emerald-500" /> :
+             percentage >= 50 ? <CheckCircle2 size={40} className="text-success" /> :
              <AlertCircle size={40} className="text-primary" />}
           </div>
           
@@ -42,7 +42,7 @@ function ResultContent() {
               <p className="text-[10px] text-muted-foreground uppercase tracking-wider">XP</p>
             </div>
             <div className="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-800/30">
-              <CheckCircle2 size={16} className="text-emerald-500 mx-auto mb-1" />
+              <CheckCircle2 size={16} className="text-success mx-auto mb-1" />
               <p className="text-lg font-bold text-foreground">{score}</p>
               <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Richtig</p>
             </div>

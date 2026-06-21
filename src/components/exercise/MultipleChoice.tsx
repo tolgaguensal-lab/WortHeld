@@ -38,7 +38,7 @@ export function MultipleChoice({ question, options, onAnswer, disabled }: Props)
             className={`p-4 rounded-xl border-2 text-left transition-all font-medium min-h-[60px] ${
               answered
                 ? opt.isCorrect
-                  ? "border-green-500 bg-green-50 text-green-800"
+                  ? "border-success bg-success-muted text-success"
                   : i === selected
                   ? "border-red-500 bg-red-50 text-red-800"
                   : "border-border opacity-50"

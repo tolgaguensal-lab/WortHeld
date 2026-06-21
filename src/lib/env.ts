@@ -14,6 +14,7 @@ const OPTIONAL_VARS = [
   "LIBRETRANSLATE_URL",
   "TRANSLATION_PROVIDER",
   "NEXT_PUBLIC_APP_VERSION",
+  "DEEPSEEK_API_KEY",
 ] as const;
 
 export function validateEnv() {

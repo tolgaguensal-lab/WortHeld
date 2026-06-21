@@ -3,14 +3,14 @@ version: "3.8"
 services:
   libretranslate:
     image: libretranslate/libretranslate:v1.9.6
-    container_name: echo-libretranslate
+    container_name: wortwende-libretranslate
     restart: unless-stopped
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
     ports:
       - "5001:5000"
     networks:
-      - echo-internal
+      - wortwende-internal
     env_file:
       - ./libretranslate.env
     volumes:
@@ -30,6 +30,6 @@ volumes:
     name: libretranslate-api-keys
 
 networks:
-  echo-internal:
+  wortwende-internal:
     external: true
-    name: echo_echo-internal
+    name: wortwende_wortwende-internal

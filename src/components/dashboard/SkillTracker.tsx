@@ -23,7 +23,7 @@ export function SkillTracker() {
       icon: BookOpen,
       canDo: 16,
       canDoTotal: 24,
-      color: "text-emerald-500 stroke-emerald-500",
+      color: "text-primary stroke-primary",
     },
     {
       name: "Hörverstehen",

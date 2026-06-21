@@ -1,6 +1,6 @@
-# DeutschQuest
+# Wortwende
 
-Deutsch lernen von A1 bis C1 - spielerisch, effektiv und spaßig.
+Deutsch lernen von A1 bis C1 – spielerisch, effektiv und spaßig.
 
 ## Stack
 

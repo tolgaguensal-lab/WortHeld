@@ -1,9 +1,9 @@
 # =============================================================================
-# WortHeld (DeutschQuest) — Multi-Stage Docker Build
+# Wortwende — Multi-Stage Docker Build
 # =============================================================================
 # Build:
 #   docker build --build-arg APP_VERSION=1.0.0 \
-#     -t ghcr.io/tolgaguensal-lab/orthheld:latest .
+#     -t ghcr.io/tolgaguensal-lab/wortwende:latest .
 #
 # Run with docker-compose (empfohlen):
 #   docker compose -f deploy/zimaos-compose.yml up -d
@@ -64,7 +64,7 @@ RUN { \
       echo 'set -e'; \
       echo ''; \
       echo 'echo "========================================="'; \
-      echo "echo \"  WortHeld v${APP_VERSION}\""; \
+      echo "echo \"  Wortwende v${APP_VERSION}\""; \
       echo 'echo "========================================="'; \
       echo 'echo ""'; \
       echo ''; \

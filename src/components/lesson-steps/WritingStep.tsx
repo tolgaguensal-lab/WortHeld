@@ -97,7 +97,7 @@ export function WritingStep({ content, onComplete }: Props) {
         <div className={`p-4 rounded-xl border ${meetsMinWords ? "bg-emerald-50 border-emerald-200 dark:bg-emerald-950/20 dark:border-emerald-800/30" : "bg-amber-50 border-amber-200 dark:bg-amber-950/20 dark:border-amber-800/30"} space-y-2`}>
           <div className="flex items-center gap-2">
             {meetsMinWords ? (
-              <CheckCircle2 size={16} className="text-emerald-600 dark:text-emerald-400" />
+              <CheckCircle2 size={16} className="text-success" />
             ) : (
               <AlertCircle size={16} className="text-amber-600 dark:text-amber-400" />
             )}

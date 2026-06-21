@@ -45,7 +45,7 @@ export function ErrorFinder({ question, sentence, errors, onAnswer, disabled }: 
             className={`px-3 py-2 rounded-lg font-medium transition-all ${
               answered
                 ? errors.some((e) => word.toLowerCase().includes(e.toLowerCase()))
-                  ? "bg-green-100 text-green-800 border border-green-300"
+                  ? "bg-success-muted text-success border border-success/40"
                   : selectedWords.includes(i)
                   ? "bg-red-100 text-red-800 border border-red-300"
                   : "bg-muted"

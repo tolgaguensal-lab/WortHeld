@@ -16,7 +16,7 @@ const features = [
 ];
 
 const levels = [
-  { code: "A1", name: "Grundlagen", desc: "Erste Wörter und einfache Sätze", color: "border-emerald-500/30 bg-emerald-500/5 text-emerald-600" },
+  { code: "A1", name: "Grundlagen", desc: "Erste Wörter und einfache Sätze", color: "border-primary/30 bg-primary/5 text-primary" },
   { code: "A2", name: "Alltag", desc: "Alltag verstehen und reagieren", color: "border-sky-500/30 bg-sky-500/5 text-sky-600" },
   { code: "B1", name: "Sicher sprechen", desc: "Sicher kommunizieren im Alltag", color: "border-amber-500/30 bg-amber-500/5 text-amber-600" },
   { code: "B2", name: "Beruf & Diskussion", desc: "Beruf, Meinung und Diskussion", color: "border-orange-500/30 bg-orange-500/5 text-orange-600" },

@@ -79,7 +79,7 @@ export function WordMemory({ question, words, onAnswer }: Props) {
             disabled={card.matched || gameOver}
             className={`aspect-square rounded-xl text-sm font-medium transition-all ${
               card.matched
-                ? "bg-green-100 text-green-800 border-2 border-green-300"
+                ? "bg-success-muted text-success border-2 border-success/40"
                 : card.flipped
                 ? "bg-primary text-primary-foreground"
                 : "bg-muted hover:bg-muted/80 border-2 border-border"

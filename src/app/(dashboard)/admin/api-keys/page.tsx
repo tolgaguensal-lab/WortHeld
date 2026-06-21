@@ -177,7 +177,7 @@ export default function AdminApiKeysPage() {
       {showKey && (
         <Card className="border-green-200 bg-green-50 dark:bg-green-950/20">
           <CardContent className="p-4 space-y-2">
-            <div className="flex items-center gap-2 text-green-700 dark:text-green-300">
+            <div className="flex items-center gap-2 text-success dark:text-success">
               <CheckCircle2 className="w-5 h-5" />
               <span className="font-semibold">API-Key erstellt!</span>
             </div>

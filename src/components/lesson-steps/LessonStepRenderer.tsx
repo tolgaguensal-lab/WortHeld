@@ -41,7 +41,7 @@ const stepIcons: Record<string, string> = {
 const stepColors: Record<string, string> = {
   WORTSCHATZ: "from-blue-500 to-blue-600",
   GRAMMATIK: "from-primary to-primary/80",
-  HOEREN: "from-green-500 to-green-600",
+  HOEREN: "from-accent to-accent-hover",
   LESEN: "from-orange-500 to-orange-600",
   SCHREIBEN: "from-pink-500 to-pink-600",
   SPRECHEN: "from-teal-500 to-teal-600",
@@ -113,7 +113,7 @@ export function LessonStepRenderer({ steps, onComplete }: Props) {
                 i === currentStep
                   ? "bg-primary text-primary-foreground ring-2 ring-primary ring-offset-2"
                   : completedSteps.has(i)
-                  ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+                  ? "bg-primary-muted text-primary dark:bg-primary/20 dark:text-primary-foreground/80"
                   : i < currentStep
                   ? "bg-muted text-muted-foreground"
                   : "bg-muted/50 text-muted-foreground/50 cursor-not-allowed"

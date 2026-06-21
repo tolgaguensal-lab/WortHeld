@@ -1,6 +1,6 @@
 # Deepwork: DESIGN.md v3.0 Implementation
 
-**Goal:** Migrate entire WortHeld codebase from Dark Indigo design to Warm Cream + Forest Green design system defined in `docs/DESIGN.md` v3.0.
+**Goal:** Migrate entire Wortwende codebase from Dark Indigo design to Tief Blau + Koralle + Amber + Creme design system (Branding Board).
 
 **Status:** Complete ✅ — all phases done, build passing
 
@@ -37,16 +37,17 @@ Agents timeout when a single delegation is too large. The 30-min inactivity wind
 - `bg_ff4be3f6` (ses_12467f220ffeB7lHQpmb5vg46q): 6 new shared components
 - `bg_e10fa001` (ses_12467b3d6ffe8yDDbssRSfMeq8): landing page rewrite
 
-## Key Design Decisions (from DESIGN.md v3.0)
+## Key Design Decisions (Branding Board)
 
-- **Background:** Warm cream `#FBF9F5` (was: dark indigo `hsl(235,45%,8%)`)
-- **Primary accent:** Forest green `#2D6A4F` — single accent, CTAs only (was: white/indigo gradient)
-- **Display font:** Libre Baskerville (was: Source Serif 4)
-- **Body font:** Inter (unchanged)
-- **Mono font:** JetBrains Mono (new)
-- **Buttons:** Pills (9999px radius) (was: rounded-lg)
+- **Background:** Warm cream `#FFF5E6` (Creme)
+- **Primary:** Tief Blau `#0D2B45` — Vertrauen, Bildung, Ruhe
+- **Accent:** Koralle `#FF6B4A` — CTAs, Aktion, Energie
+- **Amber:** `#FFC24D` — Motivation, Fortschritt, Klick-Momente
+- **Display font:** Nunito Rounded (Nunito)
+- **Body font:** Nunito Sans
+- **Buttons:** Pills (9999px radius)
 - **Cards:** Paper-like, 16-30px radii, minimal shadows
-- **Dark mode:** Only for Quiz/Admin panels, via separate token set
+- **Dark mode:** Tief Blau Basis, für Quiz/Admin-Panels
 
 ## Reference Files
 

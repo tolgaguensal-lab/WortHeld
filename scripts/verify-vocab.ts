@@ -103,7 +103,7 @@ async function main() {
   const level = program.args[0].toUpperCase();
   const options = program.opts();
 
-  const filePath = path.join('/home/tolga/Dokumente/Projekte/WortHeld/prisma/seed-data', `vocabulary-${level.toLowerCase()}.ts`);
+  const filePath = path.join('/home/tolga/Dokumente/Projekte/Wortwende/prisma/seed-data', `vocabulary-${level.toLowerCase()}.ts`);
 
   if (!fs.existsSync(filePath)) {
     console.error(`Seed file not found: ${filePath}`);

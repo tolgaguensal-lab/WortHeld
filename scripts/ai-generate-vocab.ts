@@ -99,7 +99,7 @@ Requirements:
       return;
     }
 
-    const filePath = path.join('/home/tolga/Dokumente/Projekte/WortHeld/prisma/seed-data', `vocabulary-${level.toLowerCase()}.ts`);
+    const filePath = path.join('/home/tolga/Dokumente/Projekte/Wortwende/prisma/seed-data', `vocabulary-${level.toLowerCase()}.ts`);
     
     // Ensure directory exists
     const dir = path.dirname(filePath);

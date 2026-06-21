@@ -1,4 +1,4 @@
-# Definition of Done (DoD) - WortHeld
+# Definition of Done (DoD) - Wortwende
 
 Die Definition of Done definiert die Mindestanforderungen, die jedes Ticket oder jede Feature-Entwicklung erfüllen muss, bevor sie als vollständig (Done) betrachtet wird. Ein Ticket gilt erst als abgeschlossen, wenn alle 25 Checkpoints abgehakt sind.
 

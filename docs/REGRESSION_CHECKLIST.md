@@ -1,4 +1,4 @@
-# Regressions-Checkliste (Regression Testing) - WortHeld
+# Regressions-Checkliste (Regression Testing) - Wortwende
 
 Dieses Dokument dient als Leitfaden, um sicherzustellen, dass neue Code-Änderungen keine bestehenden Funktionen beeinträchtigen.
 

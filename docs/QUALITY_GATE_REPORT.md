@@ -1,7 +1,7 @@
-# Quality Gate Report — WortHeld
+# Quality Gate Report — Wortwende
 
 **Datum:** 2026-06-18  
-**Projekt:** WortHeld (Deutschquest) Deutschlern-App A1-C1
+**Projekt:** Wortwende Deutschlern-App A1-C1
 
 ---
 

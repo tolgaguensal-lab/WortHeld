@@ -49,7 +49,7 @@ export function ReviewStep({ content, onComplete }: Props) {
             onClick={() => toggleReveal(idx)}
             className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
               revealed.has(idx)
-                ? "border-green-300 bg-green-50 dark:bg-green-900/20 dark:border-green-700"
+                ? "border-primary-muted bg-primary-muted/50 dark:bg-primary/20 dark:border-primary/40"
                 : "border-border hover:border-primary/50 bg-card"
             }`}
           >

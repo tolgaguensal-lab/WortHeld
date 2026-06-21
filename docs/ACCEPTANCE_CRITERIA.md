@@ -1,10 +1,10 @@
-# Akzeptanzkriterien (Acceptance Criteria) - WortHeld
+# Akzeptanzkriterien (Acceptance Criteria) - Wortwende
 
-Dieses Dokument definiert die funktionalen Anforderungen für die Kernfeatures von WortHeld.
+Dieses Dokument definiert die funktionalen Anforderungen für die Kernfeatures von Wortwende.
 
 ## 1. Landing Page
 **Beschreibung:** Die erste Seite für neue Besucher mit Value Proposition und Call-to-Action.
-**User Goal:** Verstehen, was WortHeld bietet und sich registrieren.
+**User Goal:** Verstehen, was Wortwende bietet und sich registrieren.
 **Business Goal:** Maximierung der Conversion-Rate (Besucher $\to$ Nutzer).
 
 | ID | Akzeptanzkriterium | Erwartetes Ergebnis | Status |

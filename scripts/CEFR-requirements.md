@@ -78,7 +78,7 @@ Based on **Goethe-Institut** official standards:
 
 ## 🎯 Implementation Strategy
 
-For WortHeld app, I'll generate:
+For Wortwende app, I'll generate:
 - **A1**: 250 vocabulary, 15 grammar topics ✅ (done)
 - **A2**: 350 vocabulary, 18 grammar topics
 - **B1**: 450 vocabulary, 22 grammar topics  

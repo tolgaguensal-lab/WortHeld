@@ -1,13 +1,13 @@
 {
-  "name": "Echo — Deutsch lernen",
-  "short_name": "Echo",
+  "name": "Wortwende — Deutsch lernen",
+  "short_name": "Wortwende",
   "description": "Deutsch lernen von A1 bis C1. Integrationskurse, DTZ-Prüfung, Berufssprache.",
   "start_url": "/dashboard",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "theme_color": "#2D6A4F",
-  "background_color": "#FBFAF7",
+  "theme_color": "#0D2B45",
+  "background_color": "#FFF5E6",
   "lang": "de",
   "dir": "ltr",
   "icons": [

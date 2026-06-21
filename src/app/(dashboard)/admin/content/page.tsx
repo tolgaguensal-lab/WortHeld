@@ -65,7 +65,7 @@ export default function AdminContentPage() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { icon: <BookOpen size={20} />, label: "Lektionen", value: contentStats.totalLessons, color: "text-blue-600 bg-blue-100" },
-            { icon: <CheckCircle2 size={20} />, label: "Veröffentlicht", value: contentStats.published, color: "text-green-600 bg-green-100" },
+            { icon: <CheckCircle2 size={20} />, label: "Veröffentlicht", value: contentStats.published, color: "text-success bg-success-muted" },
             { icon: <FileText size={20} />, label: "Entwürfe", value: contentStats.draft, color: "text-amber-600 bg-amber-100" },
             { icon: <BarChart3 size={20} />, label: "Übungen", value: contentStats.totalExercises, color: "text-purple-600 bg-purple-100" },
           ].map((stat, i) => (

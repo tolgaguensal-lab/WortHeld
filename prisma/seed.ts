@@ -199,7 +199,7 @@ function generateExercisesForLesson(lessonName: string, level: CEFRLevel, unitId
 }
 
 async function main() {
-  console.log("=== WortHeld Master Seed ===");
+  console.log("=== Wortwende Master Seed ===");
   console.log("Starte Seed...\n");
 
   // 1. Courses

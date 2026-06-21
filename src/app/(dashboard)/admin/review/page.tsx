@@ -107,7 +107,7 @@ export default function AdminReviewPage() {
                       </p>
                     </div>
                     <div className="flex gap-2">
-                      <Button size="sm" variant="outline" className="text-green-600 border-green-300 hover:bg-green-50"
+                      <Button size="sm" variant="outline" className="text-success border-success/40 hover:bg-success-muted"
                         onClick={() => handleReview(item.id, "approve")}>
                         Freigeben
                       </Button>
@@ -153,12 +153,12 @@ export default function AdminReviewPage() {
                         <td className="py-3 font-medium">{r.lessonName}</td>
                         <td className="py-3"><Badge className="text-xs">{r.level}</Badge></td>
                         <td className="py-3">
-                          <span className={r.stepCount >= 12 ? "text-green-600" : "text-amber-600"}>
+                          <span className={r.stepCount >= 12 ? "text-success" : "text-amber-600"}>
                             {r.stepCount}/12
                           </span>
                         </td>
                         <td className="py-3">
-                          <span className={r.exerciseCount >= 5 ? "text-green-600" : "text-amber-600"}>
+                          <span className={r.exerciseCount >= 5 ? "text-success" : "text-amber-600"}>
                             {r.exerciseCount}
                           </span>
                         </td>
@@ -175,7 +175,7 @@ export default function AdminReviewPage() {
                             <div className="w-20 h-2 rounded-full bg-muted overflow-hidden">
                               <div
                                 className={`h-full rounded-full ${
-                                  r.completeness >= 80 ? "bg-green-500" : r.completeness >= 50 ? "bg-amber-500" : "bg-red-500"
+                                  r.completeness >= 80 ? "bg-success" : r.completeness >= 50 ? "bg-amber-500" : "bg-destructive"
                                 }`}
                                 style={{ width: `${r.completeness}%` }}
                               />
