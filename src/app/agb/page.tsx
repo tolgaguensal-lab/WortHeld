@@ -24,7 +24,7 @@ export default function AGBPage() {
           <p>Sie können Ihr Konto jederzeit über die Einstellungen löschen. Wir behalten uns das Recht vor, Konten bei Verstößen zu sperren.</p>
 
           <h2 className="text-xl font-display font-semibold text-foreground">§ 7 Schlussbestimmungen</h2>
-          <p>Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand ist [Ort].</p>
+          <p>Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand ist der Sitz des Anbieters (siehe Impressum).</p><p>Verbraucher haben die Möglichkeit, Beschwerden bei der EU-Online-Streitbeilegungsplattform einzureichen: <a href="https://ec.europa.eu/consumers/odr/" className="text-primary hover:underline">https://ec.europa.eu/consumers/odr/</a>. Wir sind nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
         </div>
       </div>
     </div>

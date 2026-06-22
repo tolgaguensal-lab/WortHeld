@@ -37,6 +37,22 @@ export default function DatenschutzPage() {
 
           <h2 className="text-xl font-display font-semibold text-foreground">9. Kinder &amp; Jugendschutz</h2>
           <p>Wortwende ist f&uuml;r Lernende jeden Alters geeignet. Wir erf&uuml;llen die Anforderungen der DSGVO f&uuml;r Minderj&auml;hrige.</p>
+
+          <h2 className="text-xl font-display font-semibold text-foreground">10. KI-Tutor (DeepSeek V4 Flash)</h2>
+          <p>Unser KI-Tutor &bdquo;Leo&ldquo; nutzt die DeepSeek V4 Flash API (Anbieter: DeepSeek, Hangzhou, China). Dabei gilt:</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li><strong>Daten&uuml;bermittlung:</strong> Deine Chat-Nachrichten werden an die DeepSeek-API gesendet, um eine KI-Antwort zu generieren. Es werden keine personenbezogenen Daten (Name, E-Mail) mitgesendet – nur der Chat-Verlauf und dein CEFR-Sprachniveau.</li>
+            <li><strong>Kein Training:</strong> DeepSeek speichert oder verwendet die API-Anfragen nicht zum Training ihrer Modelle (Zero Data Retention).</li>
+            <li><strong>Rechtsgrundlage:</strong> Die Verarbeitung erfolgt auf Grundlage deiner Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) und zur Erf&uuml;llung unseres Leistungsvertrags (Art. 6 Abs. 1 lit. b DSGVO). Du kannst den KI-Tutor jederzeit nicht nutzen – alle anderen Funktionen bleiben verf&uuml;gbar.</li>
+            <li><strong>Prompt Caching:</strong> Der System-Prompt (Tutor-Pers&ouml;nlichkeit) wird bei DeepSeek gecached, um Kosten zu sparen. Der Cache enth&auml;lt keine personenbezogenen Daten.</li>
+          </ul>
+
+          <h2 className="text-xl font-display font-semibold text-foreground">11. Deine Rechte im Detail</h2>
+          <ul className="list-disc pl-5 space-y-1">
+            <li><strong>Datenexport (Art. 20 DSGVO):</strong> In den Einstellungen kannst du jederzeit alle deine Daten als JSON-Datei exportieren.</li>
+            <li><strong>L&ouml;schung (Art. 17 DSGVO):</strong> In den Einstellungen kannst du dein Konto und alle deine Daten endg&uuml;ltig l&ouml;schen. Alternativ per E-Mail an hallo@guenlab.de.</li>
+            <li><strong>Widerspruch (Art. 21 DSGVO):</strong> Du kannst der Verarbeitung deiner Daten jederzeit widersprechen.</li>
+          </ul>
         </div>
       </div>
     </div>
