@@ -10,7 +10,7 @@
 # =============================================================================
 
 # ---- Build Stage ----
-FROM node:20-bullseye AS builder
+FROM node:22-bookworm AS builder
 
 ARG APP_VERSION=0.0.0
 ENV NEXT_PUBLIC_APP_VERSION=${APP_VERSION}
@@ -19,7 +19,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci --include=dev
+RUN npm ci
 
 COPY . .
 
@@ -30,7 +30,7 @@ RUN npx prisma generate
 RUN npm run build
 
 # ---- Production Stage ----
-FROM node:20-bullseye AS runner
+FROM node:22-bookworm-slim AS runner
 
 ARG APP_VERSION=0.0.0
 ENV APP_VERSION=${APP_VERSION}

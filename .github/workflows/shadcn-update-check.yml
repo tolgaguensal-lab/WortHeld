@@ -28,7 +28,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
       - name: Install dependencies
@@ -88,7 +88,7 @@ jobs:
                 repo: context.repo.repo,
                 title: "⬆️ shadcn component updates available",
                 labels: ["shadcn-update", "automation"],
-                body: `## 📦 shadcn Component Updates Available\n\nFolgende Komponenten haben Updates (${new Date().toISOString().split('T')[0]}):\n\n\`\`\`\n${diffOutput}\n\`\`\`\n\n### 🔧 Manuelles Update\n\`\`\`bash\n# Preview was sich ändert:\nnpx shadcn@latest add --all --dry-run\n\n# Für eine bestimmte Komponente:\nnpx shadcn@latest add button --diff\n\n# Alle Komponenten updaten:\nnpx shadcn@latest add --all --overwrite\n\`\`\`\n\n### ⚠️ Vor dem Update\n- [ ] \`npm run build\` prüfen\n- [ ] Visuelle Regression testen\n- [ ] Breaking Changes in Komponenten-Diffs reviewen\n- [ ] \`npm run audit\` ausführen`,
+                body: `## 📦 shadcn Component Updates Available\n\nFolgende Komponenten haben Updates (${new Date().toISOString().split('T')[0]}):\n\n\`\`\`\n${diffOutput}\n\`\`\`\n\n### 🔧 Manuelles Update\n\`\`\`bash\n# Preview was sich ändert:\nnpx shadcn@latest add --all --dry-run\n\n# Für eine bestimmte Komponente:\nnpx shadcn@latest add button --diff\n\n# Alle Komponenten updaten:\nnpx shadcn@latest add --all --overwrite\n\`\`\`\n\n### ⚠️ Vor dem Update\n- [ ] \`npm run build\` prüfen\n- [ ] Visuelle Regression testen\n- [ ] Breaking Changes in Komponenten-Diffs reviewen\n- [ ] \`npm run audit\` ausführen\n`,
               });
             }
 
