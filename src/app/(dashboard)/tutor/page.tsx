@@ -1,7 +1,7 @@
 import { AIChat } from "@/components/ai/AIChat";
 
 export const metadata = {
-  title: "KI-Tutor – Wortwende",
+  title: "KI-Tutor – WortHeld",
   description: "Dein persönlicher Deutsch-Tutor – frag, übe, lerne mit KI.",
 };
 

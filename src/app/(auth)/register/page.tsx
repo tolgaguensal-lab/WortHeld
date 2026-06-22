@@ -21,7 +21,7 @@ export default function RegisterPage() {
     setLoading(true);
     setError("");
     if (form.password !== form.confirmPassword) {
-      setError("Passworter stimmen nicht uberein");
+      setError("Passwörter stimmen nicht überein");
       setLoading(false);
       return;
     }

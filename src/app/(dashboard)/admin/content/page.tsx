@@ -169,13 +169,13 @@ export default function AdminContentPage() {
                       </td>
                       <td className="py-4">
                         <div className="flex items-center gap-2">
-                          <button className="p-1.5 rounded-md hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors">
+                          <button className="p-1.5 rounded-md hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors" aria-label="Lektion ansehen">
                             <Eye size={16} />
                           </button>
-                          <button className="p-1.5 rounded-md hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors">
+                          <button className="p-1.5 rounded-md hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors" aria-label="Lektion bearbeiten">
                             <Edit3 size={16} />
                           </button>
-                          <button className="p-1.5 rounded-md hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors">
+                          <button className="p-1.5 rounded-md hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors" aria-label={lesson.status === "published" ? "Lektion sperren" : "Lektion entsperren"}>
                             {lesson.status === "published" ? <Lock size={16} /> : <Unlock size={16} />}
                           </button>
                         </div>

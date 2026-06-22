@@ -29,7 +29,7 @@ function ResultContent() {
           </div>
           
           <h1 className="text-2xl font-display font-bold text-foreground">
-            {percentage >= 80 ? "Ausgezeichnet!" : percentage >= 50 ? "Gut gemacht!" : "Weiter uben!"}
+            {percentage >= 80 ? "Ausgezeichnet!" : percentage >= 50 ? "Gut gemacht!" : "Weiter üben!"}
           </h1>
           
           <div className="text-5xl font-display font-bold text-primary">{percentage}%</div>
@@ -58,7 +58,7 @@ function ResultContent() {
               <Link href={`/exercise/${lessonId}`}>
                 <Button className="w-full shadow-lg shadow-primary/20 group">
                   <RotateCcw size={16} className="mr-2 group-hover:rotate-180 transition-transform duration-500" />
-                  Nochmal uben
+                  Nochmal üben
                 </Button>
               </Link>
             ) : (
@@ -71,7 +71,7 @@ function ResultContent() {
             <Link href={backLink}>
               <Button variant="outline" className="w-full group">
                 <ArrowRight size={16} className="mr-2 group-hover:translate-x-0.5 transition-transform" />
-                {courseId ? "Zuruck zum Kurs" : "Weiter lernen"}
+                {courseId ? "Zurück zum Kurs" : "Weiter lernen"}
               </Button>
             </Link>
             <Link href="/dashboard">

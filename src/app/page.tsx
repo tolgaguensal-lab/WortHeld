@@ -79,7 +79,7 @@ export default async function HomePage() {
                     <div><div className="text-xs font-bold">WortHeld Tutor</div><div className="text-[10px] text-muted-foreground">Online &middot; KI-gest&uuml;tzt</div></div>
                   </div>
                   <div className="flex-1 flex flex-col gap-2">
-                    <div className="p-2.5 rounded-2xl bg-primary/5 border border-primary/10 text-xs">Hallo! &#128075; Ich bin dein Wortwende-Tutor. Sollen wir den <strong>Dativ</strong> &uuml;ben?</div>
+                    <div className="p-2.5 rounded-2xl bg-primary/5 border border-primary/10 text-xs">Hallo! &#128075; Ich bin dein WortHeld-Tutor. Sollen wir den <strong>Dativ</strong> &uuml;ben?</div>
                     <div className="p-2.5 rounded-2xl bg-accent text-white text-xs ml-auto">Ja, los geht&apos;s!</div>
                     <div className="p-2.5 rounded-2xl bg-primary/5 border border-primary/10 text-xs">&#127919; <strong>&Uuml;bung:</strong> Er schenkt ___ Kind ein Buch. Was passt?</div>
                   </div>

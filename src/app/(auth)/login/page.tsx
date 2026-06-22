@@ -24,7 +24,7 @@ export default function LoginPage() {
     setError("");
     const result = await signIn("credentials", { email, password, redirect: false });
     if (result?.error) {
-      setError("Ungultige Anmeldedaten");
+      setError("Ungültige Anmeldedaten");
       setLoading(false);
     } else {
       router.push("/dashboard");
@@ -34,7 +34,7 @@ export default function LoginPage() {
   return (
     <Card className="card-premium">
           <CardHeader className="text-center pb-4">
-            <CardTitle className="text-2xl font-display font-bold">Willkommen zuruck</CardTitle>
+            <CardTitle className="text-2xl font-display font-bold">Willkommen zurück</CardTitle>
             <CardDescription className="text-sm">Melde dich an, um weiterzulernen</CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">

@@ -15,10 +15,10 @@ export default function PlacementResultPage() {
     weaknesses: ["Dative Case", "Irregular Verbs", "Listening Comprehension"],
     recommendation: "Starte mit A2 Modul 1: 'Arbeit und Beruf'.",
     plan: [
-      { week: 1, goal: "Dativ-Prapositionen meistern", focus: "Grammatik" },
+      { week: 1, goal: "Dativ-Präpositionen meistern", focus: "Grammatik" },
       { week: 2, goal: "Berufliche Vorstellung", focus: "Sprechen" },
       { week: 3, goal: "Alltag im Beruf lesen", focus: "Lesen" },
-      { week: 4, goal: "Burovokabeln", focus: "Wortschatz" },
+      { week: 4, goal: "Bürovokabeln", focus: "Wortschatz" },
     ]
   };
 
@@ -64,12 +64,12 @@ export default function PlacementResultPage() {
           <div className="md:col-span-2 space-y-6">
             <Card className="border-0 shadow-xl">
               <CardHeader>
-                <CardTitle className="text-2xl font-display font-bold text-foreground">Starken & Schwachen</CardTitle>
+                <CardTitle className="text-2xl font-display font-bold text-foreground">Stärken & Schwächen</CardTitle>
               </CardHeader>
               <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-3">
                   <h3 className="text-sm font-bold text-green-700 uppercase tracking-wider flex items-center gap-2">
-                    <CheckCircle2 size={16} /> Starken
+                    <CheckCircle2 size={16} /> Stärken
                   </h3>
                   {mockResult.strengths.map((s, i) => (
                     <div key={i} className="text-sm text-muted-foreground bg-green-50 p-3 rounded-lg border border-green-100">{s}</div>

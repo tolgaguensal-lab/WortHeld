@@ -9,10 +9,10 @@ import Link from "next/link";
 import { BookOpen, GraduationCap, Clock, ChevronRight, Sparkles, Target, Library, ArrowRight, Lock, ShoppingCart } from "lucide-react";
 
 const levelMeta: Record<string, { label: string; accent: string; border: string; text: string }> = {
-  A1: { label: "Anfanger", accent: "from-primary to-primary-hover", border: "border-primary/20", text: "text-primary dark:text-primary-foreground/80" },
+  A1: { label: "Anfänger", accent: "from-primary to-primary-hover", border: "border-primary/20", text: "text-primary dark:text-primary-foreground/80" },
   A2: { label: "Grundlagen", accent: "from-sky-500 to-sky-600", border: "border-sky-500/20", text: "text-sky-600 dark:text-sky-400" },
   B1: { label: "Fortgeschritten", accent: "from-amber-500 to-amber-600", border: "border-amber-500/20", text: "text-amber-600 dark:text-amber-400" },
-  B2: { label: "Selbstandig", accent: "from-primary to-primary/80", border: "border-purple-500/20", text: "text-purple-600 dark:text-purple-400" },
+  B2: { label: "Selbstständig", accent: "from-primary to-primary/80", border: "border-purple-500/20", text: "text-purple-600 dark:text-purple-400" },
   C1: { label: "Experte", accent: "from-rose-500 to-rose-600", border: "border-rose-500/20", text: "text-rose-600 dark:text-rose-400" },
 };
 
@@ -48,7 +48,7 @@ export default function LearnPage() {
       <div className="text-center space-y-3">
         <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground">Lernpfad</h1>
         <p className="text-muted-foreground max-w-xl mx-auto text-sm">
-          Wahle einen Kurs und starte deine Deutschreise – von A1 bis C1.
+          Wähle einen Kurs und starte deine Deutschreise – von A1 bis C1.
         </p>
       </div>
 

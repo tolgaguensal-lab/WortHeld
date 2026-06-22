@@ -172,7 +172,7 @@ export default function PricingPage() {
               </thead>
               <tbody>
                 {competitors.map((c, i) => (
-                  <tr key={i} className={`border-b border-border/50 ${c.name.startsWith("Wortwende") ? "bg-accent/5 font-semibold" : ""}`}>
+                  <tr key={i} className={`border-b border-border/50 ${c.name.startsWith("WortHeld") ? "bg-accent/5 font-semibold" : ""}`}>
                     <td className="py-3 px-4 text-foreground">{c.name}</td>
                     <td className="py-3 px-4">{c.price}</td>
                     <td className="py-3 px-4">{c.ai}</td>
@@ -188,15 +188,15 @@ export default function PricingPage() {
       {/* FAQ */}
       <section className="max-w-3xl mx-auto px-6 py-16">
         <Animated type="fadeUp" className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-display font-extrabold text-foreground mb-2">HÃ¤ufige Fragen</h2>
+          <h2 className="text-2xl md:text-3xl font-display font-extrabold text-foreground mb-2">Häufige Fragen</h2>
         </Animated>
         <div className="space-y-4">
           {[
-            { q: "Warum ist Wortwende so g&uuml;nstig?", a: "Wir betreiben eigene Server (ZimaOS), nutzen Open-Source-Tools (LanguageTool, LibreTranslate) und die DeepSeek-API – eine der g&uuml;nstigsten KI-APIs der Welt. Keine Investoren, keine Marketing-Budgets – der Preis geht direkt an dich." },
-            { q: "Was passiert nach der kostenlosen Phase?", a: "Nichts. Der kostenlose Tarif bleibt fÃ¼r immer kostenlos. Du kannst jederzeit upgraden, aber wir drÃ¤ngen dich nicht." },
-            { q: "Kann ich jederzeit kÃ¼ndigen?", a: "Ja. Monatsabo: jederzeit kÃ¼ndbar. Jahresabo: 14 Tage Widerrufsrecht. Keine versteckten Kosten." },
-            { q: "Funktioniert der KI-Tutor auch offline?", a: "Im Premium-Tarif ja. Vokabeln, Grammatik und gespeicherte Lektionen sind offline verfÃ¼gbar. Der KI-Tutor braucht Internet." },
-            { q: "Welche Sprachen unterstÃ¼tzt der KI-Tutor?", a: "Der Tutor spricht Deutsch als Zielsprache. Du kannst in 10 Sprachen mit ihm kommunizieren: TÃ¼rkisch, Arabisch, Russisch, Polnisch, RumÃ¤nisch, Ukrainisch, Albanisch, Kurdisch, Italienisch und Englisch." },
+            { q: "Warum ist WortHeld so g&uuml;nstig?", a: "Wir betreiben eigene Server (ZimaOS), nutzen Open-Source-Tools (LanguageTool, LibreTranslate) und die DeepSeek-API – eine der g&uuml;nstigsten KI-APIs der Welt. Keine Investoren, keine Marketing-Budgets – der Preis geht direkt an dich." },
+            { q: "Was passiert nach der kostenlosen Phase?", a: "Nichts. Der kostenlose Tarif bleibt f&uuml;r immer kostenlos. Du kannst jederzeit upgraden, aber wir dr&auml;ngen dich nicht." },
+            { q: "Kann ich jederzeit k&uuml;ndigen?", a: "Ja. Monatsabo: jederzeit k&uuml;ndbar. Jahresabo: 14 Tage Widerrufsrecht. Keine versteckten Kosten." },
+            { q: "Funktioniert der KI-Tutor auch offline?", a: "Im Premium-Tarif ja. Vokabeln, Grammatik und gespeicherte Lektionen sind offline verf&uuml;gbar. Der KI-Tutor braucht Internet." },
+            { q: "Welche Sprachen unterst&uuml;tzt der KI-Tutor?", a: "Der Tutor spricht Deutsch als Zielsprache. Du kannst in 10 Sprachen mit ihm kommunizieren: T&uuml;rkisch, Arabisch, Russisch, Polnisch, Rum&auml;nisch, Ukrainisch, Albanisch, Kurdisch, Italienisch und Englisch." },
           ].map((faq, i) => (
             <Card key={i} className="p-5 rounded-2xl border-border">
               <h3 className="font-semibold text-foreground text-sm mb-1">{faq.q}</h3>
