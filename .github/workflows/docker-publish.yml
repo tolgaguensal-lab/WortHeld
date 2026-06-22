@@ -17,7 +17,6 @@ concurrency:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-and-push:
@@ -33,6 +32,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Set lowercase image name
+        run: echo "IMAGE_NAME=${{ github.repository_owner }}/wortwende" >> $GITHUB_ENV
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
