@@ -21,6 +21,8 @@
     "audit": "tsx scripts/quality-audit.ts",
     "check:logo": "tsx scripts/check-logo-consistency.ts",
     "check:ui": "npx shadcn@latest diff",
+    "content:sync": "tsx scripts/content-sync.ts",
+    "content:sync:dry": "tsx scripts/content-sync.ts --dry-run",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",

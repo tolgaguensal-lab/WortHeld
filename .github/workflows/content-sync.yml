@@ -1,0 +1,122 @@
+name: Content Auto-Sync Pipeline
+
+on:
+  schedule:
+    # Jeden Sonntag um 6:00 UTC
+    - cron: "0 6 * * 0"
+  workflow_dispatch:
+    inputs:
+      level:
+        description: "CEFR Level (A1-C1 oder all)"
+        type: choice
+        options: ["all", "A1", "A2", "B1", "B2", "C1"]
+        default: "all"
+      dry_run:
+        description: "Nur Analyse (kein Schreiben)?"
+        type: boolean
+        default: false
+      create_pr:
+        description: "Bei neuen Inhalten PR erstellen?"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  content-sync:
+    name: Content Gap Analysis & Auto-Fill
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prisma Generate
+        run: npx prisma generate
+
+      - name: Run Content Gap Analysis
+        id: analysis
+        run: |
+          echo "🔍 Analysiere Content-Lücken..."
+          DRY_FLAG="${{ inputs.dry_run == 'true' && '--dry-run' || '' }}"
+          LEVEL_FLAG="${{ inputs.level != 'all' && format('--level {0}', inputs.level) || '' }}"
+
+          # Führe content-sync aus (nur Analyse wenn dry-run)
+          npx tsx scripts/content-sync.ts --dry-run $LEVEL_FLAG 2>&1 | tee /tmp/content-report.txt
+
+          # Prüfe ob Lücken existieren
+          if grep -q "GEFUNDENE LÜCKEN" /tmp/content-report.txt; then
+            echo "gaps_found=true" >> $GITHUB_OUTPUT
+          else
+            echo "gaps_found=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Auto-Fill Content Gaps
+        if: steps.analysis.outputs.gaps_found == 'true' && inputs.dry_run != 'true'
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          echo "🔧 Fülle Content-Lücken..."
+          LEVEL_FLAG="${{ inputs.level != 'all' && format('--level {0}', inputs.level) || '' }}"
+          npx tsx scripts/content-sync.ts $LEVEL_FLAG --max 30
+
+      - name: Create Pull Request with new content
+        if: steps.analysis.outputs.gaps_found == 'true' && inputs.create_pr == 'true' && inputs.dry_run != 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "📚 content: auto-filled learning content gaps (${{ github.run_number }})"
+          title: "📚 Auto-Fill: Lerninhalte ergänzt (${{ inputs.level }})"
+          body: |
+            ## 🤖 Automatisch generierte Lerninhalte
+
+            Dieser PR wurde automatisch von der Content-Sync-Pipeline erstellt.
+
+            **Geprüfte Level:** ${{ inputs.level }}
+
+            ### Enthaltene Änderungen:
+            - Neue Vokabeln (via DeepSeek V4 AI)
+            - Neue Beispielsätze (via Tatoeba API)
+            - Content-Gap-Analyse angehängt
+
+            ### Vor dem Merge:
+            - [ ] `npm run audit` ausführen
+            - [ ] Neue Vokabeln auf CEFR-Eignung prüfen
+            - [ ] Übersetzungen stichprobenartig validieren
+            - [ ] `npx prisma db seed` testen
+
+            ### Content-Report:
+            ```
+            ${{ steps.analysis.outputs.report }}
+            ```
+          branch: "content/auto-fill-${{ github.run_number }}"
+          delete-branch: true
+          labels: "content, automation, needs-review"
+          reviewers: "tolgaguensal-lab"
+
+      - name: Create Issue (Dry-Run Mode)
+        if: steps.analysis.outputs.gaps_found == 'true' && inputs.dry_run == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('/tmp/content-report.txt', 'utf8');
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "📊 Content-Gap-Report (Dry-Run)",
+              labels: ["content", "automation"],
+              body: `## Content Gap Analysis\n\n\`\`\`\n${report}\n\`\`\`\n\n**Aktion:** Führe \`npx tsx scripts/content-sync.ts\` aus, um Lücken zu füllen.`,
+            });
