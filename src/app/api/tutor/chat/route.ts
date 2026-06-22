@@ -1,16 +1,16 @@
 /**
- * POST /api/tutor/chat — Streaming AI Tutor Chat (Kosten-optimiert)
+ * POST /api/tutor/chat — Streaming AI Tutor Chat mit Tool-Execution (v2)
  *
- * Expects: { messages: [{ role, content }] }
- * Returns: text/event-stream (SSE)
- *
- * Auth required via NextAuth session cookie.
- * Rate-limited per user based on subscription tier.
+ * Der Tutor ist jetzt ein PROAKTIVER AGENT:
+ * - Analysiert Fehlermuster aus UserErrorProfile
+ * - Führt Tools aus (Vokabeln speichern, Lektionen vorschlagen…)
+ * - Streamt die Antwort, extrahiert und executed Tool-Calls danach
  */
 
 import { NextRequest } from "next/server";
 import { auth } from "@/lib/auth";
-import { buildTutorContext, streamTutorChat } from "@/lib/ai/tutor";
+import { buildTutorContext, streamTutorChat, parseToolCalls, ChatMessage } from "@/lib/ai/tutor";
+import { executeTool } from "@/lib/ai/tutor-tools";
 import { prisma } from "@/lib/db";
 
 export const runtime = "nodejs";
@@ -124,27 +124,44 @@ export async function POST(req: NextRequest) {
   const query = lastUserMessage?.content ?? "";
   const context = await buildTutorContext(session.user.id, query);
 
-  // Stream response
+  // Stream response with tool execution
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
     async start(controller) {
+      let fullResponse = "";
       try {
-        const chatMessages = messages.map(m => ({
+        const chatMessages: ChatMessage[] = messages.map(m => ({
           role: m.role as "user" | "assistant" | "system",
           content: m.content,
         }));
 
         for await (const chunk of streamTutorChat(chatMessages, context, apiKey)) {
+          fullResponse += chunk;
           controller.enqueue(encoder.encode(`data: ${JSON.stringify({ content: chunk })}\n\n`));
         }
+
+        // Parse and execute tool calls from the full response
+        const toolCalls = parseToolCalls(fullResponse);
+        if (toolCalls.length > 0) {
+          for (const call of toolCalls) {
+            try {
+              const result = await executeTool(call.toolName, call.params, session.user.id);
+              if (result.success && result.message) {
+                controller.enqueue(encoder.encode(
+                  `data: ${JSON.stringify({ toolResult: { tool: call.toolName, message: result.message, data: result.data } })}\n\n`
+                ));
+              }
+            } catch (toolError) {
+              console.error(`Tool execution error (${call.toolName}):`, toolError);
+            }
+          }
+        }
+
         controller.enqueue(encoder.encode("data: [DONE]\n\n"));
       } catch (error) {
         const message = error instanceof Error ? error.message : "Unbekannter Fehler";
-        controller.enqueue(
-          encoder.encode(`data: ${JSON.stringify({ error: message })}\n\n`)
-        );
+        controller.enqueue(encoder.encode(`data: ${JSON.stringify({ error: message })}\n\n`));
       } finally {
-        // Log request for rate limiting (non-blocking)
         logRequest(session.user.id);
         controller.close();
       }

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import {
   Send, Bot, User, Loader2, Mic, MicOff, Volume2,
-  BookOpen, Sparkles, Trophy, Target, ArrowRight, CheckCircle2
+  BookOpen, Sparkles, Trophy, Target, ArrowRight, CheckCircle2, Wand2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useVoiceInput } from "@/hooks/useVoiceInput";
@@ -19,11 +19,12 @@ const SESSION_TOPICS = [
   { id: "dativ", label: "Dativ", icon: "ðŸ“š", desc: "Wem? â€“ Den Dativ verstehen" },
   { id: "akkusativ", label: "Akkusativ", icon: "ðŸ“–", desc: "Wen oder was?" },
   { id: "perfekt", label: "Perfekt", icon: "â°", desc: "Vergangenheit bilden" },
-  { id: "praepositionen", label: "Pr&auml;positionen", icon: "ðŸ“", desc: "in, an, auf, bei..." },
-  { id: "artikel", label: "Artikel", icon: "ðŸ“", desc: "der, die, das trainieren" },
-  { id: "satzbau", label: "Satzbau", icon: "ðŸ—ï¸", desc: "Hauptsatz & Nebensatz" },
-  { id: "alltag", label: "Alltag", icon: "ðŸ›’", desc: "Einkaufen, Arzt, Beh&ouml;rden" },
-  { id: "beruf", label: "Beruf", icon: "ðŸ’¼", desc: "Bewerbung, Arbeit" },
+  { id: "praepositionen", label: "Präpositionen", icon: "📍", desc: "in, an, auf, bei..." },
+  { id: "artikel", label: "Artikel", icon: "📝", desc: "der, die, das trainieren" },
+  { id: "satzbau", label: "Satzbau", icon: "🏗️", desc: "Hauptsatz & Nebensatz" },
+  { id: "alltag", label: "Alltag", icon: "🛒", desc: "Einkaufen, Arzt, Behörden" },
+  { id: "beruf", label: "Beruf", icon: "💼", desc: "Bewerbung, Arbeit" },
+  { id: "rollenspiel", label: "Rollenspiel", icon: "🎭", desc: "Echte Situationen üben" },
 ];
 
 // â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -54,7 +55,7 @@ export function AIChat() {
     {
       role: "assistant",
       content:
-        "Hallo! ðŸ‘‹ Ich bin dein Wortwende-Tutor. W&auml;hle ein <strong>Thema</strong> f&uuml;r eine gef&uuml;hrte Lernsession â€“ oder stell mir einfach eine Frage!",
+        "Hallo! 👋 Ich bin <strong>Leo</strong>, dein persönlicher Deutsch-Tutor. Wähle ein <strong>Thema</strong> für eine geführte Lernsession – oder stell mir einfach eine Frage! Ich helfe dir, Deutsch wirklich zu <em>verstehen</em>.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -119,8 +120,14 @@ export function AIChat() {
               if (parsed.content) {
                 assistantContent += parsed.content;
                 setMessages(prev => { const copy = [...prev]; copy[copy.length - 1] = { role: "assistant", content: assistantContent }; return copy; });
-              }
-              if (parsed.error) assistantContent = `âŒ ${parsed.error}`;
+              }              if (parsed.toolResult) {
+                // Tool wurde ausgeführt – zeige Ergebnis als System-Nachricht
+                const tr = parsed.toolResult;
+                setMessages(prev => [...prev, {
+                  role: "assistant",
+                  content: `<div class="text-xs text-muted-foreground italic mt-1">🔧 ${tr.message}</div>`,
+                }]);
+              }              if (parsed.error) assistantContent = `âŒ ${parsed.error}`;
             } catch { /* skip */ }
           }
         }
@@ -166,7 +173,7 @@ export function AIChat() {
         </div>
         <div className="flex-1">
           <h2 className="text-sm font-semibold text-foreground">
-            Wortwende Tutor {sessionTopic && <span className="text-accent">Â· {sessionTopic}</span>}
+            Wortwende Tutor <span className="text-accent font-medium">Leo</span> {sessionTopic && <span className="text-accent">· {sessionTopic}</span>}
           </h2>
           <p className="text-xs text-muted-foreground">
             {loading ? "Schreibt..." : mode === "session" ? `Session Â· +${sessionXp} XP` : "Online Â· KI-gest&uuml;tzt"}
@@ -183,29 +190,21 @@ export function AIChat() {
       {mode === "chat" && messages.length <= 1 && (
         <div className="px-4 py-3 border-b border-border/30 bg-gradient-to-r from-primary/5 to-accent/5">
           <p className="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1.5">
-            <Sparkles size={12} className="text-accent" /> Gef&uuml;hrte Lernsessions
+            <Sparkles size={12} className="text-accent" /> Geführte Lernsessions
           </p>
-          <div className="grid grid-cols-4 gap-2">
-            {SESSION_TOPICS.slice(0, 4).map(t => (
+          <div className="grid grid-cols-3 gap-2">
+            {SESSION_TOPICS.map(t => (
               <button
                 key={t.id}
                 onClick={() => startSession(t)}
-                className="flex flex-col items-center gap-1 p-2.5 rounded-xl bg-card border border-border/50 hover:border-accent/40 hover:bg-accent/5 transition-all text-center group"
+                className={`flex flex-col items-center gap-1 p-2.5 rounded-xl border transition-all text-center group ${
+                  t.id === "rollenspiel"
+                    ? "bg-accent/10 border-accent/30 hover:bg-accent/20 hover:border-accent/50"
+                    : "bg-card border-border/50 hover:border-accent/40 hover:bg-accent/5"
+                }`}
               >
                 <span className="text-xl">{t.icon}</span>
-                <span className="text-xs font-semibold text-foreground group-hover:text-accent">{t.label}</span>
-              </button>
-            ))}
-          </div>
-          <div className="grid grid-cols-4 gap-2 mt-2">
-            {SESSION_TOPICS.slice(4).map(t => (
-              <button
-                key={t.id}
-                onClick={() => startSession(t)}
-                className="flex flex-col items-center gap-1 p-2.5 rounded-xl bg-card border border-border/50 hover:border-accent/40 hover:bg-accent/5 transition-all text-center group"
-              >
-                <span className="text-xl">{t.icon}</span>
-                <span className="text-xs font-semibold text-foreground group-hover:text-accent">{t.label}</span>
+                <span className={`text-xs font-semibold ${t.id === "rollenspiel" ? "text-accent" : "text-foreground"} group-hover:text-accent`}>{t.label}</span>
               </button>
             ))}
           </div>
