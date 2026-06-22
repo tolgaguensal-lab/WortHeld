@@ -19,9 +19,9 @@ export const dynamic = "force-dynamic";
 // ── Rate Limiting (pro User, pro Tag) ──────────────────────────────────────
 
 const DAILY_LIMITS: Record<string, number> = {
-  free: 5,
-  plus: 50,
-  premium: Infinity,
+  free: 10,
+  plus: 100,
+  premium: 300,
 };
 
 async function getUserTier(userId: string): Promise<"free" | "plus" | "premium"> {
@@ -43,7 +43,6 @@ async function getUserTier(userId: string): Promise<"free" | "plus" | "premium">
 async function checkRateLimit(userId: string): Promise<{ allowed: boolean; remaining: number }> {
   const tier = await getUserTier(userId);
   const limit = DAILY_LIMITS[tier] ?? DAILY_LIMITS.free;
-  if (limit === Infinity) return { allowed: true, remaining: Infinity };
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -97,7 +96,7 @@ export async function POST(req: NextRequest) {
   if (!allowed) {
     return new Response(
       JSON.stringify({
-        error: "Tageslimit erreicht. Upgrade für unbegrenzten KI-Tutor.",
+        error: "Tageslimit erreicht. Upgrade für mehr KI-Sessions mit Leo.",
         code: "RATE_LIMITED",
       }),
       {
