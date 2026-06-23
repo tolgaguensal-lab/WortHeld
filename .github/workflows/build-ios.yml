@@ -49,17 +49,26 @@ jobs:
             -archivePath ./build/App.xcarchive \
             archive
 
-      - name: Export IPA
+      - name: Export IPA (Development)
         run: |
           cd ios/App
+          mkdir -p build
+          cat > build/exportOptions.plist << 'PLISTEOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>development</string>
+            <key>compileBitcode</key>
+            <false/>
+          </dict>
+          </plist>
+          PLISTEOF
           xcodebuild -exportArchive \
             -archivePath ./build/App.xcarchive \
             -exportPath ./build \
-            -exportOptionsPlist ./exportOptions.plist 2>/dev/null || \
-          xcodebuild -exportArchive \
-            -archivePath ./build/App.xcarchive \
-            -exportPath ./build \
-            -exportOptionsPlist <(echo '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>method</key><string>development</string></dict></plist>')
+            -exportOptionsPlist ./build/exportOptions.plist
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4

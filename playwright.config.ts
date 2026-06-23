@@ -5,7 +5,7 @@ export default defineConfig({
   timeout: 30000,
   retries: 0,
   use: {
-    baseURL: "http://192.168.178.91:3035",
+    baseURL: process.env.BASE_URL || "http://127.0.0.1:3000",
     headless: true,
     channel: "chrome",
     screenshot: "only-on-failure",

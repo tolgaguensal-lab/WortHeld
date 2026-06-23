@@ -40,7 +40,16 @@ public/version.json
 *.tsbuildinfo
 next-env.d.ts
 
-# Capacitor
-/android/
-/ios/
+# Capacitor - NUR Build-Artefakte, nicht die Projekte selbst
+android/app/build/
+android/build/
+android/.gradle/
+android/captures/
+android/local.properties
+ios/App/build/
+ios/App/Pods/
+ios/App/.xcode/
+ios/App/DerivedData/
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcodeproj/xcuserdata/
 

@@ -10,7 +10,7 @@ const config: CapacitorConfig = {
     url: isProd
       ? "https://wortwende.guenlab.de"
       : "http://192.168.178.91:3035",
-    cleartext: !isProd,
+    cleartext: false,
     androidScheme: "https",
     iosScheme: "https",
   },

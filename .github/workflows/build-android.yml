@@ -49,7 +49,6 @@ jobs:
 
       - name: Build Release AAB (Play Store)
         run: cd android && ./gradlew bundleRelease
-        continue-on-error: true
         env:
           KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
 
@@ -66,4 +65,3 @@ jobs:
           name: wortwende-android-release
           path: android/app/build/outputs/bundle/release/app-release.aab
           retention-days: 90
-        continue-on-error: true

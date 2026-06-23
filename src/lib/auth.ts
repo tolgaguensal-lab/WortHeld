@@ -39,9 +39,12 @@ export const authOptions = {
         token.userId = user.id;
       }
       if (token.userId) {
-        const profile = await prisma.userProfile.findUnique({ where: { userId: token.userId as string } });
-        token.role = profile ? "USER" : "USER";
-        token.placementLevel = profile?.placementLevel || null;
+        const dbUser = await prisma.user.findUnique({
+          where: { id: token.userId as string },
+          select: { role: true, profile: { select: { placementLevel: true } } },
+        });
+        token.role = dbUser?.role || "USER";
+        token.placementLevel = dbUser?.profile?.placementLevel || null;
       }
       return token;
     },

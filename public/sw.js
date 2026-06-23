@@ -1,7 +1,5 @@
-const CACHE_NAME = "echo-v4";
-const STATIC_ASSETS = ["/", "/offline", "/manifest.json", "/favicon.svg", "/bamf", "/speaking"];
-const API_CACHE = "echo-api-v1";
-const VERSION_CACHE = "echo-version";
+const CACHE_NAME = "wortwende-v1";
+const STATIC_ASSETS = ["/", "/offline", "/manifest.json", "/favicon.svg"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -15,7 +13,7 @@ self.addEventListener("activate", (event) => {
     caches.keys().then((keys) =>
       Promise.all(
         keys
-          .filter((key) => key !== CACHE_NAME && key !== API_CACHE && key !== VERSION_CACHE)
+          .filter((key) => key !== CACHE_NAME)
           .map((key) => caches.delete(key))
       )
     )
@@ -23,57 +21,31 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting();
-  }
-});
-
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  if (url.pathname === "/version.json") {
-    event.respondWith(
-      fetch(request).then((response) => {
-        const clone = response.clone();
-        caches.open(VERSION_CACHE).then((cache) => cache.put(request, clone));
-        return response;
-      })
-    );
+  // KEINE API-Responses cachen (enthält personenbezogene Daten)
+  if (url.pathname.startsWith("/api/")) {
     return;
   }
 
-  if (url.pathname.startsWith("/api/")) {
-    event.respondWith(
-      caches.open(API_CACHE).then((cache) =>
-        fetch(request)
-          .then((response) => {
-            if (request.method === "GET" && response.ok) {
-              cache.put(request, response.clone());
-            }
-            return response;
-          })
-          .catch(() => cache.match(request))
-      )
-    );
-  } else {
-    event.respondWith(
-      caches.match(request).then((cached) => {
-        const fetched = fetch(request).then((response) => {
-          if (response.ok) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          }
-          return response;
-        }).catch(() => {
-          if (request.mode === "navigate") {
-            return caches.match("/offline");
-          }
-          return cached || new Response("Offline", { status: 503 });
-        });
-        return cached || fetched;
-      })
-    );
-  }
+  // Statische Assets: Cache-First, dann Network-Fallback
+  event.respondWith(
+    caches.match(request).then((cached) => {
+      const fetched = fetch(request).then((response) => {
+        if (response.ok && request.method === "GET") {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+        }
+        return response;
+      }).catch(() => {
+        if (request.mode === "navigate") {
+          return caches.match("/offline");
+        }
+        return cached || new Response("Offline", { status: 503 });
+      });
+      return cached || fetched;
+    })
+  );
 });

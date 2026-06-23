@@ -12,6 +12,8 @@ const SECURITY_HEADERS: Record<string, string> = {
   "Referrer-Policy": "strict-origin-when-cross-origin",
   "Permissions-Policy":
     "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+  "Content-Security-Policy":
+    "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; font-src 'self'; connect-src 'self' https://api.deepseek.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
 };
 
 type ResponseWithHeaders = NextResponse | Response;
@@ -57,7 +59,9 @@ export default function middleware(req: NextRequest) {
     }
 
     const response = NextResponse.next();
-    response.headers.set("Access-Control-Allow-Origin", "*");
+    const allowedOrigin = process.env.ALLOWED_ORIGIN || "https://wortwende.guenlab.de";
+    response.headers.set("Access-Control-Allow-Origin", allowedOrigin);
+    response.headers.set("Vary", "Origin");
     response.headers.set(
       "Access-Control-Allow-Methods",
       "GET, POST, PUT, DELETE, OPTIONS"

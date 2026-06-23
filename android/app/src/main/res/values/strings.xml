@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Wortwende</string>
+    <string name="title_activity_main">Wortwende</string>
+    <string name="package_name">de.guenlab.wortwende</string>
+    <string name="custom_url_scheme">de.guenlab.wortwende</string>
+</resources>
