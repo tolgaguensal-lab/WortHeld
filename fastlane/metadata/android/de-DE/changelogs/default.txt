@@ -1,0 +1,8 @@
+Erste Version von Wortwende – dein persönlicher KI-Tutor für Deutsch.
+
+• KI-Tutor Leo: Proaktiver Deutsch-Lehrer mit Tool-Use und Fehlererkennung
+• Alle CEFR-Level A1-C1
+• Spaced Repetition, Vokabeltrainer, Grammatik
+• Einstufungstest, DTZ-Vorbereitung
+• 10 Muttersprachen
+• Account-Löschung und Datenexport
