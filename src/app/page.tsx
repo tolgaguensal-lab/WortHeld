@@ -35,11 +35,11 @@ export default async function HomePage() {
           <Link href="/" className="flex items-center gap-2.5">
             <LogoFull size={32} />
           </Link>
-          <div className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
-            <Link href="/tutor" className="text-accent font-bold hover:text-accent-hover transition-colors flex items-center gap-1"><Bot size={15} />KI-Tutor</Link>
+          <div className="flex flex-wrap items-center gap-3 md:gap-6 text-xs md:text-sm font-medium text-muted-foreground">
+            <Link href="/tutor" className="text-accent font-bold hover:text-accent-hover transition-colors flex items-center gap-1"><Bot size={14} />KI-Tutor</Link>
             <Link href="/learn" className="hover:text-foreground transition-colors">Lernen</Link>
             <Link href="/placement-test" className="hover:text-foreground transition-colors">Einstufungstest</Link>
-            <Link href="/pricing" className="text-amber-500 font-bold hover:text-amber-600 transition-colors flex items-center gap-1"><Zap size={14} />Preise</Link>
+            <Link href="/pricing" className="text-amber-500 font-bold hover:text-amber-600 transition-colors flex items-center gap-1"><Zap size={13} />Preise</Link>
           </div>
           <div className="flex items-center gap-3">
             <Link href="/login"><Button variant="ghost" className="text-muted-foreground">Anmelden</Button></Link>
@@ -195,6 +195,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <LogoFull size={24} />
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
+            <Link href="/pricing" className="text-amber-500 font-bold hover:text-amber-600 transition-colors">Preise</Link>
             <Link href="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
             <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
             <Link href="/agb" className="hover:text-foreground transition-colors">AGB</Link>
