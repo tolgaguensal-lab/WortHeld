@@ -14,15 +14,16 @@ FROM node:22-bookworm AS builder
 
 ARG APP_VERSION=0.0.0
 ENV NEXT_PUBLIC_APP_VERSION=${APP_VERSION}
+ENV PRISMA_SKIP_POSTINSTALL_GENERATE=true
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+RUN npm install --legacy-peer-deps
 
 COPY . .
 
-# Prisma Client generieren
+# Prisma Client generieren (nachdem schema.prisma kopiert wurde)
 RUN npx prisma generate
 
 # Next.js Standalone-Build (NODE_ENV=production erst HIER)
