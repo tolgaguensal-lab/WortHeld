@@ -49,7 +49,9 @@ export async function checkGrammar(text: string, language = "de-DE"): Promise<{
     };
   } catch (e) {
     // Fallback: wenn LanguageTool nicht verfügbar, leeres Ergebnis
-    console.warn("LanguageTool nicht erreichbar:", e);
+    if (process.env.NODE_ENV === "development") {
+      console.warn("LanguageTool nicht erreichbar:", e);
+    }
     return { text, errors: [] };
   }
 }

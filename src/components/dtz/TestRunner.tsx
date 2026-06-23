@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -37,19 +37,6 @@ export function TestRunner({ testId, test, onComplete }: TestRunnerProps) {
 
   const questions: Question[] = typeof test.questions === "string" ? JSON.parse(test.questions) : test.questions;
 
-  useEffect(() => {
-    if (timeLeft <= 0) {
-      handleSubmit();
-      return;
-    }
-
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => prev - 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [timeLeft]);
-
   const handleAnswer = (answer: string) => {
     const newAnswers = [...answers];
     newAnswers[currentQuestion] = answer;
@@ -72,6 +59,22 @@ export function TestRunner({ testId, test, onComplete }: TestRunnerProps) {
 
     onComplete(result);
   };
+
+  const handleSubmitRef = useRef(handleSubmit);
+  handleSubmitRef.current = handleSubmit;
+
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      handleSubmitRef.current();
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft]);
 
   if (showResult) return null;
 

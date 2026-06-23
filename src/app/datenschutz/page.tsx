@@ -1,6 +1,9 @@
+import { PublicTopBar } from "@/components/shared/PublicTopBar";
+
 export default function DatenschutzPage() {
   return (
     <div className="min-h-screen bg-background">
+      <PublicTopBar />
       <div className="max-w-3xl mx-auto px-6 py-12">
         <a href="/" className="text-primary hover:underline text-sm mb-6 inline-block">← Zurück zur Startseite</a>
         <h1 className="text-4xl font-display font-bold mb-8">Datenschutzerklärung</h1>

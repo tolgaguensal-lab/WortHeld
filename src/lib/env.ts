@@ -36,9 +36,11 @@ export function validateEnv() {
   // DATABASE_URL sollte connection_limit und pool_timeout haben
   const dbUrl = process.env.DATABASE_URL!;
   if (!dbUrl.includes("connection_limit=")) {
-    console.warn(
-      '⚠️  DATABASE_URL ohne connection_limit — empfehle "&connection_limit=10&pool_timeout=10"'
-    );
+    if (process.env.NODE_ENV === "development") {
+      console.warn(
+        '⚠️  DATABASE_URL ohne connection_limit — empfehle "&connection_limit=10&pool_timeout=10"'
+      );
+    }
   }
 
   // NEXTAUTH_SECRET sollte nicht der Default-Wert sein

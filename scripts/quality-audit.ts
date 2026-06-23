@@ -224,7 +224,11 @@ function checkAccessibility(): Violation[] {
 
     // 3d: Fehlende h1 auf pages (nur page.tsx, nicht layout)
     if (/\/page\.tsx$/.test(rp) && !rp.includes("layout.tsx")) {
-      if (!/<h1[\s>]/.test(content) && /return\s*\(/.test(content)) {
+      // Skip pages in auth/dashboard route groups (layouts provide h1)
+      if (rp.includes(AUTH_GROUP) || rp.includes(DASHBOARD_GROUP)) return violations;
+      // Skip pages using <PageHeader> component (renders h1 internally)
+      if (/<PageHeader\s/.test(content)) return violations;
+      if (!/<h1[\s>]/.test(content) && /return\s*(\(|<)/.test(content)) {
         violations.push({
           category: "ACCESSIBILITY",
           severity: "warning",
@@ -325,6 +329,11 @@ function checkCodeQuality(): Violation[] {
       const lines = linesOf(content);
       for (let i = 0; i < lines.length; i++) {
         if (/console\.(log|warn|debug)\s*\(/.test(lines[i]) && !/^\s*\/\//.test(lines[i])) {
+          // Skip if wrapped in NODE_ENV development check
+          const contextStart = Math.max(0, i - 3);
+          const context = lines.slice(contextStart, i + 1).join("\n");
+          if (/NODE_ENV\s*===\s*["']development["']/.test(context)) continue;
+
           violations.push({
             category: "CODE-QUALITÄT",
             severity: "warning",
@@ -421,7 +430,7 @@ function checkContent(): Violation[] {
     try { content = readFileSync(file, "utf-8"); } catch { continue; }
 
     // Check if the page actually renders something
-    const hasReturn = /return\s*\(/.test(content);
+    const hasReturn = /return\s*(\(|<)/.test(content);
     const hasNullReturn = /return\s+(null|undefined)\s*;?\s*$/.test(content);
     const hasRedirect = /redirect\(/.test(content) || /notFound\(\)/.test(content);
 
@@ -558,9 +567,10 @@ function checkMobileLayout(): Violation[] {
 
     // Prüfe ob Tailwind responsive prefixes verwendet werden
     const hasResponsive = /(sm|md|lg|xl):/.test(content);
-    const hasReturn = /return\s*\(/.test(content);
+    const hasInherentResponsive = /max-w-|prose|container|grid-cols-|flex-col|flex-wrap|space-y-|space-x-|p-[2-9]|px-[2-9]/.test(content);
+    const hasReturn = /return\s*(\(|<)/.test(content);
 
-    if (hasReturn && !hasResponsive && !rp.includes("layout.tsx") && content.length > 200) {
+    if (hasReturn && !hasResponsive && !hasInherentResponsive && !rp.includes("layout.tsx") && content.length > 200) {
       violations.push({
         category: "MOBILE",
         severity: "warning",

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { PublicTopBar } from "@/components/shared/PublicTopBar";
 import { ArrowRight, ArrowLeft, Languages, Target, Clock, Sparkles, CheckCircle2 } from "lucide-react";
 import { SUPPORTED_LANGUAGES } from "@/lib/translation/provider";
 
@@ -64,7 +65,9 @@ export default function OnboardingPage() {
   const currentStepIdx = steps.indexOf(step);
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background">
+      <PublicTopBar />
+      <div className="flex items-center justify-center p-4">
       <div className="w-full max-w-xl space-y-6">
         {/* Progress Steps */}
         <div className="flex items-center justify-center gap-2">
@@ -166,6 +169,7 @@ export default function OnboardingPage() {
             </div>
           </Card>
         )}
+      </div>
       </div>
     </div>
   );

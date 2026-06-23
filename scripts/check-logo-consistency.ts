@@ -19,6 +19,7 @@ import { join, relative, basename } from "path";
 const SRC_DIR = join(process.cwd(), "src");
 const LOGO_PNG_PATH = "/logo.png";
 const REQUIRED_COMPONENTS = ["AppIcon", "LogoMark", "LogoFull"];
+const BRANDING_COMPONENTS = [...REQUIRED_COMPONENTS, "PublicTopBar"]; // PublicTopBar wrappt LogoMark
 const AUTH_GROUP = "(auth)";
 const DASHBOARD_GROUP = "(dashboard)";
 
@@ -195,7 +196,7 @@ const checks: { name: string; check: (file: string, content: string, relPath: st
       // Seiten die von einem Layout umschlossen werden sind okay
       if (relPath.includes(AUTH_GROUP) || relPath.includes(DASHBOARD_GROUP)) return violations;
 
-      const hasLogoComponent = REQUIRED_COMPONENTS.some(c => content.includes(c));
+      const hasLogoComponent = BRANDING_COMPONENTS.some(c => content.includes(c));
       const hasRawLogo = /logo\.(png|svg|ico)/i.test(content);
       // Prüfe auch ob die Seite überhaupt sichtbaren Content hat
       const hasVisualContent = /return\s*\(/.test(content);

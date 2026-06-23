@@ -6,6 +6,80 @@
         "shadcn@latest",
         "mcp"
       ]
+    },
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-postgres"
+      ],
+      "env": {
+        "DATABASE_URL": "postgresql://user:password@localhost:5432/wortwende?schema=public"
+      }
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_TOKEN}"
+      }
+    },
+    "docker": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-docker"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-sequential-thinking"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-filesystem",
+        "/home/tolga/Dokumente/Github/WortWende"
+      ]
+    },
+    "commands": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-commands",
+        "--working-directory",
+        "/home/tolga/Dokumente/Github/WortWende"
+      ]
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-puppeteer"
+      ]
+    },
+    "git": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-git",
+        "--repository",
+        "/home/tolga/Dokumente/Github/WortWende"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anthropic/mcp-server-memory"
+      ]
     }
   }
 }

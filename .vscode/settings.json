@@ -1,0 +1,12 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "terminal.integrated.env.linux": {
+    "DATABASE_URL": "postgresql://user:password@localhost:5432/wortwende?schema=public&connection_limit=10&pool_timeout=10"
+  }
+}

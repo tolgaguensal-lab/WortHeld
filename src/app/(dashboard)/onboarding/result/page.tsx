@@ -68,17 +68,17 @@ export default function PlacementResultPage() {
               </CardHeader>
               <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-3">
-                  <h3 className="text-sm font-bold text-green-700 uppercase tracking-wider flex items-center gap-2">
+                  <h2 className="text-sm font-bold text-green-700 uppercase tracking-wider flex items-center gap-2">
                     <CheckCircle2 size={16} /> Stärken
-                  </h3>
+                  </h2>
                   {mockResult.strengths.map((s, i) => (
                     <div key={i} className="text-sm text-muted-foreground bg-green-50 p-3 rounded-lg border border-green-100">{s}</div>
                   ))}
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-sm font-bold text-red-700 uppercase tracking-wider flex items-center gap-2">
+                  <h2 className="text-sm font-bold text-red-700 uppercase tracking-wider flex items-center gap-2">
                     <AlertCircle size={16} /> Potenzial
-                  </h3>
+                  </h2>
                   {mockResult.weaknesses.map((w, i) => (
                     <div key={i} className="text-sm text-muted-foreground bg-red-50 p-3 rounded-lg border border-red-100">{w}</div>
                   ))}

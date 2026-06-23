@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { PageHeader } from "@/components/shared/PageHeader";
+import { PublicTopBar } from "@/components/shared/PublicTopBar";
 import { BookOpen, Landmark, Scale, Flag, Users, MapPin, Globe } from "lucide-react";
 
 const topics = [
@@ -86,6 +87,7 @@ const quizQuestions = [
 export default function LebenInDeutschlandPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 space-y-10">
+      <PublicTopBar />
       <PageHeader
         title="Leben in Deutschland"
         description="Vorbereitung auf den Orientierungskurs-Test — alles über Geschichte, Recht, Gesellschaft und Kultur in Deutschland."

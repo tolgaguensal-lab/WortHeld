@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { PublicTopBar } from "@/components/shared/PublicTopBar";
 import { CheckCircle2, ArrowRight, Bot, Infinity, Mic, Globe, BookOpen, Zap, Shield } from "lucide-react";
 import Link from "next/link";
 import { Animated, Stagger } from "@/components/shared/Animated";
@@ -99,6 +100,7 @@ const competitors = [
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-background">
+      <PublicTopBar />
       {/* Hero */}
       <section className="max-w-7xl mx-auto px-6 pt-16 pb-10 text-center">
         <Animated type="fadeUp">
@@ -116,6 +118,7 @@ export default function PricingPage() {
 
       {/* Plans */}
       <section className="max-w-5xl mx-auto px-6 pb-16">
+        <h2 className="sr-only">Unsere Preispläne</h2>
         <Stagger className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {plans.map((plan) => (
             <Card key={plan.name} className={`relative rounded-[28px] overflow-hidden border-2 ${plan.color} ${plan.popular ? "shadow-xl shadow-accent/10 scale-[1.03]" : ""}`}>

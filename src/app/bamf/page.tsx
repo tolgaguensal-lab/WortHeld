@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { PageHeader } from "@/components/shared/PageHeader";
+import { PublicTopBar } from "@/components/shared/PublicTopBar";
 import { BookOpen, Headphones, MessageSquare, PenLine, Sigma, Building2, Heart, Briefcase, GraduationCap, Baby, Home, ShoppingCart, Bus, Landmark, Shield } from "lucide-react";
 
 const bamfModules = [
@@ -65,6 +66,7 @@ export default function BAMFMappingPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 space-y-10">
+      <PublicTopBar />
       <PageHeader
         title="BAMF-Rahmencurriculum"
         description="Unsere Lerninhalte sind vollständig am Rahmencurriculum für Integrationskurse des BAMF ausgerichtet — vom ersten Wort bis zur DTZ-Prüfung."

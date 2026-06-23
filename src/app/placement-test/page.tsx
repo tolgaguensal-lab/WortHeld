@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { PublicTopBar } from "@/components/shared/PublicTopBar";
 import { ChevronRight, ChevronLeft, CheckCircle2, GraduationCap } from "lucide-react";
 
 const PLACEMENT_QUESTIONS = [
@@ -54,8 +55,11 @@ export default function PlacementTestPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+    <div className="min-h-screen bg-background">
+      <PublicTopBar />
+      <div className="flex items-center justify-center p-4">
       <div className="w-full max-w-xl space-y-6">
+        <h1 className="sr-only">Einstufungstest – Deutsch-Sprachniveau ermitteln</h1>
         {step === 0 && (
           <Card className="card-premium overflow-hidden">
             <div className="h-1.5 bg-gradient-to-r from-primary to-accent/60" />
@@ -160,6 +164,7 @@ export default function PlacementTestPage() {
             </CardFooter>
           </Card>
         )}
+      </div>
       </div>
     </div>
   );
