@@ -60,7 +60,7 @@ export default function LearnPage() {
           <div className="flex-1">
             <p className="font-semibold text-foreground">
               Empfohlenes Niveau: <span className="text-xl font-display font-bold text-primary">{placementLevel}</span>
-              <span className="text-muted-foreground font-normal"> &mdash; {levelMeta[placementLevel]?.label}</span>
+              <span className="text-muted-foreground font-normal"> — {levelMeta[placementLevel]?.label}</span>
             </p>
             <p className="text-sm text-muted-foreground mt-0.5">Basierend auf deinem Einstufungstest.</p>
           </div>

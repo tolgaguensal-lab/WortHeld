@@ -319,7 +319,7 @@ export function AIChat() {
           </Button>
         </div>
         <p className="text-[10px] text-muted-foreground/50 mt-1.5 text-center">
-          {isListening ? "ðŸŽ¤ Sprich jetzt..." : mode === "session" ? "Antworte auf die &Uuml;bung â€“ der Tutor korrigiert dich." : "Tippe oder sprich â€“ der Tutor versteht beides."}
+          {isListening ? "ðŸŽ¤ Sprich jetzt..." : mode === "session" ? "Antworte auf die �bung â€“ der Tutor korrigiert dich." : "Tippe oder sprich â€“ der Tutor versteht beides."}
         </p>
       </div>
     </div>

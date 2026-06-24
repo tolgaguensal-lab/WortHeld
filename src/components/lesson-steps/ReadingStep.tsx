@@ -51,7 +51,7 @@ export function ReadingStep({ content, onComplete }: Props) {
           </div>
           <div className="text-center mt-4">
             <Button onClick={() => setShowQuestions(true)} size="lg" className="shadow-lg shadow-primary/20">
-              Text gelesen &mdash; Fragen beantworten
+              Text gelesen — Fragen beantworten
             </Button>
           </div>
         </div>

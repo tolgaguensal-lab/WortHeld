@@ -1,0 +1,71 @@
+name: Quality Gate (Encoding + Tests)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "prisma/**"
+      - "scripts/**"
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  encoding-check:
+    name: Encoding & Character Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check encoding
+        run: python3 scripts/check-encoding.py
+
+  quality-audit:
+    name: Quality Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run audit
+
+  smoke-tests:
+    name: Smoke Tests
+    needs: [encoding-check]
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: wortheld
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: wortheld
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci
+      - run: npx prisma generate
+      - run: npx prisma db push --skip-generate
+      - name: Build
+        run: npm run build
+        env:
+          DATABASE_URL: postgresql://wortheld:test@localhost:5432/wortheld
+          NEXTAUTH_URL: http://localhost:3000
+          NEXTAUTH_SECRET: test-secret-12345678901234567890
+      - name: Unit Tests
+        run: npm run test
+        env:
+          DATABASE_URL: postgresql://wortheld:test@localhost:5432/wortheld
