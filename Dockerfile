@@ -32,6 +32,9 @@ RUN NODE_ENV=production npm run build
 # ---- Production Stage ----
 FROM node:22-bookworm-slim AS runner
 
+# OpenSSL für Prisma (erforderlich für DB-Verbindung)
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+
 ARG APP_VERSION=0.0.0
 ENV APP_VERSION=${APP_VERSION}
 ENV NODE_ENV=production
