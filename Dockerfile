@@ -50,6 +50,9 @@ RUN addgroup --system --gid 1001 nodejs && \
 # 1. Standalone-App (server.js + node_modules + .next/server)
 COPY --from=builder /app/.next/standalone ./
 
+# 1b. ALLE node_modules aus dem Builder (Next.js standalone vergisst Server-Deps)
+COPY --from=builder /app/node_modules ./node_modules
+
 # 2. Static Assets (CSS, JS chunks)
 COPY --from=builder /app/.next/static ./.next/static
 
