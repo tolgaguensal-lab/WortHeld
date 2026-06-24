@@ -48,6 +48,7 @@ function stripHtml(text: string) {
 // â”€â”€ Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export function AIChat() {
+  const [consentGiven, setConsentGiven] = useState(false);
   const [mode, setMode] = useState<"chat" | "session">("chat");
   const [sessionXp, setSessionXp] = useState(0);
   const [sessionTopic, setSessionTopic] = useState("");
@@ -165,6 +166,39 @@ export function AIChat() {
   };
 
   return (
+    <>
+      {/* DSGVO Consent Overlay */}
+      {!consentGiven && (
+        <div className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="max-w-md w-full bg-card rounded-2xl shadow-2xl border border-border p-6 space-y-4">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+              <Bot size={24} className="text-white" />
+            </div>
+            <h2 className="text-xl font-display font-bold text-foreground">KI-Tutor aktivieren</h2>
+            <div className="text-sm text-muted-foreground space-y-2">
+              <p>Unser KI-Tutor <strong>Leo</strong> nutzt die <strong>DeepSeek V4 Flash API</strong> (Anbieter: DeepSeek, China).</p>
+              <ul className="list-disc pl-4 space-y-1">
+                <li>Deine Chat-Nachrichten werden zur KI-Verarbeitung an DeepSeek übermittelt.</li>
+                <li>Es werden <strong>keine</strong> personenbezogenen Daten (Name, E-Mail) mitgesendet.</li>
+                <li>DeepSeek speichert API-Anfragen <strong>nicht</strong> zum Training (Zero Data Retention).</li>
+                <li>Du kannst den KI-Tutor jederzeit nicht nutzen – alle anderen Funktionen bleiben verfügbar.</li>
+              </ul>
+              <p className="text-xs">Details in unserer <a href="/datenschutz" className="text-primary hover:underline">Datenschutzerklärung</a>.</p>
+            </div>
+            <div className="flex gap-3 pt-2">
+              <Button variant="outline" className="flex-1" onClick={() => window.history.back()}>
+                Abbrechen
+              </Button>
+              <Button variant="accent" className="flex-1" onClick={() => setConsentGiven(true)}>
+                <CheckCircle2 size={16} className="mr-2" />Einverstanden & starten
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Main Chat */}
+      {consentGiven && (
     <div className="flex flex-col h-[calc(100vh-4rem)] max-w-2xl mx-auto">
       {/* Header */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-border/40 bg-card/50 backdrop-blur-sm">
@@ -289,5 +323,7 @@ export function AIChat() {
         </p>
       </div>
     </div>
+      )}
+    </>
   );
 }

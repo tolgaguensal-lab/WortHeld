@@ -53,6 +53,13 @@ export default function DatenschutzPage() {
             <li><strong>Rechtsgrundlage:</strong> Die Verarbeitung erfolgt auf Grundlage deiner Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) und zur Erf&uuml;llung unseres Leistungsvertrags (Art. 6 Abs. 1 lit. b DSGVO). Du kannst den KI-Tutor jederzeit nicht nutzen – alle anderen Funktionen bleiben verf&uuml;gbar.</li>
             <li><strong>Prompt Caching:</strong> Der System-Prompt (Tutor-Pers&ouml;nlichkeit) wird bei DeepSeek gecached, um Kosten zu sparen. Der Cache enth&auml;lt keine personenbezogenen Daten.</li>
           </ul>
+          <p><strong>Auftragsverarbeitung (Art. 28 DSGVO):</strong> Die Nutzung der DeepSeek API erfolgt im Rahmen einer Auftragsverarbeitung. Die Daten&uuml;bermittlung in ein Drittland (China) erfolgt auf Grundlage Ihrer ausdr&uuml;cklichen Einwilligung (Art. 49 Abs. 1 lit. a DSGVO), die Sie vor der ersten Nutzung des KI-Tutors erteilen. DeepSeek hat sich vertraglich zur Einhaltung der DSGVO-Standards verpflichtet (Zero Data Retention).</p>
+
+          <h2 className="text-xl font-display font-semibold text-foreground">11. Zahlungsabwicklung (Stripe)</h2>
+          <p>F&uuml;r die Abwicklung von Zahlungen nutzen wir den Dienstleister Stripe (Stripe Payments Europe, Ltd., Irland). Bei einem Kauf werden Ihre Zahlungsdaten (z.B. Kreditkartennummer) direkt von Stripe verarbeitet – wir speichern keine Zahlungsdaten. Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragserf&uuml;llung). Weitere Informationen: <a href="https://stripe.com/de/privacy" className="text-primary hover:underline">Stripe Datenschutzerkl&auml;rung</a>.</p>
+
+          <h2 className="text-xl font-display font-semibold text-foreground">12. Hosting &amp; Serverstandort</h2>
+          <p>Unsere Server werden in Deutschland (ZimaOS, eigener Server) betrieben. Alle Daten werden ausschlie&szlig;lich auf Servern in Deutschland gespeichert und verarbeitet. Die Verbindung zu unserer Website erfolgt verschl&uuml;sselt &uuml;ber HTTPS (Cloudflare).</p>
 
           <h2 className="text-xl font-display font-semibold text-foreground">11. Deine Rechte im Detail</h2>
           <ul className="list-disc pl-5 space-y-1">
