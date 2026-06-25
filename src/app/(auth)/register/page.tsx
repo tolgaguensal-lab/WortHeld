@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,6 +11,9 @@ import { ArrowRight, User, Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const selectedPlan = searchParams.get("plan") || "free";
+  const planLabels: Record<string, string> = { free: "Kostenlos", plus: "Plus (8,99€/Monat)", premium: "Premium (12,99€/Monat)", "premium-yearly": "Premium Jahres (99,99€/Jahr)" };
   const [form, setForm] = useState({ name: "", email: "", password: "", confirmPassword: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -51,7 +54,9 @@ export default function RegisterPage() {
     <Card className="card-premium">
           <CardHeader className="text-center pb-4">
             <CardTitle className="text-2xl font-display font-bold">Konto erstellen</CardTitle>
-            <CardDescription className="text-sm">Starte deine Deutsch-Lern-Reise</CardDescription>
+            <CardDescription className="text-sm">
+              {selectedPlan !== "free" ? `Gewählter Tarif: ${planLabels[selectedPlan] || selectedPlan}` : "Starte deine Deutsch-Lern-Reise"}
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
