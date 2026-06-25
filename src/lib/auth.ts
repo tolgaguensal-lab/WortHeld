@@ -9,6 +9,7 @@ export const authOptions = {
   adapter: PrismaAdapter(prisma) as any,
   session: { strategy: "jwt" as const },
   pages: { signIn: "/login", error: "/login" },
+  trustHost: true,
   useSecureCookies: process.env.AUTH_SECURE_COOKIES !== "false",
   providers: [
     GoogleProvider({
