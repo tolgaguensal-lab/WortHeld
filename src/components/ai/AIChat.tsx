@@ -74,7 +74,7 @@ export function AIChat() {
   const [personality, setPersonality] = useState<Personality>("locker");
   const [messages, setMessages] = useState<Message[]>([{
     role: "assistant",
-    content: "Hallo! 👋 Ich bin <strong>Leo</strong>, dein persönlicher Deutsch-Tutor. Wähle ein <strong>Thema</strong> für eine geführte Lernsession – oder stell mir einfach eine Frage! Ich helfe dir, Deutsch wirklich zu <em>verstehen</em>.",
+      content: "Hallo! Ich bin Leo, dein persoenlicher Deutsch-Tutor. Waehle ein Thema fuer eine Lernsession oder stell mir eine Frage! Ich helfe dir, Deutsch wirklich zu verstehen.",
   }]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
