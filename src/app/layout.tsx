@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Wortwende \u2013 Deutsch lernen, bis es Klick macht",
   description: "Von A1 bis C1: echte Sprache für Alltag, Beruf, Integration und Prüfung. BAMF-konformer Deutschkurs.",
   manifest: "/manifest.json",
-  icons: { icon: "/logo.png" },
+  icons: { icon: "/favicon.svg", shortcut: "/favicon.png", apple: "/favicon.png" },
   appleWebApp: { capable: true, statusBarStyle: "black-translucent", title: "Wortwende" },
 };
 
