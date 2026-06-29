@@ -150,7 +150,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - WATCHTOWER_CLEANUP=true
-      - WATCHTOWER_POLL_INTERVAL=300
+      - WATCHTOWER_POLL_INTERVAL=86400
       - WATCHTOWER_LABEL_ENABLE=true
       - WATCHTOWER_INCLUDE_STOPPED=false
       - WATCHTOWER_TIMEOUT=120s
